@@ -7,8 +7,8 @@
     <artifactId>SpringBoot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>SpringBoot-1.5.X</artifactId>
-  <name>SpringBoot-1.5.X</name>
+  <artifactId>SpringBoot-1.3.X</artifactId>
+  <name>SpringBoot-1.3.X</name>
   <url>http://maven.apache.org</url>
 
   <dependencies>

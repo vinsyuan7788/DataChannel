@@ -8,7 +8,7 @@
   <description>SpringBoot</description>
   
   <modules>
-  	<module>SpringBoot-1.5.X</module>
+  	<module>SpringBoot-1.3.X</module>
   </modules>
   
   <properties>
