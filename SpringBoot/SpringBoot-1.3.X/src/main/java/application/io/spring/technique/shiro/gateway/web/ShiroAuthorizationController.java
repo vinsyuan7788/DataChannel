@@ -61,6 +61,7 @@ public class ShiroAuthorizationController {
 			PrincipalCollection principals = currentUser.getPrincipals();
 			result.put("loginMsg", principals + " has logged-in");
 			
+			// Predicate if a subject has specific roles
 			String[] roles1 = new String[] { "VP", "CTO", "CIO", "PM" };
 			String[] roles2 = new String[] { "CTO", "CIO", "PM" };
 			String role = "VP";
@@ -68,10 +69,30 @@ public class ShiroAuthorizationController {
 			boolean ifCurrentUserHasAllRoles2 = currentUser.hasAllRoles(Arrays.asList(roles2));
 			boolean[] ifCurrentUserHasRoles1 = currentUser.hasRoles(Arrays.asList(roles1));
 			boolean ifCurrentUserHasRole1 = currentUser.hasRole(role);
-			result.put("if " + principals + " has all roles of " + StringUtils.arrayToString(roles1), ifCurrentUserHasAllRoles1);
-			result.put("if " + principals + " has all roles of " + StringUtils.arrayToString(roles2), ifCurrentUserHasAllRoles2);
-			result.put("if " + principals + " has roles of " + StringUtils.arrayToString(roles1), ifCurrentUserHasRoles1);
-			result.put("if " + principals + " has role of " + role, ifCurrentUserHasRole1);
+			result.put("HasRoles: if " + principals + " has all roles of " + StringUtils.arrayToString(roles1), ifCurrentUserHasAllRoles1);
+			result.put("HasRoles: if " + principals + " has all roles of " + StringUtils.arrayToString(roles2), ifCurrentUserHasAllRoles2);
+			result.put("HasRoles: if " + principals + " has roles of " + StringUtils.arrayToString(roles1), ifCurrentUserHasRoles1);
+			result.put("HasRoles: if " + principals + " has role of " + role, ifCurrentUserHasRole1);
+			
+			// Check if a subject has specific roles
+			try {
+				currentUser.checkRole(role);
+				result.put("checkRoles: if " + principals + " has role of " + role, true);
+			} catch (Exception e) {
+				result.put("checkRoles: if " + principals + " has role of " + role, false);
+			}
+			try {
+				currentUser.checkRoles(roles2);
+				result.put("checkRoles: if " + principals + " has all roles of " + StringUtils.arrayToString(roles2), true);
+			} catch (Exception e) {
+				result.put("checkRoles: if " + principals + " has all roles of " + StringUtils.arrayToString(roles2), false);
+			}
+			try {
+				currentUser.checkRoles(roles1);
+				result.put("checkRoles: if " + principals + " has all roles of " + StringUtils.arrayToString(roles1), true);
+			} catch (Exception e) {
+				result.put("checkRoles: if " + principals + " has all roles of " + StringUtils.arrayToString(roles1), false);
+			}
 			
 			// Logout current user
 			currentUser.logout();
