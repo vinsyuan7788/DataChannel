@@ -1,4 +1,4 @@
-package application.io.spring.technique.shiro.api.model;
+package application.io.spring.technique.shiro.api.model.realm;
 
 import java.io.Serializable;
 

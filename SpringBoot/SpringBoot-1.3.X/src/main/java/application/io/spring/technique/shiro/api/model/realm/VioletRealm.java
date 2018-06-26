@@ -1,4 +1,4 @@
-package application.io.spring.technique.shiro.api.model;
+package application.io.spring.technique.shiro.api.model.realm;
 
 import java.io.Serializable;
 
@@ -15,16 +15,16 @@ import org.apache.shiro.realm.Realm;
  * @author vinsy
  *
  */
-public class IvesRealm implements Realm, Serializable {
+public class VioletRealm implements Realm, Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	/**
 	 * 	This is a method to get the name of this realm
 	 */
 	@Override
 	public String getName() {
-		return "Ives Realm";
+		return "Violet Realm";
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class IvesRealm implements Realm, Serializable {
 		String credentials = new String((char[])token.getCredentials());
 		
 		// If principal and credentials are correct
-		if (principal.equals("ives") && credentials.equals("bbb")) {
+		if (principal.equals("violet") && credentials.equals("cba")) {
 			
 			// Return the authentication information
 			return new SimpleAuthenticationInfo(principal, credentials, getName());
