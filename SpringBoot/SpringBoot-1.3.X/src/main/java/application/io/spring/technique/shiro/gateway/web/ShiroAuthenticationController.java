@@ -1,4 +1,4 @@
-package application.io.spring.shiro.gateway.web;
+package application.io.spring.technique.shiro.gateway.web;
 
 import java.io.File;
 import java.io.FileOutputStream;

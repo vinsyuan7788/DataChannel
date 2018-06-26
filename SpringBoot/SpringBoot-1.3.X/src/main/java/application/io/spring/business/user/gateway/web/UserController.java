@@ -1,4 +1,4 @@
-package application.io.spring.user.gateway.web;
+package application.io.spring.business.user.gateway.web;
 
 import java.util.HashMap;
 import java.util.Map;

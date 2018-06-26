@@ -1,4 +1,4 @@
-package application.io.spring.shiro.api.model;
+package application.io.spring.technique.shiro.api.model;
 
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -13,14 +13,14 @@ import org.apache.shiro.realm.Realm;
  * @author vinsy
  *
  */
-public class VioletRealm implements Realm {
+public class VinsRealm2 implements Realm {
 
 	/**
 	 * 	This is a method to get the name of this realm
 	 */
 	@Override
 	public String getName() {
-		return "Violet Realm";
+		return "Vins Realm";
 	}
 
 	/**
@@ -47,10 +47,10 @@ public class VioletRealm implements Realm {
 		String credentials = new String((char[])token.getCredentials());
 		
 		// If principal and credentials are correct
-		if (principal.equals("violet") && credentials.equals("cba")) {
+		if (principal.equals("vins") && credentials.equals("abc")) {
 			
 			// Return the authentication information
-			return new SimpleAuthenticationInfo(principal, credentials, getName());
+			return new SimpleAuthenticationInfo(principal + "@gmail.com", credentials, getName());
 			
 		// If either principal or credentials is incorrect
 		} else {

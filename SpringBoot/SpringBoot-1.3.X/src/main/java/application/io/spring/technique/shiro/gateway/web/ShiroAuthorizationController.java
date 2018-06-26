@@ -1,4 +1,4 @@
-package application.io.spring.shiro.gateway.web;
+package application.io.spring.technique.shiro.gateway.web;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
