@@ -61,7 +61,7 @@ public class ShiroAuthorizationController {
 			PrincipalCollection principals = currentUser.getPrincipals();
 			result.put("loginMsg", principals + " has logged-in");
 			
-			// Predicate if a subject has specific roles
+			// Predicate if a subject has specific roles: using "hasRoles" API
 			String[] roles1 = new String[] { "VP", "CTO", "CIO", "PM" };
 			String[] roles2 = new String[] { "CTO", "CIO", "PM" };
 			String role = "VP";
@@ -69,12 +69,12 @@ public class ShiroAuthorizationController {
 			boolean ifCurrentUserHasAllRoles2 = currentUser.hasAllRoles(Arrays.asList(roles2));
 			boolean[] ifCurrentUserHasRoles1 = currentUser.hasRoles(Arrays.asList(roles1));
 			boolean ifCurrentUserHasRole1 = currentUser.hasRole(role);
-			result.put("HasRoles: if " + principals + " has all roles of " + StringUtils.arrayToString(roles1), ifCurrentUserHasAllRoles1);
-			result.put("HasRoles: if " + principals + " has all roles of " + StringUtils.arrayToString(roles2), ifCurrentUserHasAllRoles2);
-			result.put("HasRoles: if " + principals + " has roles of " + StringUtils.arrayToString(roles1), ifCurrentUserHasRoles1);
-			result.put("HasRoles: if " + principals + " has role of " + role, ifCurrentUserHasRole1);
+			result.put("hasRoles: if " + principals + " has all roles of " + StringUtils.arrayToString(roles1), ifCurrentUserHasAllRoles1);
+			result.put("hasRoles: if " + principals + " has all roles of " + StringUtils.arrayToString(roles2), ifCurrentUserHasAllRoles2);
+			result.put("hasRoles: if " + principals + " has roles of " + StringUtils.arrayToString(roles1), ifCurrentUserHasRoles1);
+			result.put("hasRoles: if " + principals + " has role of " + role, ifCurrentUserHasRole1);
 			
-			// Check if a subject has specific roles
+			// Check if a subject has specific roles: using "checkRoles" API
 			try {
 				currentUser.checkRole(role);
 				result.put("checkRoles: if " + principals + " has role of " + role, true);
