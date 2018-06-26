@@ -5,7 +5,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
 /**
- * 	This is an utility class for the operation regarding file
+ * 	This is a class to provide utility regarding file
  * 
  * @author vinsy
  *

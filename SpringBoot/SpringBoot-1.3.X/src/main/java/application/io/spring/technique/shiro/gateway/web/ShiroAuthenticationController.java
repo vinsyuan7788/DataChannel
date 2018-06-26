@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import application.io.spring.technique.shiro.api.model.utils.LoginInfo;
 import application.io.spring.utils.FileUtils;
+import application.io.spring.utils.ShiroUtils;
 
 /**
  * 	This is a controller to test Shiro authentication
@@ -53,24 +55,14 @@ public class ShiroAuthenticationController {
 		String principal = request.getParameter("username");
 		String credentials = request.getParameter("password");
 		
-		// Get a security manager
-		SecurityManager securityManager = new IniSecurityManagerFactory("classpath:shiro/authentication/shiro.ini")
-				.getInstance();
+		// Do the Shiro login and get the login information
+		LoginInfo loginInfo = ShiroUtils.login("shiro/authentication/shiro.ini", principal, credentials);
 		
-		// Set the security manager to the utility class
-		SecurityUtils.setSecurityManager(securityManager);
-		
-		// Get current user from the utility class
-		Subject currentUser = SecurityUtils.getSubject();
-		
-		// Construct a token with principal and credential
-		UsernamePasswordToken userToken = new UsernamePasswordToken(principal, credentials);
-		
-		// Normally
-		try {
+		// If login succeeds
+		if (loginInfo.getIsLogin().booleanValue() == true) {
 			
-			// Login current user with the token
-			currentUser.login(userToken);
+			// Get the subject
+			Subject currentUser = loginInfo.getSubject();
 			
 			// Get the principal
 			PrincipalCollection principals = currentUser.getPrincipals();
@@ -86,11 +78,11 @@ public class ShiroAuthenticationController {
 			data.put("result", result);
 			return data;
 			
-		// Exceptionally
-		} catch (Exception e) {
+		// If login fails
+		} else {
 			
 			// Return data
-			result.put("errMsg", e.getMessage());
+			result.put("errMsg", loginInfo.getMsg());
 			data.put("status", -1);
 			data.put("msg", "authentication fails");
 			data.put("result", result);
@@ -108,29 +100,19 @@ public class ShiroAuthenticationController {
 		String principal = request.getParameter("username");
 		String credentials = request.getParameter("password");
 		
-		// Get a security manager
-		SecurityManager securityManager = new IniSecurityManagerFactory("classpath:shiro/authentication/shiro-custom-realms.ini")
-				.getInstance();
+		// Do the Shiro login and get the login information
+		LoginInfo loginInfo = ShiroUtils.login("shiro/authentication/shiro-custom-realms.ini", principal, credentials);
 		
-		// Set the security manager to the utility class
-		SecurityUtils.setSecurityManager(securityManager);
-		
-		// Get current user from the utility class
-		Subject currentUser = SecurityUtils.getSubject();
-		
-		// Construct a token with principal and credential
-		UsernamePasswordToken userToken = new UsernamePasswordToken(principal, credentials);
-		
-		// Normally
-		try {
+		// If login succeeds
+		if (loginInfo.getIsLogin().booleanValue() == true) {
 			
-			// Login current user with the token
-			currentUser.login(userToken);
+			// Get the subject
+			Subject currentUser = loginInfo.getSubject();
 			
-			// Get the principals
+			// Get the principal
 			PrincipalCollection principals = currentUser.getPrincipals();
 			result.put("loginMsg", principals + " has logged-in");
-
+			
 			// Logout current user
 			currentUser.logout();
 			result.put("logoutMsg", principals + " has logged-out");
@@ -141,11 +123,11 @@ public class ShiroAuthenticationController {
 			data.put("result", result);
 			return data;
 			
-		// Exceptionally
-		} catch (Exception e) {
+		// If login fails
+		} else {
 			
 			// Return data
-			result.put("errMsg", e.getMessage());
+			result.put("errMsg", loginInfo.getMsg());
 			data.put("status", -1);
 			data.put("msg", "authentication fails");
 			data.put("result", result);
@@ -163,24 +145,14 @@ public class ShiroAuthenticationController {
 		String principal = request.getParameter("username");
 		String credentials = request.getParameter("password");
 		
-		// Get a security manager
-		SecurityManager securityManager = new IniSecurityManagerFactory("classpath:shiro/authentication/shiro-authenticator-and-authentication-strategy.ini")
-				.getInstance();
+		// Do the Shiro login and get the login information
+		LoginInfo loginInfo = ShiroUtils.login("shiro/authentication/shiro-authenticator-and-authentication-strategy.ini", principal, credentials);
 		
-		// Set the security manager to the utility class
-		SecurityUtils.setSecurityManager(securityManager);
-		
-		// Get current user from the utility class
-		Subject currentUser = SecurityUtils.getSubject();
-		
-		// Construct a token with principal and credential
-		UsernamePasswordToken userToken = new UsernamePasswordToken(principal, credentials);
-		
-		// Normally
-		try {
+		// If login succeeds
+		if (loginInfo.getIsLogin().booleanValue() == true) {
 			
-			// Login current user with the token
-			currentUser.login(userToken);
+			// Get the subject
+			Subject currentUser = loginInfo.getSubject();
 			
 			// Get the principal
 			PrincipalCollection principals = currentUser.getPrincipals();
@@ -196,11 +168,11 @@ public class ShiroAuthenticationController {
 			data.put("result", result);
 			return data;
 			
-		// Exceptionally
-		} catch (Exception e) {
+		// If login fails
+		} else {
 			
 			// Return data
-			result.put("errMsg", e.getMessage());
+			result.put("errMsg", loginInfo.getMsg());
 			data.put("status", -1);
 			data.put("msg", "authentication fails");
 			data.put("result", result);
