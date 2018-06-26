@@ -56,6 +56,14 @@
 	    <artifactId>shiro-ehcache</artifactId>
 	    <version>${shiro.version}</version>
 	</dependency>
+	
+	<!-- Lombok: for auto-assignment of getters and setters, log4j2, etc. -->
+	<dependency>
+	    <groupId>org.projectlombok</groupId>
+	    <artifactId>lombok</artifactId>
+	    <version>1.18.0</version>
+	    <scope>provided</scope>
+	</dependency>
   </dependencies>
   
 	<!-- Directory specification, plug-ins and packages for Maven build -->
@@ -145,7 +153,7 @@
 	                        <transformers>
 	                        	<!-- Here specifies the main class for this Maven project after packaging -->
 	                            <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">  
-	                                <mainClass>application.io.spring.HelloSpringBoot</mainClass>
+	                                <mainClass>application.io.spring.SpringBootApplication</mainClass>
 	                            </transformer>  
 	                        </transformers>  
 	                    </configuration>  
