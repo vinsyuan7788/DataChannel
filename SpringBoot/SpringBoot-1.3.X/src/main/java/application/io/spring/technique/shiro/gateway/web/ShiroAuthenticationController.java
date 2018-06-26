@@ -54,7 +54,7 @@ public class ShiroAuthenticationController {
 		String credentials = request.getParameter("password");
 		
 		// Get a security manager
-		SecurityManager securityManager = new IniSecurityManagerFactory("classpath:shiro/shiro.ini")
+		SecurityManager securityManager = new IniSecurityManagerFactory("classpath:shiro/authentication/shiro.ini")
 				.getInstance();
 		
 		// Set the security manager to the utility class
@@ -109,7 +109,7 @@ public class ShiroAuthenticationController {
 		String credentials = request.getParameter("password");
 		
 		// Get a security manager
-		SecurityManager securityManager = new IniSecurityManagerFactory("classpath:shiro/shiro-custom-realms.ini")
+		SecurityManager securityManager = new IniSecurityManagerFactory("classpath:shiro/authentication/shiro-custom-realms.ini")
 				.getInstance();
 		
 		// Set the security manager to the utility class
@@ -164,7 +164,7 @@ public class ShiroAuthenticationController {
 		String credentials = request.getParameter("password");
 		
 		// Get a security manager
-		SecurityManager securityManager = new IniSecurityManagerFactory("classpath:shiro/shiro-authenticator-and-authentication-strategy.ini")
+		SecurityManager securityManager = new IniSecurityManagerFactory("classpath:shiro/authentication/shiro-authenticator-and-authentication-strategy.ini")
 				.getInstance();
 		
 		// Set the security manager to the utility class
