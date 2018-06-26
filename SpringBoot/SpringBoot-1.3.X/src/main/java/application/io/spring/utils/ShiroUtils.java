@@ -25,12 +25,12 @@ public class ShiroUtils {
 	 * @param credentials
 	 * @return
 	 */
-	public static LoginInfo login(String configFilePath, String principal, String credentials) {
+	public static LoginInfo login(String iniConfigFilePath, String principal, String credentials) {
 		
 		LoginInfo loginInfo = new LoginInfo();
 		
 		// Get a security manager
-		SecurityManager securityManager = new IniSecurityManagerFactory("classpath:" + configFilePath)
+		SecurityManager securityManager = new IniSecurityManagerFactory("classpath:" + iniConfigFilePath)
 				.getInstance();
 		
 		// Set the security manager to the utility class
