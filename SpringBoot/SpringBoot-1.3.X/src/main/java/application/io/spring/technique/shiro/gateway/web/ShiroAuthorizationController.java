@@ -100,7 +100,7 @@ public class ShiroAuthorizationController {
 			
 			// Return data
 			data.put("status", 1);
-			data.put("msg", "authentication succeeds");
+			data.put("msg", "authorization succeeds");
 			data.put("result", result);
 			return data;
 			
@@ -110,7 +110,7 @@ public class ShiroAuthorizationController {
 			// Return data
 			result.put("errMsg", loginInfo.getMsg());
 			data.put("status", -1);
-			data.put("msg", "authentication fails");
+			data.put("msg", "authorization fails");
 			data.put("result", result);
 			return data;
 		}
@@ -178,7 +178,7 @@ public class ShiroAuthorizationController {
 			
 			// Return data
 			data.put("status", 1);
-			data.put("msg", "authentication succeeds");
+			data.put("msg", "authorization succeeds");
 			data.put("result", result);
 			return data;
 			
@@ -188,7 +188,7 @@ public class ShiroAuthorizationController {
 			// Return data
 			result.put("errMsg", loginInfo.getMsg());
 			data.put("status", -1);
-			data.put("msg", "authentication fails");
+			data.put("msg", "authorization fails");
 			data.put("result", result);
 			return data;
 		}
