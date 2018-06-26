@@ -1,3 +1,6 @@
+spring:
+  profiles: local
+  
 server:
   context-path: /spring-boot-application
   servlet-path: /api
