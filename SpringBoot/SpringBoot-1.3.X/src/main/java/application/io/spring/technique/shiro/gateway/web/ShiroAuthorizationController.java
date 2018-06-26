@@ -116,8 +116,8 @@ public class ShiroAuthorizationController {
 		}
 	}
 	
-	@RequestMapping(value = "/testPermission", method = RequestMethod.GET)
-	public Map<String, Object> testPermission() throws Exception {
+	@RequestMapping(value = "/testPermissions", method = RequestMethod.GET)
+	public Map<String, Object> testPermissions() throws Exception {
 		
 		Map<String, Object> data = new HashMap<>();
 		Map<String, Object> result = new HashMap<>();
@@ -140,9 +140,9 @@ public class ShiroAuthorizationController {
 			result.put("loginMsg", principals + " has logged-in");
 			
 			// Predicate if a subject has specific permissions: using "isPermitted" API
-			String[] permission1 = new String[] { "user:create", "user:update", "user:delete", "user:select" };
-			String[] permission2 = new String[] { "user:create", "user:update", "user:delete" };
-			String permission = "user:create";
+			String[] permission1 = new String[] { "system:user:create", "system:user:update", "system:user:delete", "system:user:select" };
+			String[] permission2 = new String[] { "system:user:create", "system:user:update", "system:user:delete" };
+			String permission = "system:user:create";
 			boolean ifCurrentUserHasAllPermissions1 = currentUser.isPermittedAll(permission1);
 			boolean ifCurrentUserHasAllPermissions2 = currentUser.isPermittedAll(permission2);
 			boolean[] ifCurrentUserHasPermissions1 = currentUser.isPermitted(permission1);
@@ -152,6 +152,26 @@ public class ShiroAuthorizationController {
 			result.put("isPermitted: if " + principals + " has permissions of " + StringUtils.arrayToString(permission1), ifCurrentUserHasPermissions1);
 			result.put("isPermitted: if " + principals + " has permission of " + permission, ifCurrentUserHasPermission1);
 			
+			// Check if a subject has specific permissions: using "checkPermissions" API
+			try {
+				currentUser.checkPermission(permission);
+				result.put("checkPermissions: if " + principals + " has permission of " + permission, true);
+			} catch (Exception e) {
+				result.put("checkPermissions: if " + principals + " has permission of " + permission, false);
+			}
+			try {
+				currentUser.checkPermissions(permission2);
+				result.put("checkPermissions: if " + principals + " has all permissions of " + StringUtils.arrayToString(permission2), true);
+			} catch (Exception e) {
+				result.put("checkPermissions: if " + principals + " has all permissions of " + StringUtils.arrayToString(permission2), false);
+			}
+			try {
+				currentUser.checkPermissions(permission1);
+				result.put("checkPermissions: if " + principals + " has all permissions of " + StringUtils.arrayToString(permission1), true);
+			} catch (Exception e) {
+				result.put("checkPermissions: if " + principals + " has all permissions of " + StringUtils.arrayToString(permission1), false);
+			}
+						
 			// Logout current user
 			currentUser.logout();
 			result.put("logoutMsg", principals + " has logged-out");
