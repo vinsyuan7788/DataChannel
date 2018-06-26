@@ -25,8 +25,8 @@ import application.io.spring.utils.FileUtils;
 
 @SuppressWarnings({"unused", "deprecation"})
 @RestController
-@RequestMapping("/shiro")
-public class ShiroController {
+@RequestMapping("/shiro/authentication")
+public class ShiroAuthenticationController {
 
 	@Autowired
 	private HttpServletRequest request;
