@@ -23,6 +23,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import application.io.spring.utils.FileUtils;
 
+/**
+ * 	This is a controller to test Shiro authentication
+ * 	-- Key elements for Shiro authentication: subject, principal, credentials
+ *     -- Subject: the object representing the user that access data-channel application
+ *     -- Principal: can be user-name, phone-number, email, etc.
+ *     -- Credentials: can be password, sign, digital-certificate, etc.
+ *     
+ * @author vinsy
+ *
+ */
 @SuppressWarnings({"unused", "deprecation"})
 @RestController
 @RequestMapping("/shiro/authentication")
@@ -39,11 +49,7 @@ public class ShiroAuthenticationController {
 		Map<String, Object> data = new HashMap<>();
 		Map<String, Object> result = new HashMap<>();
 		
-		/*
-		 * 	Get the principal and credential
-		 * 	-- Principal can be user-name, phone-number, email, etc.
-		 * 	-- Credential can be password, sign, digital-certificate, etc.
-		 */
+		// Get the principal and credential
 		String principal = request.getParameter("username");
 		String credentials = request.getParameter("password");
 		
@@ -98,11 +104,7 @@ public class ShiroAuthenticationController {
 		Map<String, Object> data = new HashMap<>();
 		Map<String, Object> result = new HashMap<>();
 		
-		/*
-		 * 	Get the principal and credential
-		 * 	-- Principal can be user-name, phone-number, email, etc.
-		 * 	-- Credential can be password, sign, digital-certificate, etc.
-		 */
+		// Get the principal and credential
 		String principal = request.getParameter("username");
 		String credentials = request.getParameter("password");
 		
@@ -157,11 +159,7 @@ public class ShiroAuthenticationController {
 		Map<String, Object> data = new HashMap<>();
 		Map<String, Object> result = new HashMap<>();
 		
-		/*
-		 * 	Get the principal and credential
-		 * 	-- Principal can be user-name, phone-number, email, etc.
-		 * 	-- Credential can be password, sign, digital-certificate, etc.
-		 */
+		// Get the principal and credential
 		String principal = request.getParameter("username");
 		String credentials = request.getParameter("password");
 		
