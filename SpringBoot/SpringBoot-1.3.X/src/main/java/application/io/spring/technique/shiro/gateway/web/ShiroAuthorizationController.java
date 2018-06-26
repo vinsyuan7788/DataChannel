@@ -115,4 +115,62 @@ public class ShiroAuthorizationController {
 			return data;
 		}
 	}
+	
+	@RequestMapping(value = "/testPermission", method = RequestMethod.GET)
+	public Map<String, Object> testPermission() throws Exception {
+		
+		Map<String, Object> data = new HashMap<>();
+		Map<String, Object> result = new HashMap<>();
+		
+		// Get the principal and credential
+		String principal = request.getParameter("username");
+		String credentials = request.getParameter("password");
+		
+		// Do the Shiro login and get the login information
+		LoginInfo loginInfo = ShiroUtils.login("shiro/authorization/shiro-permission.ini", principal, credentials);
+		
+		// If login succeeds
+		if (loginInfo.getIsLogin().booleanValue() == true) {
+			
+			// Get the subject
+			Subject currentUser = loginInfo.getSubject();
+			
+			// Get the principal
+			PrincipalCollection principals = currentUser.getPrincipals();
+			result.put("loginMsg", principals + " has logged-in");
+			
+			// Predicate if a subject has specific permissions: using "isPermitted" API
+			String[] permission1 = new String[] { "user:create", "user:update", "user:delete", "user:select" };
+			String[] permission2 = new String[] { "user:create", "user:update", "user:delete" };
+			String permission = "user:create";
+			boolean ifCurrentUserHasAllPermissions1 = currentUser.isPermittedAll(permission1);
+			boolean ifCurrentUserHasAllPermissions2 = currentUser.isPermittedAll(permission2);
+			boolean[] ifCurrentUserHasPermissions1 = currentUser.isPermitted(permission1);
+			boolean ifCurrentUserHasPermission1 = currentUser.isPermitted(permission);
+			result.put("isPermitted: if " + principals + " has all permissions of " + StringUtils.arrayToString(permission1), ifCurrentUserHasAllPermissions1);
+			result.put("isPermitted: if " + principals + " has all permissions of " + StringUtils.arrayToString(permission2), ifCurrentUserHasAllPermissions2);
+			result.put("isPermitted: if " + principals + " has permissions of " + StringUtils.arrayToString(permission1), ifCurrentUserHasPermissions1);
+			result.put("isPermitted: if " + principals + " has permission of " + permission, ifCurrentUserHasPermission1);
+			
+			// Logout current user
+			currentUser.logout();
+			result.put("logoutMsg", principals + " has logged-out");
+			
+			// Return data
+			data.put("status", 1);
+			data.put("msg", "authentication succeeds");
+			data.put("result", result);
+			return data;
+			
+		// If login fails
+		} else {
+			
+			// Return data
+			result.put("errMsg", loginInfo.getMsg());
+			data.put("status", -1);
+			data.put("msg", "authentication fails");
+			data.put("result", result);
+			return data;
+		}
+	}
 }
