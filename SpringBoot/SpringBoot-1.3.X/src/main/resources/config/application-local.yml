@@ -2,6 +2,6 @@ spring:
   profiles: local
   
 server:
+  port: 13579
   context-path: /spring-boot-application
   servlet-path: /api
-  port: 13579
