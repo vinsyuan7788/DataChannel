@@ -30,10 +30,10 @@ import application.io.spring.utils.ShiroUtils;
  *     -- Subject.login(token) ---> 
  *     -- {@link #org.apache.shiro.mgt.SecurityManager} SecurityManager.login(subject, token) ---> 
  *     -- {@link #org.apache.shiro.authc.Authenticator} Authenticator.authenticate(token) ---> 
- *     -- {@link #org.apache.shiro.authc.pam.ModularRealmAuthenticator} ModularRealmAuthenticator.doAuthenticate(token) ---> 											# Here is where authenticator comes into effect
- *     -- {@link #org.apache.shiro.authc.pam.ModularRealmAuthenticator} ModularRealmAuthenticator.doSingle/MultiRealmAuthentication(getRealms, token) --->				# Here gets all the realms
- *     -- {@link #org.apache.shiro.authc.pam.ModularRealmAuthenticator} ModularRealmAuthenticator.getAuthenticationStrategy ---> 										# Here is where authentication strategy comes into effect
- *     -- {@link #org.apache.shiro.authc.pam.ModularRealmAuthenticator} ModularRealmAuthenticator: realm.supports(token) ---> realm.getAuthenticationInfo(token)		# Here is where realms come into effect
+ *     -- {@link #org.apache.shiro.authc.pam.ModularRealmAuthenticator} ModularRealmAuthenticator.doAuthenticate(token) ---> 																			# Here is where authenticator comes into effect
+ *     -- {@link #org.apache.shiro.authc.pam.ModularRealmAuthenticator} ModularRealmAuthenticator.doSingle/MultiRealmAuthentication(realms = getRealms, token) --->										# Here gets all the realms
+ *     -- {@link #org.apache.shiro.authc.pam.ModularRealmAuthenticator} ModularRealmAuthenticator.getAuthenticationStrategy ---> 																		# Here is where authentication strategy comes into effect
+ *     -- {@link #org.apache.shiro.authc.pam.ModularRealmAuthenticator} ModularRealmAuthenticator: realms.forEach(realm -> { realm.supports(token) ---> realm.getAuthenticationInfo(token) })			# Here is where realms come into effect
  *     
  * @author vinsy
  *

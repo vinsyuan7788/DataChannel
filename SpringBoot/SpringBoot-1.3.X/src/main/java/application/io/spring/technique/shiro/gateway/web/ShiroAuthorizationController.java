@@ -34,17 +34,17 @@ import application.io.spring.utils.StringUtils;
  *  -- Initialization: realms will be set from the configuration file during initialization
  *     -- {@link #org.apache.shiro.authz.ModularRealmAuthorizer} ModularRealmAuthorizer.setRealms(realms)
  * 	-- Running: whenever a subject checks a permission of resources
- *     -- Subject.isPermitted(permissionString) ---> 																															# Here is where pending-to-be-checked permission comes from																					
+ *     -- Subject.isPermitted(permissionString) ---> 																																				# Here is where pending-to-be-checked permission comes from																					
  *     -- {@link #org.apache.shiro.mgt.SecurityManager} SecurityManager.isPermitted(principal, permissionString) ---> 
  *     -- {@link #org.apache.shiro.authz.Authorizer} Authorizer.isPermitted(principal, permissionString) --->
- *     -- {@link #org.apache.shiro.authz.ModularRealmAuthorizer} ModularRealmAuthorizer.getRealms.forEach(authorizingRealm.isPermitted(principal, permissionString)) --->		# Here gets the realms (typically AuthorizingRealms)
- *     -- {@link #org.apache.shiro.realm.AuthorizingRealm} AuthorizingRealm.getPermissionResolver.resolvePermission(permissionString) --->										# Here is where PermissionResolver comes into effect: resolve pending-to-be-checked permission
- *     -- {@link #org.apache.shiro.realm.AuthorizingRealm} AuthorizingRealm.isPermitted(principal, permission) ---> AuthorizingRealm.getAuthorizationInfo(principal) ---> 		# Here is where AuthorizingRealm.getAuthorizationInfo(principal) comes into effect
+ *     -- {@link #org.apache.shiro.authz.ModularRealmAuthorizer} ModularRealmAuthorizer.getRealms.foreach(authorizingRealm -> authorizingRealm.isPermitted(principal, permissionString)) --->		# Here gets the realms (typically AuthorizingRealms)
+ *     -- {@link #org.apache.shiro.realm.AuthorizingRealm} AuthorizingRealm.getPermissionResolver.resolvePermission(permissionString) --->															# Here is where PermissionResolver comes into effect: resolve pending-to-be-checked permission
+ *     -- {@link #org.apache.shiro.realm.AuthorizingRealm} AuthorizingRealm.isPermitted(principal, permission) ---> AuthorizingRealm.getAuthorizationInfo(principal) ---> 							# Here is where AuthorizingRealm.getAuthorizationInfo(principal) comes into effect
  *     -- {@link #org.apache.shiro.realm.AuthorizingRealm} AuthorizingRealm.isPermitted(permission, authorizationInfo) --->
- *     -- {@link #org.apache.shiro.realm.AuthorizingRealm} AuthorizingRealm.getPermissions(authorizationInfo) --->																# Here gets the permission from realms (typically AuthorizingRealms)
- *     -- {@link #org.apache.shiro.realm.AuthorizingRealm} AuthorizingRealm.getPermissionResolver.resolvePermission(permissionString) --->										# Here is where PermissionResolver comes into effect: resolve permissions from existing realms
- *     -- {@link #org.apache.shiro.realm.AuthorizingRealm} AuthorizingRealm.getRolePermissionResolver.resolvePermissionsInRole(roleName) --->									# Here is where RolePermissionResolver comes into effect: resolve permissions from roles specified in RolePermissionResolver OPTIONALLY
- *     -- {@link #org.apache.shiro.realm.AuthorizingRealm} AuthorizingRealm: existingPermissions.implies(permission)															# Here is where Permission comes into effect
+ *     -- {@link #org.apache.shiro.realm.AuthorizingRealm} AuthorizingRealm: existingPermissions = getPermissions(authorizationInfo) --->															# Here gets the permission from realms (typically AuthorizingRealms)
+ *     -- {@link #org.apache.shiro.realm.AuthorizingRealm} AuthorizingRealm.getPermissionResolver.resolvePermission(permissionString) --->															# Here is where PermissionResolver comes into effect: resolve permissions from existing realms
+ *     -- {@link #org.apache.shiro.realm.AuthorizingRealm} AuthorizingRealm.getRolePermissionResolver.resolvePermissionsInRole(roleName) --->														# Here is where RolePermissionResolver comes into effect: resolve permissions from roles specified in RolePermissionResolver OPTIONALLY
+ *     -- {@link #org.apache.shiro.realm.AuthorizingRealm} AuthorizingRealm: existingPermissions.foreach(existingPermission -> existingPermission.implies(permission))								# Here is where Permission comes into effect
  * 
  * @author vinsy
  *
