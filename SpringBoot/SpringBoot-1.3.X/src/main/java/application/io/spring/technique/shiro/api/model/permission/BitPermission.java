@@ -8,7 +8,7 @@ import lombok.Setter;
 
 /**
  * 	This is a class to customize a permission
- * 	-- This class is responsible for regulating the rules for permission check
+ * 	-- This class is responsible for specifying how to check a permission
  * 
  * 	The rule of this permission is as following:
  * 	-- The composition of permission: |resourceString|permissionBit|instanceId
