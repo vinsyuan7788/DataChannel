@@ -14,6 +14,7 @@ import application.io.spring.technique.shiro.api.model.permission.BitPermission;
 
 /**
  * 	This is a class to customize a realm for authentication and authorization
+ * 	-- This class is responsible for regulating the rules for authentication and authorization
  * 
  * @author vinsy
  *

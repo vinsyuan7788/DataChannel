@@ -9,6 +9,7 @@ import org.apache.shiro.authz.permission.WildcardPermission;
 
 /**
  * 	This is a class to resolve Permission instances according to roles
+ * 	-- This class is responsible for resolving permissions or adding resolved permissions according to the roles
  * 
  * @author vinsy
  *

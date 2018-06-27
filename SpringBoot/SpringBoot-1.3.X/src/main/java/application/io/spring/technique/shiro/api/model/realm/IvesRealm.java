@@ -11,6 +11,7 @@ import org.apache.shiro.realm.Realm;
 
 /**
  * 	This is a class to customize a realm for authentication
+ * 	-- This class is responsible for regulating the rules for authentication
  * 
  * @author vinsy
  *

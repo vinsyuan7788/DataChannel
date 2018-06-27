@@ -8,6 +8,7 @@ import lombok.Setter;
 
 /**
  * 	This is a class to customize a permission
+ * 	-- This class is responsible for regulating the rules for permission check
  * 
  * 	The rule of this permission is as following:
  * 	-- The composition of permission: |resourceString|permissionBit|instanceId
@@ -69,16 +70,16 @@ public class BitPermission implements Permission {
 		} else {
         
 			// Convert the permission to BitPermission
-			BitPermission passinBitPermission = (BitPermission) p;
+			BitPermission permissionToBeChecked = (BitPermission) p;
 			
 			// Check the pass-in permission
-	        if (!(this.resourceString.equals("*") || !this.resourceString.equals(passinBitPermission.resourceString))) {  
+	        if (!(this.resourceString.equals("*") || this.resourceString.equals(permissionToBeChecked.resourceString))) {  
 	            return false;  
 	        }
-	        if (!(this.permissionBit == 0 || (this.permissionBit & passinBitPermission.permissionBit) != 0)) {  
+	        if (!(this.permissionBit == 0 || (this.permissionBit & permissionToBeChecked.permissionBit) != 0)) {  
 	            return false;  
 	        }  
-	        if (!(this.instanceId.equals("*") || this.instanceId.equals(passinBitPermission.instanceId))) {  
+	        if (!(this.instanceId.equals("*") || this.instanceId.equals(permissionToBeChecked.instanceId))) {  
 	            return false;  
 	        }  
 	        return true; 
