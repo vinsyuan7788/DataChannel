@@ -71,6 +71,11 @@ public class ShiroAuthenticationController {
 			PrincipalCollection principals = currentUser.getPrincipals();
 			result.put("loginMsg", principals + " has logged-in");
 			
+			// Get some information
+			result.put("isAuthenticated", currentUser.isAuthenticated());
+			result.put("isRemembered", currentUser.isRemembered());
+			result.put("isRunAs", currentUser.isRunAs());
+			
 			// Logout current user
 			currentUser.logout();
 			result.put("logoutMsg", principals + " has logged-out");
