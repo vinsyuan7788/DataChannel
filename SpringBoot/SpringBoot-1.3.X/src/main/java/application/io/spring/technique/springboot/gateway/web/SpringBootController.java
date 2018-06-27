@@ -1,4 +1,4 @@
-package application.io.spring.business.user.gateway.web;
+package application.io.spring.technique.springboot.gateway.web;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SuppressWarnings("unused")
 @RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/spring-boot")
+public class SpringBootController {
 
 	@Autowired
 	private Environment springBootEnvironment;
