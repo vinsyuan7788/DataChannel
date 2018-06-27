@@ -20,22 +20,31 @@ import application.io.spring.utils.StringUtils;
 
 /**
  * 	This is a controller to test Shiro authorization
- * 	-- Key elements for Shiro authorization: subject, principal, credentials
+ * 	-- Key elements for Shiro authorization: subject, permission of resources, role
  *     -- Subject: the object representing the user that access data-channel application
- *     -- Principal: can be user-name, phone-number, email, etc.
- *     -- Credentials: can be password, sign, digital-certificate, etc.
+ *     -- Permission of resources: the privilege of access or manipulate some kinds of resources
+ *        -- Resources: whatever can be accessed by users
+ *           -- Such as: data in the database, API that can be invoked, pages that can be accessed, etc.
+ *        -- Permission: to allow a user to access or manipulate such resources above-mentioned
+ *           -- A user can access or manipulate a resource ONLY when PERMITTED
+ *     -- role: actually a collection of permissions of resources, while on the surface it can be a term 
+ *        -- The term can be either a job title (CTO, CIO, PM, engineer, teacher, waiter, etc.) or a name, etc.
  *     
  * 	The procedure of Shiro authorization works as following:
  *  -- Initialization: realms will be set from the configuration file during initialization
- *     -- ModularRealmAuthenticator.setRealms(realms)
- * 	-- Running: whenever a subject logs in with a token
- *     -- Subject.login(token) ---> 
- *     -- SecurityManager.login(subject, token) ---> 
- *     -- Authenticator.authenticate(token) ---> 
- *     -- ModularRealmAuthenticator.doAuthenticate(token) ---> 											# Here is where authenticator comes into effect
- *     -- ModularRealmAuthenticator.doSingle/MultiRealmAuthentication(getRealms, token) --->
- *     -- ModularRealmAuthenticator.getAuthenticationStrategy ---> 										# Here is where authentication strategy comes into effect
- *     -- ModularRealmAuthenticator: realm.supports(token) ---> realm.getAuthenticationInfo(token)		# Here is where realms come into effect
+ *     -- {@link #org.apache.shiro.authz.ModularRealmAuthorizer} ModularRealmAuthorizer.setRealms(realms)
+ * 	-- Running: whenever a subject checks a permission of resources
+ *     -- Subject.isPermitted(permissionString) ---> 																															# Here is where pending-to-be-checked permission comes from																					
+ *     -- {@link #org.apache.shiro.mgt.SecurityManager} SecurityManager.isPermitted(principal, permissionString) ---> 
+ *     -- {@link #org.apache.shiro.authz.Authorizer} Authorizer.isPermitted(principal, permissionString) --->
+ *     -- {@link #org.apache.shiro.authz.ModularRealmAuthorizer} ModularRealmAuthorizer.getRealms.forEach(authorizingRealm.isPermitted(principal, permissionString)) --->		# Here gets the realms (typically AuthorizingRealms)
+ *     -- {@link #org.apache.shiro.realm.AuthorizingRealm} AuthorizingRealm.getPermissionResolver.resolvePermission(permissionString) --->										# Here is where PermissionResolver comes into effect: resolve pending-to-be-checked permission
+ *     -- {@link #org.apache.shiro.realm.AuthorizingRealm} AuthorizingRealm.isPermitted(principal, permission) ---> AuthorizingRealm.getAuthorizationInfo(principal) ---> 		# Here is where AuthorizingRealm.getAuthorizationInfo(principal) comes into effect
+ *     -- {@link #org.apache.shiro.realm.AuthorizingRealm} AuthorizingRealm.isPermitted(permission, authorizationInfo) --->
+ *     -- {@link #org.apache.shiro.realm.AuthorizingRealm} AuthorizingRealm.getPermissions(authorizationInfo) --->																# Here gets the permission from realms (typically AuthorizingRealms)
+ *     -- {@link #org.apache.shiro.realm.AuthorizingRealm} AuthorizingRealm.getPermissionResolver.resolvePermission(permissionString) --->										# Here is where PermissionResolver comes into effect: resolve permissions from existing realms
+ *     -- {@link #org.apache.shiro.realm.AuthorizingRealm} AuthorizingRealm.getRolePermissionResolver.resolvePermissionsInRole(roleName) --->									# Here is where RolePermissionResolver comes into effect: resolve permissions from roles specified in RolePermissionResolver OPTIONALLY
+ *     -- {@link #org.apache.shiro.realm.AuthorizingRealm} AuthorizingRealm: existingPermissions.implies(permission)															# Here is where Permission comes into effect
  * 
  * @author vinsy
  *
