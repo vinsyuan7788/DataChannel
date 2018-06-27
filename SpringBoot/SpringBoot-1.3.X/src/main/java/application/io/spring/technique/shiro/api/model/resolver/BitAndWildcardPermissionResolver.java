@@ -1,0 +1,27 @@
+package application.io.spring.technique.shiro.api.model.resolver;
+
+import org.apache.shiro.authz.Permission;
+import org.apache.shiro.authz.permission.PermissionResolver;
+import org.apache.shiro.authz.permission.WildcardPermission;
+
+import application.io.spring.technique.shiro.api.model.permission.BitPermission;
+
+/**
+ * 	This is a class to resolve a permission string to a Permission instance
+ * 
+ * @author vinsy
+ *
+ */
+public class BitAndWildcardPermissionResolver implements PermissionResolver {
+
+	/**
+	 * 	This is a method to resolve a permission string to a Permission instance
+	 */
+	@Override  
+    public Permission resolvePermission(String permissionString) {  
+        if (permissionString.startsWith("|")) {
+        	return new BitPermission(permissionString);  
+        }
+        return new WildcardPermission(permissionString);  
+    }  
+}

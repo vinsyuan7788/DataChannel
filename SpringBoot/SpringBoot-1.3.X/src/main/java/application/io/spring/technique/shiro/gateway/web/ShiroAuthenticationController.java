@@ -1,19 +1,11 @@
 package application.io.spring.technique.shiro.gateway.web;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.config.IniSecurityManagerFactory;
-import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import application.io.spring.technique.shiro.api.model.utils.LoginInfo;
-import application.io.spring.utils.FileUtils;
 import application.io.spring.utils.ShiroUtils;
 
 /**
@@ -32,10 +23,22 @@ import application.io.spring.utils.ShiroUtils;
  *     -- Principal: can be user-name, phone-number, email, etc.
  *     -- Credentials: can be password, sign, digital-certificate, etc.
  *     
+ * 	The procedure of Shiro authentication works as following:
+ *  -- Initialization: realms will be set from the configuration file during initialization
+ *     -- ModularRealmAuthenticator.setRealms(realms)
+ * 	-- Running: whenever a subject logs in with a token
+ *     -- Subject.login(token) ---> 
+ *     -- SecurityManager.login(subject, token) ---> 
+ *     -- Authenticator.authenticate(token) ---> 
+ *     -- ModularRealmAuthenticator.doAuthenticate(token) ---> 											# Here is where authenticator comes into effect
+ *     -- ModularRealmAuthenticator.doSingle/MultiRealmAuthentication(getRealms, token) --->
+ *     -- ModularRealmAuthenticator.getAuthenticationStrategy ---> 										# Here is where authentication strategy comes into effect
+ *     -- ModularRealmAuthenticator: realm.supports(token) ---> realm.getAuthenticationInfo(token)		# Here is where realms come into effect
+ *     
  * @author vinsy
  *
  */
-@SuppressWarnings({"unused", "deprecation"})
+@SuppressWarnings({"unused"})
 @RestController
 @RequestMapping("/shiro/authentication")
 public class ShiroAuthenticationController {
