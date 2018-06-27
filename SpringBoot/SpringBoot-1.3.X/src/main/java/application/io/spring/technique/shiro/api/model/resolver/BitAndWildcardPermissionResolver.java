@@ -20,7 +20,6 @@ public class BitAndWildcardPermissionResolver implements PermissionResolver {
 	 */
 	@Override  
     public Permission resolvePermission(String permissionString) {
-		System.out.println("PermissionString: " + permissionString);
         if (permissionString.startsWith("|")) {
         	return new BitPermission(permissionString);  
         }

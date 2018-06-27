@@ -36,11 +36,11 @@ public class VinsAuthorizingRealm extends AuthorizingRealm {
         
         // Add bit-permission
         authorizationInfo.addObjectPermission(new BitPermission("|system:user1|10"));
-        authorizationInfo.addStringPermission("|system:user2|10");
-        
-        // Add wild-card-permission
-        authorizationInfo.addObjectPermission(new WildcardPermission("system:user1:*")); 
-        authorizationInfo.addStringPermission("system:user2:*");
+//        authorizationInfo.addStringPermission("|system:user2|10");
+//        
+//        // Add wild-card-permission
+//        authorizationInfo.addObjectPermission(new WildcardPermission("system:user1:*")); 
+//        authorizationInfo.addStringPermission("system:user2:*");
         
         // Return the authorization information
         return authorizationInfo; 
