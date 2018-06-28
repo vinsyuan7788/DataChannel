@@ -30,6 +30,33 @@ public class MyBatisServiceImpl implements MyBatisService {
 		}
 	}
 
+	private static Map<String, Object> getCondition(MyBatis query, String orderby, Long limit, Long offset) throws Exception {
+		
+		Map<String, Object> params = new HashMap<>();
+		
+		BeanUtils.populate(query, params);
+		
+		if (orderby != null) {
+			params.put("orderby", orderby);
+		} else {
+			params.put("orderby", "id desc");
+		}
+		
+		if (limit != null) {
+			params.put("limit", limit);
+		} else {
+			params.put("limit", null);
+		}
+		
+		if (offset != null) {
+			params.put("offset", offset);
+		} else {
+			params.put("offset", null);
+		}
+		
+		return params;
+	}
+
 	@Override
 	public Boolean insertBatch(List<MyBatis> beans) throws Exception {
 
@@ -74,31 +101,26 @@ public class MyBatisServiceImpl implements MyBatisService {
 			return null;
 		}
 	}
-	
-	private static Map<String, Object> getCondition(MyBatis query, String orderby, Long limit, Long offset) throws Exception {
+
+	@Override
+	public Long getAllCountByQuery(MyBatis query) throws Exception {
 		
-		Map<String, Object> params = new HashMap<>();
-		
-		BeanUtils.populate(query, params);
-		
-		if (orderby != null) {
-			params.put("orderby", orderby);
-		} else {
-			params.put("orderby", "id desc");
+		try {
+			return myBatisDAO.getListCount(getCondition(query, null, null, null));
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
+	}
+
+	@Override
+	public Long getListCountByQuery(MyBatis query, Long limit, Long offset) throws Exception {
 		
-		if (limit != null) {
-			params.put("limit", limit);
-		} else {
-			params.put("limit", null);
+		try {
+			return myBatisDAO.getListCount(getCondition(query, null, limit, offset));
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
-		
-		if (offset != null) {
-			params.put("offset", offset);
-		} else {
-			params.put("offset", null);
-		}
-		
-		return params;
 	}
 }

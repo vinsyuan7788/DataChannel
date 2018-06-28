@@ -15,4 +15,8 @@ public interface MyBatisService {
 	public List<MyBatis> selectAllByQuery(MyBatis query) throws Exception;
 	
 	public List<MyBatis> selectListByQuery(MyBatis query, String orderby, Long limit, Long offset) throws Exception;
+
+	public Long getAllCountByQuery(MyBatis query) throws Exception;
+
+	public Long getListCountByQuery(MyBatis query, Long limit, Long offset) throws Exception;
 }

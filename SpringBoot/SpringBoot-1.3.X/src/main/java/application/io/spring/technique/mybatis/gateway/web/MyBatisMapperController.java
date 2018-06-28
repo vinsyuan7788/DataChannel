@@ -107,6 +107,8 @@ public class MyBatisMapperController {
 		MyBatis resultFromSelectOneByQuery = myBatisService.selectOneByQuery(query);
 		List<MyBatis> resultFromSelectAllByQuery = myBatisService.selectAllByQuery(query);
 		List<MyBatis> resultFromSelectListByQuery = myBatisService.selectListByQuery(query, "id desc", 10L, 0L);
+		long countFromGetAllCountByQuery = myBatisService.getAllCountByQuery(query);
+		long countFromGetListCountByQuery = myBatisService.getListCountByQuery(query, 10L, 0L);
 		
 		if (resultFromSelectOneByQuery != null && resultFromSelectAllByQuery != null && resultFromSelectListByQuery != null) {
 			result.put("resultFromSelectOneByQuery", resultFromSelectOneByQuery);
@@ -135,6 +137,8 @@ public class MyBatisMapperController {
 		Map<String, Object> data = new HashMap<>();
 		Map<String, Object> result = new HashMap<>();
 		
+		data.put("status", 0);
+		data.put("msg", "not yet implemented");
 		data.put("result", result);
 		return data;
 	}
@@ -145,6 +149,8 @@ public class MyBatisMapperController {
 		Map<String, Object> data = new HashMap<>();
 		Map<String, Object> result = new HashMap<>();
 		
+		data.put("status", 0);
+		data.put("msg", "not yet implemented");
 		data.put("result", result);
 		return data;
 	}
