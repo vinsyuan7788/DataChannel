@@ -7,7 +7,9 @@ server:
   servlet-path: /api
   
   datasource:
-    url: jdbc:postgresql://localhost:5432/xyes_production
+    driverClassName: org.postgresql.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:postgresql://localhost:5432/xyes
     username: postgres
     password: postgres
     max-idle: 10

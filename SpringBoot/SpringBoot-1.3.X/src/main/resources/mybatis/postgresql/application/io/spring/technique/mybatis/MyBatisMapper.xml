@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.royalnu.passenger.inspection.boxmanager.provider.dao.BoxmanagerDAO" >
+  <resultMap id="BaseResultMap" type="com.royalnu.passenger.inspection.boxmanager.api.model.Boxmanager" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="card_number" property="cardNumber" jdbcType="VARCHAR" />
+    <result column="delivery_address" property="deliveryAddress" jdbcType="VARCHAR" />
+    <result column="head_portrait" property="headPortrait" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="operator" property="operator" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+  </resultMap>
+
+<sql id="Query_Where_Clause">
+    <where>
+        <if test="id != null "> and id = #{id,jdbcType=BIGINT}  </if>
+        <if test="realName != null and realName != ''"> and real_name = #{realName,jdbcType=VARCHAR}  </if>
+        <if test="cardNumber != null and cardNumber != ''"> and card_number = #{cardNumber,jdbcType=VARCHAR}  </if>
+        <if test="deliveryAddress != null and deliveryAddress != ''"> and delivery_address = #{deliveryAddress,jdbcType=VARCHAR}  </if>
+        <if test="headPortrait != null and headPortrait != ''"> and head_portrait = #{headPortrait,jdbcType=VARCHAR}  </if>
+        <if test="createTime != null and createTime != ''"> and create_time = #{createTime,jdbcType=TIMESTAMP} :: timestamp with time zone </if>
+        <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime,jdbcType=TIMESTAMP} :: timestamp with time zone </if>
+        <if test="operator != null and operator != ''"> and operator = #{operator,jdbcType=VARCHAR}  </if>
+        <if test="userId != null "> and user_id = #{userId,jdbcType=BIGINT}  </if>
+    </where>
+</sql>
+  <sql id="Base_Column_List" >
+    id, real_name, card_number, delivery_address, head_portrait, create_time, update_time, 
+    operator, user_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from x_boxmanager
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from x_boxmanager
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.royalnu.passenger.inspection.boxmanager.api.model.Boxmanager" useGeneratedKeys="true" keyProperty="id">
+    insert into x_boxmanager (id, real_name, card_number, 
+      delivery_address, head_portrait, create_time, 
+      update_time, operator, user_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{realName,jdbcType=VARCHAR}, #{cardNumber,jdbcType=VARCHAR}, 
+      #{deliveryAddress,jdbcType=VARCHAR}, #{headPortrait,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{operator,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.royalnu.passenger.inspection.boxmanager.api.model.Boxmanager" useGeneratedKeys="true" keyProperty="id">
+    insert into x_boxmanager
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="cardNumber != null" >
+        card_number,
+      </if>
+      <if test="deliveryAddress != null" >
+        delivery_address,
+      </if>
+      <if test="headPortrait != null" >
+        head_portrait,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="operator != null" >
+        operator,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null" >
+        #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryAddress != null" >
+        #{deliveryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="headPortrait != null" >
+        #{headPortrait,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.royalnu.passenger.inspection.boxmanager.api.model.Boxmanager" >
+    update x_boxmanager
+    <set >
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null" >
+        card_number = #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryAddress != null" >
+        delivery_address = #{deliveryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="headPortrait != null" >
+        head_portrait = #{headPortrait,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null" >
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.royalnu.passenger.inspection.boxmanager.api.model.Boxmanager" >
+    update x_boxmanager
+    set real_name = #{realName,jdbcType=VARCHAR},
+      card_number = #{cardNumber,jdbcType=VARCHAR},
+      delivery_address = #{deliveryAddress,jdbcType=VARCHAR},
+      head_portrait = #{headPortrait,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      operator = #{operator,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+<select id="getPageableList" parameterType="java.util.Map" resultMap="BaseResultMap">select
+    <include refid="Base_Column_List"/>from x_boxmanager
+    <include refid="Query_Where_Clause"/>
+    <if test="orderby != null "> order by ${orderby} </if>
+    <if test="limit != null "> limit ${limit} </if>
+    <if test="offset != null "> offset ${offset} </if>
+</select>
+
+<select id="getListCount" parameterType="java.util.Map" resultType="java.lang.Long">select count(*) from x_boxmanager
+    <include refid="Query_Where_Clause"/>
+</select>
+
+<select id="selectByIdCollection" parameterType="java.util.Map" resultMap="BaseResultMap">select
+    <include refid="Base_Column_List"/>from x_boxmanager where id in 
+    <foreach collection="ids" item="valueitem" open="(" separator="," close=")">#{valueitem} </foreach>
+</select>
+  <delete id="deleteByCondition" parameterType="com.royalnu.passenger.inspection.boxmanager.api.model.Boxmanager" >
+    delete from x_boxmanager
+    <include refid="Query_Where_Clause"/>
+  </delete>
+</mapper>
