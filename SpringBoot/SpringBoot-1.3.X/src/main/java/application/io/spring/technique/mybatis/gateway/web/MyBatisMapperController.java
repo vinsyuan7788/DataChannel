@@ -151,6 +151,8 @@ public class MyBatisMapperController {
 	@RequestMapping(value = "/testDelete", method = RequestMethod.POST)
 	public Map<String, Object> testDelete() throws Exception {
 		
+		long startTime = System.currentTimeMillis();
+		
 		Map<String, Object> data = new HashMap<>();
 		Map<String, Object> result = new HashMap<>();
 		
@@ -164,12 +166,14 @@ public class MyBatisMapperController {
 			result.put("isDeleteByConditionSuccessful", isDeleteByConditionSuccessful);
 			data.put("status", 1);
 			data.put("msg", "success");
+			data.put("executionTime", (System.currentTimeMillis() - startTime) + "ms");
 			data.put("result", result);
 			return data;
 		} else {
 			result.put("isDeleteByConditionSuccessful", isDeleteByConditionSuccessful);
 			data.put("status", -1);
 			data.put("msg", "failure");
+			data.put("executionTime", (System.currentTimeMillis() - startTime) + "ms");
 			data.put("result", result);
 			return data;
 		}
@@ -177,6 +181,8 @@ public class MyBatisMapperController {
 	
 	@RequestMapping(value = "/testUpdate", method = RequestMethod.POST)
 	public Map<String, Object> testUpdate() throws Exception {
+		
+		long startTime = System.currentTimeMillis();
 		
 		Map<String, Object> data = new HashMap<>();
 		Map<String, Object> result = new HashMap<>();
@@ -199,12 +205,14 @@ public class MyBatisMapperController {
 			result.put("isUpdateByPrimaryKeySelectiveSuccessful", isUpdateByPrimaryKeySelectiveSuccessful);
 			data.put("status", 1);
 			data.put("msg", "success");
+			data.put("executionTime", (System.currentTimeMillis() - startTime) + "ms");
 			data.put("result", result);
 			return data;
 		} else {
 			result.put("isUpdateByPrimaryKeySelectiveSuccessful", isUpdateByPrimaryKeySelectiveSuccessful);
 			data.put("status", -1);
 			data.put("msg", "failure");
+			data.put("executionTime", (System.currentTimeMillis() - startTime) + "ms");
 			data.put("result", result);
 			return data;
 		}
