@@ -3,14 +3,14 @@
 <mapper namespace="application.io.spring.technique.mybatis.provider.dao.MyBatisDAO" >
   
 	<resultMap id="BaseResultMap" type="application.io.spring.technique.mybatis.api.model.MyBatis" >
-    	<id column="id" property="id" jdbcType="BIGINT" />
-    	<result column="name" property="name" jdbcType="VARCHAR" />
+    	<id column="id" property="id" jdbcType="BIGINT"/>
+    	<result column="name" property="name" jdbcType="VARCHAR"/>
     	<result column="version" property="version" jdbcType="VARCHAR" />
-    	<result column="release_time" property="releaseTime" jdbcType="TIMESTAMP" />
-    	<result column="official_url" property="officialUrl" jdbcType="VARCHAR" />
-    	<result column="contributor" property="contributor" jdbcType="VARCHAR" />
-    	<result column="remark" property="remark" jdbcType="VARCHAR" />
-    	<result column="extended_field" property="extendedField" jdbcType="OTHER" />
+    	<result column="release_time" property="releaseTime" jdbcType="TIMESTAMP"/>
+    	<result column="official_url" property="officialUrl" jdbcType="VARCHAR"/>
+    	<result column="contributor" property="contributor" jdbcType="VARCHAR"/>
+    	<result column="remark" property="remark" jdbcType="VARCHAR"/>
+    	<result column="extended_field" property="extendedField" jdbcType="OTHER" typeHandler="application.io.spring.technique.mybatis.utils.JSONTypeHandler"/>
 	</resultMap>
 
 	<sql id="Query_Where_Clause">
@@ -22,7 +22,7 @@
         	<if test="officialUrl != null and officialUrl != ''"> and official_url = #{officialUrl,jdbcType=VARCHAR}</if>
         	<if test="contributor != null and contributor != ''"> and contributor = #{contributor,jdbcType=VARCHAR}</if>
         	<if test="remark != null and remark != ''"> and remark = #{remark,jdbcType=VARCHAR}</if>
-        	<if test="extendedField != null and extendedField != ''"> and extended_field = #{extendedField,jdbcType=OTHER}</if>
+        	<if test="extendedField != null and extendedField != ''"> and extended_field = #{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.technique.mybatis.utils.JSONTypeHandler}</if>
     	</where>
  	</sql>
  
@@ -50,7 +50,7 @@
       		<if test="officialUrl != null">#{officialUrl,jdbcType=VARCHAR},</if>
       		<if test="contributor != null">#{contributor,jdbcType=VARCHAR},</if>
       		<if test="remark != null">#{remark,jdbcType=VARCHAR},</if>
-      		<if test="extendedField != null" >#{extendedField,jdbcType=OTHER},</if>
+      		<if test="extendedField != null" >#{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.technique.mybatis.utils.JSONTypeHandler},</if>
     	</trim>
 	</insert>
 	

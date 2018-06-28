@@ -39,7 +39,7 @@
 	<!-- 
 		Spring-boot components that integrates MyBatis
 	-->
-	<dependency>
+<!-- 	<dependency>
 	    <groupId>org.mybatis.spring.boot</groupId>
 	    <artifactId>mybatis-spring-boot-starter</artifactId>
 	    <version>1.3.0</version>
@@ -48,7 +48,7 @@
 	    <groupId>org.mybatis.spring.boot</groupId>
 	    <artifactId>mybatis-spring-boot-autoconfigure</artifactId>
 	    <version>1.3.0</version>
-	</dependency>
+	</dependency> -->
 	
 	<!-- Here are the dependencies regarding MyBatis -->
 	<!-- 
@@ -149,6 +149,17 @@
 	    <artifactId>lombok</artifactId>
 	    <version>1.16.20</version>
 	    <scope>provided</scope>
+	</dependency>
+	<!-- 
+		JSON library: for transforming beans, maps, collections, java arrays and XML to JSON
+		== "<classifier>jdk15</classifier>" is necessary, which is not mentioned by the Maven central repository
+		   == If this is not included, first-time updating Maven project with Eclipse will report an error that this dependency is missing
+	-->
+	<dependency>
+	    <groupId>net.sf.json-lib</groupId>
+	    <artifactId>json-lib</artifactId>
+	    <version>2.4</version>
+	    <classifier>jdk15</classifier>
 	</dependency>
   </dependencies>
   

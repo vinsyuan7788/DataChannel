@@ -1,4 +1,4 @@
-package application.io.spring.technique.springboot.utils;
+package application.io.spring.technique.mybatis.utils;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;

@@ -2,6 +2,8 @@ package application.io.spring.technique.mybatis.api.model;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
 import application.io.spring.technique.springboot.utils.Identifiable;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +16,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@Component
 public class MyBatis extends Identifiable {
 
 	private static final long serialVersionUID = 1L;

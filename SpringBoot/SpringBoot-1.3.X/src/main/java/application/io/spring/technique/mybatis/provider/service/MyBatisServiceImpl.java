@@ -24,6 +24,7 @@ public class MyBatisServiceImpl implements MyBatisService {
 			try {
 				myBatisDAO.insertSelective(bean);
 			} catch (Exception e) {
+				e.printStackTrace();
 				isAllInserted = false;
 			}
 		}
