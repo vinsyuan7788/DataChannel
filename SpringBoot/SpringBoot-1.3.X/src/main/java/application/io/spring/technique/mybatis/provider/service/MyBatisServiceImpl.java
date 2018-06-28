@@ -16,19 +16,32 @@ public class MyBatisServiceImpl implements MyBatisService {
 	private MyBatisDAO myBatisDAO;
 	
 	@Override
-	public boolean insertSelective(List<MyBatis> beans) throws Exception {
+	public boolean insertSelective(MyBatis bean) throws Exception {
 		
-		boolean isAllInserted = true;
+		boolean isSuccessful = true;
 		
-		for (MyBatis bean : beans) {
-			try {
-				myBatisDAO.insertSelective(bean);
-			} catch (Exception e) {
-				e.printStackTrace();
-				isAllInserted = false;
-			}
+		try {
+			myBatisDAO.insertSelective(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+			isSuccessful = false;
 		}
 		
-		return isAllInserted;
+		return isSuccessful;
+	}
+
+	@Override
+	public boolean insertBatch(List<MyBatis> beans) throws Exception {
+
+		boolean isSuccessful = true;
+		
+		try {
+			myBatisDAO.insertBatch(beans);
+		} catch (Exception e) {
+			e.printStackTrace();
+			isSuccessful = false;
+		}
+		
+		return isSuccessful;
 	}
 }

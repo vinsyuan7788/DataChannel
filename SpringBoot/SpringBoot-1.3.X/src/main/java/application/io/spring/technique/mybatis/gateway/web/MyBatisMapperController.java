@@ -36,21 +36,36 @@ public class MyBatisMapperController {
 		Map<String, Object> data = new HashMap<>();
 		Map<String, Object> result = new HashMap<>();
 		
-		MyBatis myBatis = new MyBatis();
-		myBatis.setId(1L);
-		myBatis.setName("MyBatis");
-		myBatis.setVersion("3.4.1");
-		myBatis.setReleaseTime(new Date());
-		myBatis.setOfficialUrl("http://www.mybatis.org/mybatis-3/");
-		myBatis.setContributor("Vins, Ives");
-		myBatis.setRemark("None");
-		myBatis.setExtendedField(new JSONObject());
+		MyBatis bean = new MyBatis();
+		bean.setName("MyBatis");
+		bean.setVersion("3.4.1");
+		bean.setReleaseTime(new Date());
+		bean.setOfficialUrl("http://www.mybatis.org/mybatis-3/");
+		bean.setContributor("Vins, Ives");
+		bean.setRemark("from insertSelective");
+		bean.setExtendedField(new JSONObject());
 		
+		boolean isInsertSelectiveSuccessful = myBatisService.insertSelective(bean);
+		result.put("isInsertSelectiveSuccessful", isInsertSelectiveSuccessful);
+		
+		bean = new MyBatis();
+		bean.setName("MyBatis");
+		bean.setVersion("3.4.1");
+		bean.setReleaseTime(new Date());
+		bean.setOfficialUrl("http://www.mybatis.org/mybatis-3/");
+		bean.setContributor("Vins, Ives");
+		bean.setRemark("from insertSelective");
+		bean.setExtendedField(new JSONObject());
 		List<MyBatis> beans = new ArrayList<MyBatis>();
-		beans.add(myBatis);
-		boolean isAllInserted = myBatisService.insertSelective(beans);
+		beans.add(bean);
+		beans.add(bean);
+		beans.add(bean);
 		
-		result.put("isAllInserted", isAllInserted);
+		boolean isInsertBatchSuccessful = myBatisService.insertBatch(beans);
+		result.put("isInsertBatchSuccessful", isInsertBatchSuccessful);
+		
+		data.put("status", 1);
+		data.put("msg", "success");
 		data.put("result", result);
 		return data;
 	}

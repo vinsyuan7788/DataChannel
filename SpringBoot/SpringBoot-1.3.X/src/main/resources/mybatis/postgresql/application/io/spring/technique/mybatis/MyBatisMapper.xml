@@ -26,10 +26,13 @@
     	</where>
  	</sql>
  
- 	<sql id="Base_Column_List" >
+ 	<sql id="Base_Column_List">
     	id, name, version, release_time, official_url, contributor, remark, extended_field
     </sql>
-  
+    <sql id="Base_Column_List_Without_Id">
+    	name, version, release_time, official_url, contributor, remark, extended_field 
+    </sql>
+   
   	<insert id="insertSelective" parameterType="application.io.spring.technique.mybatis.api.model.MyBatis" useGeneratedKeys="true" keyProperty="id">
     	insert into z_my_batis
     	<trim prefix="(" suffix=")" suffixOverrides="," >
@@ -52,6 +55,13 @@
       		<if test="remark != null">#{remark,jdbcType=VARCHAR},</if>
       		<if test="extendedField != null" >#{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.technique.mybatis.utils.JSONTypeHandler},</if>
     	</trim>
+	</insert>
+
+  	<insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+  		insert into z_my_batis(<include refid="Base_Column_List_Without_Id"/>) values
+    	<foreach collection="list" item="item" index="index" separator=",">
+      		(#{id,jdbcType=BIGINT},#{name,jdbcType=VARCHAR},#{version,jdbcType=VARCHAR},#{releaseTime,jdbcType=TIMESTAMP},#{officialUrl,jdbcType=VARCHAR},#{contributor,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR},#{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.technique.mybatis.utils.JSONTypeHandler})
+      	</foreach>
 	</insert>
 	
 <!--   
