@@ -3,9 +3,11 @@ package application.io.spring;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ImportResource;
 
 @EnableAutoConfiguration
 @ComponentScan("application.io.spring")
+@ImportResource("classpath:/mybatis/spring-mybatis.xml")
 //@EnableAspectJAutoProxy
 public class SpringBootApplication {
 
