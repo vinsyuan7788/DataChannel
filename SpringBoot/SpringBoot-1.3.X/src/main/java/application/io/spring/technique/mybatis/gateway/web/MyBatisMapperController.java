@@ -145,7 +145,7 @@ public class MyBatisMapperController {
 		Map<String, Object> result = new HashMap<>();
 		
 		MyBatis condition = new MyBatis();
-		condition.setRemark("from InsertBatch");
+		condition.setRemark("from insertBatch");
 		condition.setVersion("3.4.1");
 		
 		boolean isDeleteByConditionSuccessful = myBatisService.deleteByCondition(condition);
@@ -177,12 +177,11 @@ public class MyBatisMapperController {
 		
 		MyBatis bean = myBatisService.selectOneByQuery(query);
 		
-		Object extendeField = bean.getExtendedField();
-		JSONObject jsonExtendedField = JSONObject.fromObject(extendeField);
+		String extendedField = (String) bean.getExtendedField();
+		JSONObject jsonExtendeField = JSONObject.fromObject(extendedField);
 		String now = dateFormat.format(new Date());
-		jsonExtendedField.put("updateTime", now);
-		Object newExtendedField = JSONObject.toBean(jsonExtendedField);
-		bean.setExtendedField(newExtendedField);
+		jsonExtendeField.put("updateTime", now);
+		bean.setExtendedField(jsonExtendeField);
 		
 		boolean isUpdateByPrimaryKeySelectiveSuccessful = myBatisService.updateByPrimaryKeySelective(bean);
 		
