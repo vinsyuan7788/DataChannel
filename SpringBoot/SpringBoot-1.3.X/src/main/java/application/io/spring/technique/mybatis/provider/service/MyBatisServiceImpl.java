@@ -16,7 +16,7 @@ public class MyBatisServiceImpl implements MyBatisService {
 	private MyBatisDAO myBatisDAO;
 	
 	@Override
-	public boolean insertSelective(MyBatis bean) throws Exception {
+	public Boolean insertSelective(MyBatis bean) throws Exception {
 		
 		boolean isSuccessful = true;
 		
@@ -31,7 +31,7 @@ public class MyBatisServiceImpl implements MyBatisService {
 	}
 
 	@Override
-	public boolean insertBatch(List<MyBatis> beans) throws Exception {
+	public Boolean insertBatch(List<MyBatis> beans) throws Exception {
 
 		boolean isSuccessful = true;
 		

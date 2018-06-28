@@ -46,7 +46,6 @@ public class MyBatisMapperController {
 		bean.setExtendedField(new JSONObject());
 		
 		boolean isInsertSelectiveSuccessful = myBatisService.insertSelective(bean);
-		result.put("isInsertSelectiveSuccessful", isInsertSelectiveSuccessful);
 		
 		bean = new MyBatis();
 		bean.setName("MyBatis");
@@ -62,12 +61,22 @@ public class MyBatisMapperController {
 		beans.add(bean);
 		
 		boolean isInsertBatchSuccessful = myBatisService.insertBatch(beans);
-		result.put("isInsertBatchSuccessful", isInsertBatchSuccessful);
 		
-		data.put("status", 1);
-		data.put("msg", "success");
-		data.put("result", result);
-		return data;
+		if (isInsertSelectiveSuccessful == true && isInsertBatchSuccessful == true) {
+			result.put("isInsertSelectiveSuccessful", isInsertSelectiveSuccessful);
+			result.put("isInsertBatchSuccessful", isInsertBatchSuccessful);
+			data.put("status", 1);
+			data.put("msg", "success");
+			data.put("result", result);
+			return data;
+		} else {
+			result.put("isInsertSelectiveSuccessful", isInsertSelectiveSuccessful);
+			result.put("isInsertBatchSuccessful", isInsertBatchSuccessful);
+			data.put("status", -1);
+			data.put("msg", "failure");
+			data.put("result", result);
+			return data;
+		}
 	}
 	
 	@RequestMapping(value = "/testUpdate", method = RequestMethod.POST)
