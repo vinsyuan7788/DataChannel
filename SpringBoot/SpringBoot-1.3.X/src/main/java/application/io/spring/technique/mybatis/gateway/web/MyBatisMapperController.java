@@ -88,8 +88,8 @@ public class MyBatisMapperController {
 		}
 	}
 	
-	@RequestMapping(value = "/testUpdate", method = RequestMethod.POST)
-	public Map<String, Object> testUpdate() throws Exception {
+	@RequestMapping(value = "/testSelect", method = RequestMethod.POST)
+	public Map<String, Object> testSelect() throws Exception {
 		
 		Map<String, Object> data = new HashMap<>();
 		Map<String, Object> result = new HashMap<>();
@@ -98,8 +98,8 @@ public class MyBatisMapperController {
 		return data;
 	}
 	
-	@RequestMapping(value = "/testSelect", method = RequestMethod.POST)
-	public Map<String, Object> testSelect() throws Exception {
+	@RequestMapping(value = "/testUpdate", method = RequestMethod.POST)
+	public Map<String, Object> testUpdate() throws Exception {
 		
 		Map<String, Object> data = new HashMap<>();
 		Map<String, Object> result = new HashMap<>();

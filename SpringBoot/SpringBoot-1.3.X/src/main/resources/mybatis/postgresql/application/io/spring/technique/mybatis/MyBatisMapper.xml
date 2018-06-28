@@ -56,13 +56,30 @@
       		<if test="extendedField != null" >#{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.technique.mybatis.utils.JSONTypeHandler},</if>
     	</trim>
 	</insert>
-
+	
   	<insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
   		insert into z_my_batis(<include refid="Base_Column_List_Without_Id"/>) values
     	<foreach collection="list" item="item" index="index" separator=",">
       		(#{item.name,jdbcType=VARCHAR},#{item.version,jdbcType=VARCHAR},#{item.releaseTime,jdbcType=TIMESTAMP},#{item.officialUrl,jdbcType=VARCHAR},#{item.contributor,jdbcType=VARCHAR},#{item.remark,jdbcType=VARCHAR},#{item.extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.technique.mybatis.utils.JSONTypeHandler})
       	</foreach>
 	</insert>
+	
+	<select id="getPageableList" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List"/> from z_my_batis
+    	<include refid="Query_Where_Clause"/>
+    	<if test="orderby != null "> order by ${orderby} </if>
+    	<if test="limit != null "> limit ${limit} </if>
+    	<if test="offset != null "> offset ${offset} </if>
+	</select>
+	
+	<select id="getListCount" parameterType="java.util.Map" resultType="java.lang.Long">
+		select count(*) from z_my_batis
+    	<include refid="Query_Where_Clause"/>
+	</select>
+	
+	<update id="updateByPrimaryKeySelecct" parameterType="application.io.spring.technique.mybatis.api.model.MyBatis">
+	
+	</update>
 	
 <!--   
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
