@@ -1,4 +1,4 @@
-package application.io.spring.utils;
+package application.io.spring.technique.shiro.utils;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;

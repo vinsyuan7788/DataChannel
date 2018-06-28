@@ -1,4 +1,4 @@
-package application.io.spring.utils.bean;
+package application.io.spring.technique.springboot.utils;
 
 import java.io.Serializable;
 

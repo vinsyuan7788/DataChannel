@@ -2,7 +2,7 @@ package application.io.spring.technique.mybatis.api.model;
 
 import java.util.Date;
 
-import application.io.spring.utils.bean.Identifiable;
+import application.io.spring.technique.springboot.utils.Identifiable;
 import lombok.Getter;
 import lombok.Setter;
 

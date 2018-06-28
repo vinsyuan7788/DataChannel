@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import application.io.spring.technique.shiro.api.model.utils.LoginInfo;
-import application.io.spring.utils.ShiroUtils;
+import application.io.spring.technique.shiro.utils.ShiroUtils;
 
 /**
  * 	This is a controller to test Shiro authentication

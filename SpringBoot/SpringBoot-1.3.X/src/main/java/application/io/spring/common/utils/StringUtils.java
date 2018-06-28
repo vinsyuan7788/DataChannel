@@ -1,4 +1,4 @@
-package application.io.spring.utils;
+package application.io.spring.common.utils;
 
 /**
  * 	This is a class to provide utility regarding string
