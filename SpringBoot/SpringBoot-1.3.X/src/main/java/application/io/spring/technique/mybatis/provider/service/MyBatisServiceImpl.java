@@ -17,7 +17,7 @@ public class MyBatisServiceImpl implements MyBatisService {
 
 	@Autowired
 	private MyBatisDAO myBatisDAO;
-	
+
 	@Override
 	public Boolean insertSelective(MyBatis bean) throws Exception {
 		
@@ -29,34 +29,7 @@ public class MyBatisServiceImpl implements MyBatisService {
 			return false;
 		}
 	}
-
-	private static Map<String, Object> getCondition(MyBatis query, String orderby, Long limit, Long offset) throws Exception {
-		
-		Map<String, Object> params = new HashMap<>();
-		
-		BeanUtils.populate(query, params);
-		
-		if (orderby != null) {
-			params.put("orderby", orderby);
-		} else {
-			params.put("orderby", "id desc");
-		}
-		
-		if (limit != null) {
-			params.put("limit", limit);
-		} else {
-			params.put("limit", null);
-		}
-		
-		if (offset != null) {
-			params.put("offset", offset);
-		} else {
-			params.put("offset", null);
-		}
-		
-		return params;
-	}
-
+	
 	@Override
 	public Boolean insertBatch(List<MyBatis> beans) throws Exception {
 
@@ -122,5 +95,32 @@ public class MyBatisServiceImpl implements MyBatisService {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	private static Map<String, Object> getCondition(MyBatis query, String orderby, Long limit, Long offset) throws Exception {
+		
+		Map<String, Object> params = new HashMap<>();
+		
+		BeanUtils.populate(query, params);
+		
+		if (orderby != null) {
+			params.put("orderby", orderby);
+		} else {
+			params.put("orderby", "id desc");
+		}
+		
+		if (limit != null) {
+			params.put("limit", limit);
+		} else {
+			params.put("limit", null);
+		}
+		
+		if (offset != null) {
+			params.put("offset", offset);
+		} else {
+			params.put("offset", null);
+		}
+		
+		return params;
 	}
 }
