@@ -43,7 +43,11 @@ public class MyBatisMapperController {
 		bean.setOfficialUrl("http://www.mybatis.org/mybatis-3/");
 		bean.setContributor("Vins, Ives");
 		bean.setRemark("from insertSelective");
-		bean.setExtendedField(new JSONObject());
+		JSONObject jsonObject = new JSONObject();
+		Date now = new Date();
+		jsonObject.put("createTime", now);
+		jsonObject.put("updateTime", now);
+		bean.setExtendedField(jsonObject);
 		
 		boolean isInsertSelectiveSuccessful = myBatisService.insertSelective(bean);
 		
@@ -54,6 +58,11 @@ public class MyBatisMapperController {
 		bean.setOfficialUrl("http://www.mybatis.org/mybatis-3/");
 		bean.setContributor("Vins, Ives");
 		bean.setRemark("from insertBatch");
+		jsonObject = new JSONObject();
+		now = new Date();
+		jsonObject.put("createTime", now);
+		jsonObject.put("updateTime", now);
+		bean.setExtendedField(jsonObject);
 		bean.setExtendedField(new JSONObject());
 		List<MyBatis> beans = new ArrayList<MyBatis>();
 		beans.add(bean);
