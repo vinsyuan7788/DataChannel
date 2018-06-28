@@ -21,65 +21,84 @@ public class MyBatisServiceImpl implements MyBatisService {
 	@Override
 	public Boolean insertSelective(MyBatis bean) throws Exception {
 		
-		boolean isSuccessful = true;
-		
 		try {
 			myBatisDAO.insertSelective(bean);
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
-			isSuccessful = false;
+			return false;
 		}
-		
-		return isSuccessful;
 	}
 
 	@Override
 	public Boolean insertBatch(List<MyBatis> beans) throws Exception {
 
-		boolean isSuccessful = true;
-		
 		try {
 			myBatisDAO.insertBatch(beans);
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
-			isSuccessful = false;
+			return false;
 		}
-		
-		return isSuccessful;
 	}
 
 	@Override
-	public List<MyBatis> selectByQuery(MyBatis query) throws Exception {
+	public MyBatis selectOneByQuery(MyBatis query) throws Exception {
+		
+		try {
+			return myBatisDAO.selectByQuery(getCondition(query, null, 1L, 0L)).get(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public List<MyBatis> selectAllByQuery(MyBatis query) throws Exception {
+		
+		try {
+			return myBatisDAO.selectByQuery(getCondition(query, null, null, null));
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@Override
+	public List<MyBatis> selectListByQuery(MyBatis query, String orderby, Long limit, Long offset) throws Exception {
+		
+		try {
+			return myBatisDAO.selectByQuery(getCondition(query, orderby, limit, offset));
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	private static Map<String, Object> getCondition(MyBatis query, String orderby, Long limit, Long offset) throws Exception {
 		
 		Map<String, Object> params = new HashMap<>();
 		
 		BeanUtils.populate(query, params);
 		
-		try {
-			return myBatisDAO.selectByQuery(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+		if (orderby != null) {
+			params.put("orderby", orderby);
+		} else {
+			params.put("orderby", "id desc");
 		}
 		
-	}
-
-	@Override
-	public List<MyBatis> selectByQuery(MyBatis query, String orderby, Integer limit, Integer offset) throws Exception {
-		
-		Map<String, Object> params = new HashMap<>();
-		
-		BeanUtils.populate(query, params);
-		
-		params.put("orderby", orderby);
-		params.put("limit", limit);
-		params.put("offset", offset);
-		
-		try {
-			return myBatisDAO.selectByQuery(params);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+		if (limit != null) {
+			params.put("limit", limit);
+		} else {
+			params.put("limit", null);
 		}
+		
+		if (offset != null) {
+			params.put("offset", offset);
+		} else {
+			params.put("offset", null);
+		}
+		
+		return params;
 	}
 }

@@ -10,7 +10,9 @@ public interface MyBatisService {
 	
 	public Boolean insertBatch(List<MyBatis> beans) throws Exception;
 
-	public List<MyBatis> selectByQuery(MyBatis query) throws Exception;
+	public MyBatis selectOneByQuery(MyBatis query) throws Exception;
 	
-	public List<MyBatis> selectByQuery(MyBatis query, String orderby, Integer limit, Integer offset) throws Exception;
+	public List<MyBatis> selectAllByQuery(MyBatis query) throws Exception;
+	
+	public List<MyBatis> selectListByQuery(MyBatis query, String orderby, Long limit, Long offset) throws Exception;
 }

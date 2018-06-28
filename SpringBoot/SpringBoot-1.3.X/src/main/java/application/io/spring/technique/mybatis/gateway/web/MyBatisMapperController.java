@@ -96,10 +96,29 @@ public class MyBatisMapperController {
 		
 		MyBatis query = new MyBatis();
 		query.setName("MyBatis");
-		List<MyBatis> beans = myBatisService.selectByQuery(query);
+		query.setVersion("3.4.1");
 		
-		data.put("result", result);
-		return data;
+		MyBatis resultFromSelectOneByQuery = myBatisService.selectOneByQuery(query);
+		List<MyBatis> resultFromSelectAllByQuery = myBatisService.selectAllByQuery(query);
+		List<MyBatis> resultFromSelectListByQuery = myBatisService.selectListByQuery(query, "id", 10L, 0L);
+		
+		if (resultFromSelectOneByQuery != null && resultFromSelectAllByQuery != null && resultFromSelectListByQuery != null) {
+			result.put("resultFromSelectOneByQuery", resultFromSelectOneByQuery);
+			result.put("resultFromSelectAllByQuery", resultFromSelectAllByQuery);
+			result.put("resultFromSelectListByQuery", resultFromSelectListByQuery);
+			data.put("status", 1);
+			data.put("msg", "success");
+			data.put("result", result);
+			return data;
+		} else {
+			result.put("resultFromSelectOneByQuery", resultFromSelectOneByQuery);
+			result.put("resultFromSelectAllByQuery", resultFromSelectAllByQuery);
+			result.put("resultFromSelectListByQuery", resultFromSelectListByQuery);
+			data.put("status", -1);
+			data.put("msg", "failure");
+			data.put("result", result);
+			return data;
+		}
 	}
 	
 	@RequestMapping(value = "/testUpdate", method = RequestMethod.POST)
