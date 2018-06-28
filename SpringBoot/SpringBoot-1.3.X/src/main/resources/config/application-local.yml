@@ -17,6 +17,3 @@ spring:
     min-idle: 5
     maximum-pool-size: 30
     max-active: 15
-    
-mybatis:
-  mapper-locations: classpath:/mybatis/postgresql/application/io/spring/**/*.xml
