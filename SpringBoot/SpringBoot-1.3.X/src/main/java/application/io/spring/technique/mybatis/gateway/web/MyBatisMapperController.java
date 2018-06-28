@@ -119,7 +119,9 @@ public class MyBatisMapperController {
 		
 		List<MyBatis> resultFromSelectListByPrimaryKeyCollection = myBatisService.selectListByPrimaryKeyCollection(primaryKeys);
 		
-		if (resultFromSelectOneByQuery != null && resultFromSelectAllByQuery != null && resultFromSelectListByQuery != null) {
+		if (resultFromSelectOneByQuery != null && resultFromSelectAllByQuery != null && resultFromSelectListByQuery != null
+				&& resultFromGetAllCountByQuery != null && resultFromGetListCountByQuery != null 
+				&& resultFromSelectListByPrimaryKeyCollection != null) {
 			result.put("resultFromSelectOneByQuery", resultFromSelectOneByQuery);
 			result.put("resultFromSelectAllByQuery", resultFromSelectAllByQuery);
 			result.put("resultFromSelectListByQuery", resultFromSelectListByQuery);
