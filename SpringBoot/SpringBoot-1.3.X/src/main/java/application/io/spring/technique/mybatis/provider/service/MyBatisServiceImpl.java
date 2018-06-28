@@ -76,6 +76,20 @@ public class MyBatisServiceImpl implements MyBatisService {
 	}
 
 	@Override
+	public List<MyBatis> selectListByPrimaryKeyCollection(List<Long> primaryKeys) throws Exception {
+		
+		Map<String, Object> params = new HashMap<>();
+		params.put("ids", primaryKeys);
+		
+		try {
+			return myBatisDAO.selectByIdCollection(params);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@Override
 	public Long getAllCountByQuery(MyBatis query) throws Exception {
 		
 		try {

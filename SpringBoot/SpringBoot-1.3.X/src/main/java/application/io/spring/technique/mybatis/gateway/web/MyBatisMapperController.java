@@ -3,6 +3,7 @@ package application.io.spring.technique.mybatis.gateway.web;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -113,12 +114,18 @@ public class MyBatisMapperController {
 		Long resultFromGetAllCountByQuery = myBatisService.getAllCountByQuery(query);
 		Long resultFromGetListCountByQuery = myBatisService.getListCountByQuery(query, 10L, 0L);
 		
+		List<Long> primaryKeys = Arrays.asList(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L,
+				11L, 12L, 13L, 14L, 15L, 16L, 17L, 18L, 19L, 20L);
+		
+		List<MyBatis> resultFromSelectListByPrimaryKeyCollection = myBatisService.selectListByPrimaryKeyCollection(primaryKeys);
+		
 		if (resultFromSelectOneByQuery != null && resultFromSelectAllByQuery != null && resultFromSelectListByQuery != null) {
 			result.put("resultFromSelectOneByQuery", resultFromSelectOneByQuery);
 			result.put("resultFromSelectAllByQuery", resultFromSelectAllByQuery);
 			result.put("resultFromSelectListByQuery", resultFromSelectListByQuery);
 			result.put("resultFromGetAllCountByQuery", resultFromGetAllCountByQuery);
 			result.put("resultFromGetListCountByQuery", resultFromGetListCountByQuery);
+			result.put("resultFromSelectListByPrimaryKeyCollection", resultFromSelectListByPrimaryKeyCollection);
 			data.put("status", 1);
 			data.put("msg", "success");
 			data.put("executionTime", (System.currentTimeMillis() - startTime) + "ms");
@@ -130,6 +137,7 @@ public class MyBatisMapperController {
 			result.put("resultFromSelectListByQuery", resultFromSelectListByQuery);
 			result.put("resultFromGetAllCountByQuery", resultFromGetAllCountByQuery);
 			result.put("resultFromGetListCountByQuery", resultFromGetListCountByQuery);
+			result.put("resultFromSelectListByPrimaryKeyCollection", resultFromSelectListByPrimaryKeyCollection);
 			data.put("status", -1);
 			data.put("msg", "failure");
 			data.put("executionTime", (System.currentTimeMillis() - startTime) + "ms");

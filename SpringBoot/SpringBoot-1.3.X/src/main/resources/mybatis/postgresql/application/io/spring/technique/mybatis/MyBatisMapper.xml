@@ -82,6 +82,11 @@
 		) as a
 	</select>
 	
+	<select id="selectByIdCollection" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List"/> from z_my_batis
+			where id in <foreach collection="ids" item="valueitem" open="(" separator="," close=")">#{valueitem}</foreach>
+	</select>
+
 	<delete id="deleteByCondition" parameterType="application.io.spring.technique.mybatis.api.model.MyBatis" >
     	delete from z_my_batis
     	<include refid="Query_Where_Clause"/>
@@ -102,89 +107,4 @@
     	where id = #{id,jdbcType=BIGINT}
 	</update>
 	
-<!--   
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from x_boxmanager
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from x_boxmanager
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="com.royalnu.passenger.inspection.boxmanager.api.model.Boxmanager" useGeneratedKeys="true" keyProperty="id">
-    insert into x_boxmanager (id, real_name, card_number, 
-      delivery_address, head_portrait, create_time, 
-      update_time, operator, user_id
-      )
-    values (#{id,jdbcType=BIGINT}, #{realName,jdbcType=VARCHAR}, #{cardNumber,jdbcType=VARCHAR}, 
-      #{deliveryAddress,jdbcType=VARCHAR}, #{headPortrait,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{operator,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}
-      )
-  </insert>
-  
-  <update id="updateByPrimaryKeySelective" parameterType="com.royalnu.passenger.inspection.boxmanager.api.model.Boxmanager" >
-    update x_boxmanager
-    <set >
-      <if test="realName != null" >
-        real_name = #{realName,jdbcType=VARCHAR},
-      </if>
-      <if test="cardNumber != null" >
-        card_number = #{cardNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="deliveryAddress != null" >
-        delivery_address = #{deliveryAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="headPortrait != null" >
-        head_portrait = #{headPortrait,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="operator != null" >
-        operator = #{operator,jdbcType=VARCHAR},
-      </if>
-      <if test="userId != null" >
-        user_id = #{userId,jdbcType=BIGINT},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.royalnu.passenger.inspection.boxmanager.api.model.Boxmanager" >
-    update x_boxmanager
-    set real_name = #{realName,jdbcType=VARCHAR},
-      card_number = #{cardNumber,jdbcType=VARCHAR},
-      delivery_address = #{deliveryAddress,jdbcType=VARCHAR},
-      head_portrait = #{headPortrait,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      operator = #{operator,jdbcType=VARCHAR},
-      user_id = #{userId,jdbcType=BIGINT}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-
-<select id="getPageableList" parameterType="java.util.Map" resultMap="BaseResultMap">select
-    <include refid="Base_Column_List"/>from x_boxmanager
-    <include refid="Query_Where_Clause"/>
-    <if test="orderby != null "> order by ${orderby} </if>
-    <if test="limit != null "> limit ${limit} </if>
-    <if test="offset != null "> offset ${offset} </if>
-</select>
-
-<select id="getListCount" parameterType="java.util.Map" resultType="java.lang.Long">select count(*) from x_boxmanager
-    <include refid="Query_Where_Clause"/>
-</select>
-
-<select id="selectByIdCollection" parameterType="java.util.Map" resultMap="BaseResultMap">select
-    <include refid="Base_Column_List"/>from x_boxmanager where id in 
-    <foreach collection="ids" item="valueitem" open="(" separator="," close=")">#{valueitem} </foreach>
-</select>
-  <delete id="deleteByCondition" parameterType="com.royalnu.passenger.inspection.boxmanager.api.model.Boxmanager" >
-    delete from x_boxmanager
-    <include refid="Query_Where_Clause"/>
-  </delete> -->
 </mapper>
