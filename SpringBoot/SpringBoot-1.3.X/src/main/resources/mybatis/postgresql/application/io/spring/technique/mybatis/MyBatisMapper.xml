@@ -73,13 +73,13 @@
 	</select>
 	
 	<select id="getListCount" parameterType="java.util.Map" resultType="java.lang.Long">
-		select count(id) from (
+		select count(a.id) from (
 			select id from z_my_batis
 	    	<include refid="Query_Where_Clause"/>
 	    	<if test="orderby != null "> order by ${orderby} </if>
 	    	<if test="limit != null "> limit ${limit} </if>
 	    	<if test="offset != null "> offset ${offset} </if>
-		)
+		) as a
 	</select>
 	
 	<update id="updateByPrimaryKeySelecct" parameterType="application.io.spring.technique.mybatis.api.model.MyBatis">

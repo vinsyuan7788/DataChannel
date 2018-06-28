@@ -107,8 +107,8 @@ public class MyBatisMapperController {
 		MyBatis resultFromSelectOneByQuery = myBatisService.selectOneByQuery(query);
 		List<MyBatis> resultFromSelectAllByQuery = myBatisService.selectAllByQuery(query);
 		List<MyBatis> resultFromSelectListByQuery = myBatisService.selectListByQuery(query, "id desc", 10L, 0L);
-		long resultFromGetAllCountByQuery = myBatisService.getAllCountByQuery(query);
-		long resultFromGetListCountByQuery = myBatisService.getListCountByQuery(query, 10L, 0L);
+		Long resultFromGetAllCountByQuery = myBatisService.getAllCountByQuery(query);
+		Long resultFromGetListCountByQuery = myBatisService.getListCountByQuery(query, 10L, 0L);
 		
 		if (resultFromSelectOneByQuery != null && resultFromSelectAllByQuery != null && resultFromSelectListByQuery != null) {
 			result.put("resultFromSelectOneByQuery", resultFromSelectOneByQuery);
