@@ -1,5 +1,6 @@
 package application.io.spring.technique.mybatis.gateway.web;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -44,7 +45,7 @@ public class MyBatisMapperController {
 		bean.setContributor("Vins, Ives");
 		bean.setRemark("from insertSelective");
 		JSONObject jsonObject = new JSONObject();
-		Date now = new Date();
+		String now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 		jsonObject.put("createTime", now);
 		jsonObject.put("updateTime", now);
 		bean.setExtendedField(jsonObject);
@@ -59,11 +60,10 @@ public class MyBatisMapperController {
 		bean.setContributor("Vins, Ives");
 		bean.setRemark("from insertBatch");
 		jsonObject = new JSONObject();
-		now = new Date();
+		now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 		jsonObject.put("createTime", now);
 		jsonObject.put("updateTime", now);
 		bean.setExtendedField(jsonObject);
-		bean.setExtendedField(new JSONObject());
 		List<MyBatis> beans = new ArrayList<MyBatis>();
 		beans.add(bean);
 		beans.add(bean);
