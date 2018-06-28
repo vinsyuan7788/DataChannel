@@ -46,7 +46,7 @@ public class MyBatisServiceImpl implements MyBatisService {
 	public MyBatis selectOneByQuery(MyBatis query) throws Exception {
 		
 		try {
-			return myBatisDAO.selectByQuery(getCondition(query, null, 1L, 0L)).get(0);
+			return myBatisDAO.getPageableList(getCondition(query, null, 1L, 0L)).get(0);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -57,7 +57,7 @@ public class MyBatisServiceImpl implements MyBatisService {
 	public List<MyBatis> selectAllByQuery(MyBatis query) throws Exception {
 		
 		try {
-			return myBatisDAO.selectByQuery(getCondition(query, null, null, null));
+			return myBatisDAO.getPageableList(getCondition(query, null, null, null));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -68,7 +68,7 @@ public class MyBatisServiceImpl implements MyBatisService {
 	public List<MyBatis> selectListByQuery(MyBatis query, String orderby, Long limit, Long offset) throws Exception {
 		
 		try {
-			return myBatisDAO.selectByQuery(getCondition(query, orderby, limit, offset));
+			return myBatisDAO.getPageableList(getCondition(query, orderby, limit, offset));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

@@ -34,6 +34,8 @@ public class MyBatisMapperController {
 	@RequestMapping(value = "/testInsert", method = RequestMethod.POST)
 	public Map<String, Object> testInsert() throws Exception {
 		
+		long startTime = System.currentTimeMillis();
+		
 		Map<String, Object> data = new HashMap<>();
 		Map<String, Object> result = new HashMap<>();
 		
@@ -76,6 +78,7 @@ public class MyBatisMapperController {
 			result.put("isInsertBatchSuccessful", isInsertBatchSuccessful);
 			data.put("status", 1);
 			data.put("msg", "success");
+			data.put("executionTime", (System.currentTimeMillis() - startTime) + "ms");
 			data.put("result", result);
 			return data;
 		} else {
@@ -83,6 +86,7 @@ public class MyBatisMapperController {
 			result.put("isInsertBatchSuccessful", isInsertBatchSuccessful);
 			data.put("status", -1);
 			data.put("msg", "failure");
+			data.put("executionTime", (System.currentTimeMillis() - startTime) + "ms");
 			data.put("result", result);
 			return data;
 		}
@@ -90,6 +94,8 @@ public class MyBatisMapperController {
 	
 	@RequestMapping(value = "/testSelect", method = RequestMethod.POST)
 	public Map<String, Object> testSelect() throws Exception {
+		
+		long startTime = System.currentTimeMillis();
 		
 		Map<String, Object> data = new HashMap<>();
 		Map<String, Object> result = new HashMap<>();
@@ -100,7 +106,7 @@ public class MyBatisMapperController {
 		
 		MyBatis resultFromSelectOneByQuery = myBatisService.selectOneByQuery(query);
 		List<MyBatis> resultFromSelectAllByQuery = myBatisService.selectAllByQuery(query);
-		List<MyBatis> resultFromSelectListByQuery = myBatisService.selectListByQuery(query, "id", 10L, 0L);
+		List<MyBatis> resultFromSelectListByQuery = myBatisService.selectListByQuery(query, "id desc", 10L, 0L);
 		
 		if (resultFromSelectOneByQuery != null && resultFromSelectAllByQuery != null && resultFromSelectListByQuery != null) {
 			result.put("resultFromSelectOneByQuery", resultFromSelectOneByQuery);
@@ -108,6 +114,7 @@ public class MyBatisMapperController {
 			result.put("resultFromSelectListByQuery", resultFromSelectListByQuery);
 			data.put("status", 1);
 			data.put("msg", "success");
+			data.put("executionTime", (System.currentTimeMillis() - startTime) + "ms");
 			data.put("result", result);
 			return data;
 		} else {
@@ -116,6 +123,7 @@ public class MyBatisMapperController {
 			result.put("resultFromSelectListByQuery", resultFromSelectListByQuery);
 			data.put("status", -1);
 			data.put("msg", "failure");
+			data.put("executionTime", (System.currentTimeMillis() - startTime) + "ms");
 			data.put("result", result);
 			return data;
 		}

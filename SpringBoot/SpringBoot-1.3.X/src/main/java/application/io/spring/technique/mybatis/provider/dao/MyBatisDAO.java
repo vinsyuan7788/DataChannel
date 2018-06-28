@@ -11,5 +11,5 @@ public interface MyBatisDAO {
 	
 	public void insertBatch(List<MyBatis> beans) throws Exception;
 
-	public List<MyBatis> selectByQuery(Map<String, Object> params) throws Exception;
+	public List<MyBatis> getPageableList(Map<String, Object> params) throws Exception;
 }
