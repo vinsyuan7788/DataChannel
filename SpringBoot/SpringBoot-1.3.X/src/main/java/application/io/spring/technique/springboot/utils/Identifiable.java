@@ -2,6 +2,8 @@ package application.io.spring.technique.springboot.utils;
 
 import java.io.Serializable;
 
+import org.springframework.stereotype.Component;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +15,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@Component
 public class Identifiable implements Serializable {
 
 	private static final long serialVersionUID = 1L;
