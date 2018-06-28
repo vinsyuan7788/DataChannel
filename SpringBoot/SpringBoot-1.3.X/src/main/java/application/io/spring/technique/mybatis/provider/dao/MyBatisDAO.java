@@ -14,4 +14,8 @@ public interface MyBatisDAO {
 	public List<MyBatis> getPageableList(Map<String, Object> params) throws Exception;
 
 	public Long getListCount(Map<String, Object> params) throws Exception;
+	
+	public void deleteByCondition(MyBatis condition) throws Exception;
+	
+	public void updateByPrimaryKeySelective(MyBatis bean) throws Exception;
 }

@@ -97,6 +97,31 @@ public class MyBatisServiceImpl implements MyBatisService {
 		}
 	}
 	
+	@Override
+	public Boolean deleteByCondition(MyBatis condition) throws Exception {
+		
+		try {
+			myBatisDAO.deleteByCondition(condition);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+
+	@Override
+	public Boolean updateByPrimaryKeySelective(MyBatis bean) throws Exception {
+		
+		try {
+			myBatisDAO.updateByPrimaryKeySelective(bean);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	private static Map<String, Object> getCondition(MyBatis query, String orderby, Long limit, Long offset) throws Exception {
 		
 		Map<String, Object> params = new HashMap<>();

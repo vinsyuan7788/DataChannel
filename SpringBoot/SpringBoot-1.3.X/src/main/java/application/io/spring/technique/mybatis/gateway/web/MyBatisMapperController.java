@@ -1,5 +1,6 @@
 package application.io.spring.technique.mybatis.gateway.web;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,6 +32,8 @@ public class MyBatisMapperController {
 	@Autowired
 	private MyBatisService myBatisService;
 	
+	private static final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
 	@RequestMapping(value = "/testInsert", method = RequestMethod.POST)
 	public Map<String, Object> testInsert() throws Exception {
 		
@@ -47,7 +50,7 @@ public class MyBatisMapperController {
 		bean.setContributor("Vins, Ives");
 		bean.setRemark("from insertSelective");
 		JSONObject jsonObject = new JSONObject();
-		String now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+		String now = dateFormat.format(new Date());
 		jsonObject.put("createTime", now);
 		jsonObject.put("updateTime", now);
 		bean.setExtendedField(jsonObject);
@@ -62,7 +65,7 @@ public class MyBatisMapperController {
 		bean.setContributor("Vins, Ives");
 		bean.setRemark("from insertBatch");
 		jsonObject = new JSONObject();
-		now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+		now = dateFormat.format(new Date());
 		jsonObject.put("createTime", now);
 		jsonObject.put("updateTime", now);
 		bean.setExtendedField(jsonObject);
@@ -73,7 +76,7 @@ public class MyBatisMapperController {
 		
 		boolean isInsertBatchSuccessful = myBatisService.insertBatch(beans);
 		
-		if (isInsertSelectiveSuccessful == true && isInsertBatchSuccessful == true) {
+		if (isInsertSelectiveSuccessful && isInsertBatchSuccessful) {
 			result.put("isInsertSelectiveSuccessful", isInsertSelectiveSuccessful);
 			result.put("isInsertBatchSuccessful", isInsertBatchSuccessful);
 			data.put("status", 1);
@@ -135,27 +138,67 @@ public class MyBatisMapperController {
 		}
 	}
 	
-	@RequestMapping(value = "/testUpdate", method = RequestMethod.POST)
-	public Map<String, Object> testUpdate() throws Exception {
-		
-		Map<String, Object> data = new HashMap<>();
-		Map<String, Object> result = new HashMap<>();
-		
-		data.put("status", 0);
-		data.put("msg", "not yet implemented");
-		data.put("result", result);
-		return data;
-	}
-	
 	@RequestMapping(value = "/testDelete", method = RequestMethod.POST)
 	public Map<String, Object> testDelete() throws Exception {
 		
 		Map<String, Object> data = new HashMap<>();
 		Map<String, Object> result = new HashMap<>();
 		
-		data.put("status", 0);
-		data.put("msg", "not yet implemented");
-		data.put("result", result);
-		return data;
+		MyBatis condition = new MyBatis();
+		condition.setRemark("from InsertBatch");
+		condition.setVersion("3.4.1");
+		
+		boolean isDeleteByConditionSuccessful = myBatisService.deleteByCondition(condition);
+		
+		if (isDeleteByConditionSuccessful) {
+			result.put("isDeleteByConditionSuccessful", isDeleteByConditionSuccessful);
+			data.put("status", 1);
+			data.put("msg", "success");
+			data.put("result", result);
+			return data;
+		} else {
+			result.put("isDeleteByConditionSuccessful", isDeleteByConditionSuccessful);
+			data.put("status", -1);
+			data.put("msg", "failure");
+			data.put("result", result);
+			return data;
+		}
+	}
+	
+	@RequestMapping(value = "/testUpdate", method = RequestMethod.POST)
+	public Map<String, Object> testUpdate() throws Exception {
+		
+		Map<String, Object> data = new HashMap<>();
+		Map<String, Object> result = new HashMap<>();
+		
+		MyBatis query = new MyBatis();
+		query.setRemark("from InsertSelective");
+		query.setVersion("3.4.1");
+		
+		MyBatis bean = myBatisService.selectOneByQuery(query);
+		
+		Object extendeField = bean.getExtendedField();
+		JSONObject jsonExtendedField = JSONObject.fromObject(extendeField);
+		String now = dateFormat.format(new Date());
+		jsonExtendedField.put("updateTime", now);
+		Object newExtendedField = JSONObject.toBean(jsonExtendedField);
+		bean.setExtendedField(newExtendedField);
+		
+		boolean isUpdateByPrimaryKeySelectiveSuccessful = myBatisService.updateByPrimaryKeySelective(bean);
+		
+		if (isUpdateByPrimaryKeySelectiveSuccessful) {
+			result.put("isUpdateByPrimaryKeySelectiveSuccessful", isUpdateByPrimaryKeySelectiveSuccessful);
+			data.put("status", 1);
+			data.put("msg", "success");
+			data.put("result", result);
+			return data;
+		} else {
+			result.put("isUpdateByPrimaryKeySelectiveSuccessful", isUpdateByPrimaryKeySelectiveSuccessful);
+			data.put("status", -1);
+			data.put("msg", "failure");
+			data.put("result", result);
+			return data;
+		}
+		
 	}
 }

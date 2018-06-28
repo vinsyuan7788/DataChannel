@@ -19,4 +19,8 @@ public interface MyBatisService {
 	public Long getAllCountByQuery(MyBatis query) throws Exception;
 
 	public Long getListCountByQuery(MyBatis query, Long limit, Long offset) throws Exception;
+
+	public Boolean deleteByCondition(MyBatis condition) throws Exception;
+
+	public Boolean updateByPrimaryKeySelective(MyBatis bean) throws Exception;
 }
