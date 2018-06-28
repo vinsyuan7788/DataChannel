@@ -94,6 +94,10 @@ public class MyBatisMapperController {
 		Map<String, Object> data = new HashMap<>();
 		Map<String, Object> result = new HashMap<>();
 		
+		MyBatis query = new MyBatis();
+		query.setName("MyBatis");
+		List<MyBatis> beans = myBatisService.selectByQuery(query);
+		
 		data.put("result", result);
 		return data;
 	}

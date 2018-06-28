@@ -1,7 +1,10 @@
 package application.io.spring.technique.mybatis.provider.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,5 +46,40 @@ public class MyBatisServiceImpl implements MyBatisService {
 		}
 		
 		return isSuccessful;
+	}
+
+	@Override
+	public List<MyBatis> selectByQuery(MyBatis query) throws Exception {
+		
+		Map<String, Object> params = new HashMap<>();
+		
+		BeanUtils.populate(query, params);
+		
+		try {
+			return myBatisDAO.selectByQuery(params);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+
+	@Override
+	public List<MyBatis> selectByQuery(MyBatis query, String orderby, Integer limit, Integer offset) throws Exception {
+		
+		Map<String, Object> params = new HashMap<>();
+		
+		BeanUtils.populate(query, params);
+		
+		params.put("orderby", orderby);
+		params.put("limit", limit);
+		params.put("offset", offset);
+		
+		try {
+			return myBatisDAO.selectByQuery(params);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }
