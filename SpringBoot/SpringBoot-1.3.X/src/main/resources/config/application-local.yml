@@ -1,10 +1,10 @@
-spring:
-  profiles: local
-  
 server:
   port: 13579
   context-path: /spring-boot-application
   servlet-path: /api
+  
+spring:
+  profiles: local
   
   datasource:
     driverClassName: org.postgresql.Driver
@@ -17,3 +17,6 @@ server:
     min-idle: 5
     maximum-pool-size: 30
     max-active: 15
+    
+mybatis:
+  mapper-locations: classpath:/mybatis/postgresql/application/io/spring/**/*.xml
