@@ -54,7 +54,7 @@ public class MyBatisMapperController {
 		bean.setReleaseTime(new Date());
 		bean.setOfficialUrl("http://www.mybatis.org/mybatis-3/");
 		bean.setContributor("Vins, Ives");
-		bean.setRemark("from insertSelective");
+		bean.setRemark("from insertBatch");
 		bean.setExtendedField(new JSONObject());
 		List<MyBatis> beans = new ArrayList<MyBatis>();
 		beans.add(bean);
