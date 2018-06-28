@@ -107,13 +107,15 @@ public class MyBatisMapperController {
 		MyBatis resultFromSelectOneByQuery = myBatisService.selectOneByQuery(query);
 		List<MyBatis> resultFromSelectAllByQuery = myBatisService.selectAllByQuery(query);
 		List<MyBatis> resultFromSelectListByQuery = myBatisService.selectListByQuery(query, "id desc", 10L, 0L);
-		long countFromGetAllCountByQuery = myBatisService.getAllCountByQuery(query);
-		long countFromGetListCountByQuery = myBatisService.getListCountByQuery(query, 10L, 0L);
+		long resultFromGetAllCountByQuery = myBatisService.getAllCountByQuery(query);
+		long resultFromGetListCountByQuery = myBatisService.getListCountByQuery(query, 10L, 0L);
 		
 		if (resultFromSelectOneByQuery != null && resultFromSelectAllByQuery != null && resultFromSelectListByQuery != null) {
 			result.put("resultFromSelectOneByQuery", resultFromSelectOneByQuery);
 			result.put("resultFromSelectAllByQuery", resultFromSelectAllByQuery);
 			result.put("resultFromSelectListByQuery", resultFromSelectListByQuery);
+			result.put("resultFromGetAllCountByQuery", resultFromGetAllCountByQuery);
+			result.put("resultFromGetListCountByQuery", resultFromGetListCountByQuery);
 			data.put("status", 1);
 			data.put("msg", "success");
 			data.put("executionTime", (System.currentTimeMillis() - startTime) + "ms");
@@ -123,6 +125,8 @@ public class MyBatisMapperController {
 			result.put("resultFromSelectOneByQuery", resultFromSelectOneByQuery);
 			result.put("resultFromSelectAllByQuery", resultFromSelectAllByQuery);
 			result.put("resultFromSelectListByQuery", resultFromSelectListByQuery);
+			result.put("resultFromGetAllCountByQuery", resultFromGetAllCountByQuery);
+			result.put("resultFromGetListCountByQuery", resultFromGetListCountByQuery);
 			data.put("status", -1);
 			data.put("msg", "failure");
 			data.put("executionTime", (System.currentTimeMillis() - startTime) + "ms");
