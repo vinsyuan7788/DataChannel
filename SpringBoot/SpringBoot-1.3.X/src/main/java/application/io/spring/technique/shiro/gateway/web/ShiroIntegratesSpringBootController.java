@@ -16,4 +16,8 @@ public class ShiroIntegratesSpringBootController {
 	private HttpServletRequest request;
 	@Autowired
 	private HttpServletResponse response;
+	
+	public void testCreate() throws Exception {
+		
+	}
 }
