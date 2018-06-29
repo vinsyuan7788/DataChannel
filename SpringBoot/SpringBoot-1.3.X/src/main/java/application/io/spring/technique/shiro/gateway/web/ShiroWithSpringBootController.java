@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SuppressWarnings({"unused"})
 @RestController
-@RequestMapping("/shiro/integrates-spring-boot")
-public class ShiroIntegratesSpringBootController {
+@RequestMapping("/shiro/with-spring-boot")
+public class ShiroWithSpringBootController {
 
 	@Autowired
 	private HttpServletRequest request;
