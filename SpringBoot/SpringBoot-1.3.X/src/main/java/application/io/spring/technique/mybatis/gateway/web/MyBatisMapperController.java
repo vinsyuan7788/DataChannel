@@ -216,6 +216,5 @@ public class MyBatisMapperController {
 			data.put("result", result);
 			return data;
 		}
-		
 	}
 }
