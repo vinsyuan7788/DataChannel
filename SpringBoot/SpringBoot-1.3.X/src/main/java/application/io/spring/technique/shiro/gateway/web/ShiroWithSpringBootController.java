@@ -17,7 +17,5 @@ public class ShiroWithSpringBootController {
 	@Autowired
 	private HttpServletResponse response;
 	
-	public void testCreate() throws Exception {
-		
-	}
+	
 }
