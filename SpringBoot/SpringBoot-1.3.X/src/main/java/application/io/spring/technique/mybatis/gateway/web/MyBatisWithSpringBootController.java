@@ -23,8 +23,8 @@ import net.sf.json.JSONObject;
 
 @SuppressWarnings("unused")
 @RestController
-@RequestMapping("/mybatis/mapper")
-public class MyBatisMapperController {
+@RequestMapping("/mybatis/with-spring-boot")
+public class MyBatisWithSpringBootController {
 
 	@Autowired
 	private HttpServletRequest request;
