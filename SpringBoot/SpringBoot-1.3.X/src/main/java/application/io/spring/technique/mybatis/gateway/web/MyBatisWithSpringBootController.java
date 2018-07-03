@@ -194,10 +194,9 @@ public class MyBatisWithSpringBootController {
 		MyBatis bean = myBatisService.selectOneByQuery(query);
 		
 		String extendedField = (String) bean.getExtendedField();
-		JSONObject jsonExtendeField = JSONObject.fromObject(extendedField);
-		String now = dateFormat.format(new Date());
-		jsonExtendeField.put("updateTime", now);
-		bean.setExtendedField(jsonExtendeField);
+		JSONObject newExtendeField = JSONObject.fromObject(extendedField);
+		newExtendeField.put("updateTime", dateFormat.format(new Date()));
+		bean.setExtendedField(newExtendeField);
 		
 		boolean isUpdateByPrimaryKeySelectiveSuccessful = myBatisService.updateByPrimaryKeySelective(bean);
 		
