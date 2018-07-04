@@ -53,7 +53,7 @@
       		<if test="officialUrl != null">#{officialUrl,jdbcType=VARCHAR},</if>
       		<if test="contributor != null">#{contributor,jdbcType=VARCHAR},</if>
       		<if test="remark != null">#{remark,jdbcType=VARCHAR},</if>
-      		<if test="extendedField != null" >#{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.technique.mybatis.utils.JSONTypeHandler},</if>
+      		<if test="extendedField != null">#{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.technique.mybatis.utils.JSONTypeHandler},</if>
     	</trim>
 	</insert>
 	
@@ -67,18 +67,18 @@
 	<select id="getPageableList" parameterType="java.util.Map" resultMap="BaseResultMap">
 		select <include refid="Base_Column_List"/> from z_my_batis
     	<include refid="Query_Where_Clause"/>
-    	<if test="orderby != null "> order by ${orderby} </if>
-    	<if test="limit != null "> limit ${limit} </if>
-    	<if test="offset != null "> offset ${offset} </if>
+    	<if test="orderby != null"> order by ${orderby} </if>
+    	<if test="limit != null"> limit ${limit} </if>
+    	<if test="offset != null"> offset ${offset} </if>
 	</select>
 	
 	<select id="getListCount" parameterType="java.util.Map" resultType="java.lang.Long">
 		select count(a.id) from (
 			select id from z_my_batis
 	    	<include refid="Query_Where_Clause"/>
-	    	<if test="orderby != null "> order by ${orderby} </if>
-	    	<if test="limit != null "> limit ${limit} </if>
-	    	<if test="offset != null "> offset ${offset} </if>
+	    	<if test="orderby != null"> order by ${orderby} </if>
+	    	<if test="limit != null"> limit ${limit} </if>
+	    	<if test="offset != null"> offset ${offset} </if>
 		) as a
 	</select>
 	
@@ -102,7 +102,7 @@
       		<if test="officialUrl != null">official_url = #{officialUrl,jdbcType=VARCHAR},</if>
       		<if test="contributor != null">contributor = #{contributor,jdbcType=VARCHAR},</if>
       		<if test="remark != null">remark = #{remark,jdbcType=VARCHAR},</if>
-      		<if test="extendedField != null" >extended_field = #{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.technique.mybatis.utils.JSONTypeHandler},</if>
+      		<if test="extendedField != null">extended_field = #{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.technique.mybatis.utils.JSONTypeHandler},</if>
     	</set>
     	where id = #{id,jdbcType=BIGINT}
 	</update>
