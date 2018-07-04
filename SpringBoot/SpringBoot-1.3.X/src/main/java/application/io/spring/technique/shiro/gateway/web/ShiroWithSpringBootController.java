@@ -1,5 +1,7 @@
 package application.io.spring.technique.shiro.gateway.web;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -30,4 +32,8 @@ public class ShiroWithSpringBootController {
 	@Autowired
 	private HttpServletResponse response;
 
+	public Map<String, Object> testSelectAuthorizationUser() throws Exception {
+		
+		return null;
+	}
 }
