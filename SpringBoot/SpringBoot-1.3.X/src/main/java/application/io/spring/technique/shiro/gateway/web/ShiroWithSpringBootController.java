@@ -17,5 +17,4 @@ public class ShiroWithSpringBootController {
 	@Autowired
 	private HttpServletResponse response;
 	
-	
 }
