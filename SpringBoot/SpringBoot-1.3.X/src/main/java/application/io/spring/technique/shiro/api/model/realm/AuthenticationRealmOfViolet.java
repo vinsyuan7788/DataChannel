@@ -22,6 +22,10 @@ public class AuthenticationRealmOfViolet extends AuthenticatingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		
+		// Print information
+		System.out.println("=== AuthenticationRealmOfViolet.doGetAuthenticationInfo"
+				+ " | token: " + token + " ===");
+		
 		// Get principal and credentials from the token
 		String principal = (String) token.getPrincipal();
 		String credentials = new String((char[])token.getCredentials());

@@ -43,6 +43,10 @@ public class AuthenticationRealmOfVins2 implements Realm {
 	@Override
 	public AuthenticationInfo getAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		
+		// Print information
+		System.out.println("=== AuthenticationRealmOfVins2.doGetAuthenticationInfo"
+				+ " | token: " + token + " ===");
+		
 		// Get principal and credentials from the token
 		String principal = (String) token.getPrincipal();
 		String credentials = new String((char[])token.getCredentials());

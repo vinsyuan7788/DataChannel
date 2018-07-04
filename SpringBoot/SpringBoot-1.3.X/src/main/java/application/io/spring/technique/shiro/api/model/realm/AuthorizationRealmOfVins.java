@@ -26,6 +26,10 @@ public class AuthorizationRealmOfVins extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		
+		// Print information
+		System.out.println("=== AuthorizationRealmOfVins.doGetAuthorizationInfo"
+				+ " | principals: " + principals + " ===");
+		
 		// Instantiate an AuthorizationInfo instance
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         
@@ -51,6 +55,10 @@ public class AuthorizationRealmOfVins extends AuthorizingRealm {
 	 */
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+		
+		// Print information
+		System.out.println("=== AuthorizationRealmOfVins.doGetAuthenticationInfo"
+				+ " | token: " + token + " ===");
 		
 		// Get principal and credentials from the token
 		String principal = (String) token.getPrincipal();
