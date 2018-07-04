@@ -12,8 +12,7 @@ import lombok.Setter;
  * 
  * 	The rule of this permission is as following:
  * 	-- The composition of permission: |resourceString|permissionBit|instanceId
- *     -- Assuming: 0001(1) represents insert; 0010(2) represents update; 0100(4) represents delete; 1000(8) represents select
- *     -- Then:  
+ *     -- E.g., 0001(1) represents insert; 0010(2) represents update; 0100(4) represents delete; 1000(8) represents select
  *
  * @author vinsy
  *

@@ -1,7 +1,5 @@
 package application.io.spring.technique.shiro.api.model.realm;
 
-import java.io.Serializable;
-
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -20,9 +18,7 @@ import application.io.spring.technique.shiro.api.model.permission.BitPermission;
  * @author vinsy
  *
  */
-public class VinsAuthorizingRealm extends AuthorizingRealm implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class AuthorizationRealmOfVins extends AuthorizingRealm {
 	
 	/**
 	 * 	This is a method to implement how a principal should be authorized

@@ -1,7 +1,5 @@
 package application.io.spring.technique.shiro.api.model.realm;
 
-import java.io.Serializable;
-
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -16,9 +14,7 @@ import org.apache.shiro.realm.Realm;
  * @author vinsy
  *
  */
-public class VinsRealm2 implements Realm, Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class AuthenticationRealmOfVins2 implements Realm {
 	
 	/**
 	 * 	This is a method to get the name of this realm
