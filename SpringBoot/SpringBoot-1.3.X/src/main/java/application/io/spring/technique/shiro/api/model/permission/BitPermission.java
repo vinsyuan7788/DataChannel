@@ -60,6 +60,10 @@ public class BitPermission implements Permission {
 	@Override
 	public boolean implies(Permission p) {
 
+		// Print information
+		System.out.println("=== BitPermission.implies"
+				+ " | permission: " + p + " ===");
+		
 		// If the permission is not the instance of BitPermission
 		if (!(p instanceof BitPermission)) {  
 			

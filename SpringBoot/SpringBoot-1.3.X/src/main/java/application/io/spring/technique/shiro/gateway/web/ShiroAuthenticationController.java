@@ -35,6 +35,9 @@ import application.io.spring.technique.shiro.utils.ShiroUtils;
  *     -- {@link #org.apache.shiro.authc.pam.ModularRealmAuthenticator} ModularRealmAuthenticator.doSingle/MultiRealmAuthentication(realms = getRealms, token) --->										# Here gets all the realms
  *     -- {@link #org.apache.shiro.authc.pam.ModularRealmAuthenticator} ModularRealmAuthenticator.getAuthenticationStrategy ---> 																		# Here is where authentication strategy comes into effect
  *     -- {@link #org.apache.shiro.authc.pam.ModularRealmAuthenticator} ModularRealmAuthenticator: realms.forEach(realm -> { realm.supports(token) ---> realm.getAuthenticationInfo(token) })			# Here is where realms come into effect
+ *     -- if realm is AuthenticatingRealm, then：
+ *        -- {@link #org.apache.shiro.realm.AuthenticatingRealm} AuthenticatingRealm.assertCredentialsMatch(token, info = doGetAuthenticationInfo(token))
+ *        -- {@link #org.apache.shiro.realm.AuthenticatingRealm} AuthenticatingRealm.getCredentialsMatcher.doCredentialsMatch(token, info)
  *     
  * @author vinsy
  *
@@ -156,6 +159,51 @@ public class ShiroAuthenticationController {
 		
 		// Do the Shiro login and get the login information
 		LoginInfo loginInfo = ShiroUtils.login("shiro/authentication/shiro-authenticator-and-authentication-strategy.ini", principal, credentials);
+		
+		// If login succeeds
+		if (loginInfo.getIsLogin().booleanValue() == true) {
+			
+			// Get the subject
+			Subject currentUser = loginInfo.getSubject();
+			
+			// Get the principal
+			PrincipalCollection principals = currentUser.getPrincipals();
+			result.put("loginMsg", principals + " has logged-in");
+			
+			// Logout current user
+			currentUser.logout();
+			result.put("logoutMsg", principals + " has logged-out");
+			
+			// Return data
+			data.put("status", 1);
+			data.put("msg", "authentication succeeds");
+			data.put("result", result);
+			return data;
+			
+		// If login fails
+		} else {
+			
+			// Return data
+			result.put("errMsg", loginInfo.getMsg());
+			data.put("status", -1);
+			data.put("msg", "authentication fails");
+			data.put("result", result);
+			return data;
+		}
+	}
+	
+	@RequestMapping(value = "/testAuthenticationWithCredentialsMatcher", method = RequestMethod.GET)
+	public Map<String, Object> testAuthenticationWithCredentialsMatcher() throws Exception {
+		
+		Map<String, Object> data = new HashMap<>();
+		Map<String, Object> result = new HashMap<>();
+		
+		// Get the principal and credential
+		String principal = request.getParameter("username");
+		String credentials = request.getParameter("password");
+		
+		// Do the Shiro login and get the login information
+		LoginInfo loginInfo = ShiroUtils.login("shiro/authentication/shiro-credentials-matcher.ini", principal, credentials);
 		
 		// If login succeeds
 		if (loginInfo.getIsLogin().booleanValue() == true) {

@@ -21,6 +21,12 @@ public class CustomRolePermissionResolver implements RolePermissionResolver {
 	 */
 	@Override
 	public Collection<Permission> resolvePermissionsInRole(String roleString) {
+		
+		// Print information
+		System.out.println("=== CustomRolePermissionResolver.resolvePermissionsInRole"
+				+ " | roleString: " + roleString + " ===");
+		
+		// Here resolves Permission instances according to roles
 		if(roleString.equals("CTO")) {  
             return Arrays.asList((Permission) new WildcardPermission("menu:*"));  
         }  
