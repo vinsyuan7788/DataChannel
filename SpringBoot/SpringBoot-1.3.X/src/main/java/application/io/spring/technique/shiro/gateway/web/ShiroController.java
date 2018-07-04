@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * 	This is a class to test Shiro
+ * 
+ * @author vinsy
+ *
+ */
 @SuppressWarnings("unused")
 @RestController
 @RequestMapping("/shiro")
