@@ -8,7 +8,7 @@
     	<result column="password" property="password" jdbcType="VARCHAR"/>
     	<result column="attr" property="attr" jdbcType="VARCHAR"/>
     	<result column="real_name" property="realName" jdbcType="VARCHAR"/>
-    	<result column="sex" property="sex" jdbcType="VARCHAR"/>
+    	<result column="gender" property="gender" jdbcType="VARCHAR"/>
     	<result column="birthday" property="birthday" jdbcType="TIMESTAMP"/>
     	<result column="official_phone" property="officialPhone" jdbcType="VARCHAR"/>
     	<result column="mobile" property="mobile" jdbcType="VARCHAR"/>
@@ -32,7 +32,7 @@
         	<if test="password != null and password != ''"> and password = #{password,jdbcType=VARCHAR}</if>
         	<if test="attr != null and attr != ''"> and attr = #{attr,jdbcType=VARCHAR}</if>
         	<if test="realName != null and realName != ''"> and real_name = #{realName,jdbcType=VARCHAR}</if>
-        	<if test="sex != null and sex != ''"> and sex = #{sex,jdbcType=VARCHAR}</if>
+        	<if test="gender != null and gender != ''"> and gender = #{gender,jdbcType=VARCHAR}</if>
         	<if test="birthday != null and birthday != ''"> and birthday = #{birthday,jdbcType=TIMESTAMP} :: timestamp with time zone</if>
         	<if test="officialPhone != null and officialPhone != ''"> and official_phone = #{officialPhone,jdbcType=VARCHAR}</if>
         	<if test="mobile != null and mobile != ''"> and mobile = #{mobile,jdbcType=VARCHAR}</if>
@@ -51,13 +51,13 @@
  	</sql>
  
  	<sql id="Base_Column_List">
-    	id, name, password, attr, real_name, sex, birthday, official_phone, mobile, home_phone, email, remark, creator, status, create_time, code, fingerprint_login, allow_login_type, is_internal_employee, extended_field
+    	id, name, password, attr, real_name, gender, birthday, official_phone, mobile, home_phone, email, remark, creator, status, create_time, code, fingerprint_login, allow_login_type, is_internal_employee, extended_field
     </sql>
     <sql id="Base_Column_List_Without_Id">
-    	name, password, attr, real_name, sex, birthday, official_phone, mobile, home_phone, email, remark, creator, status, create_time, code, fingerprint_login, allow_login_type, is_internal_employee, extended_field
+    	name, password, attr, real_name, gender, birthday, official_phone, mobile, home_phone, email, remark, creator, status, create_time, code, fingerprint_login, allow_login_type, is_internal_employee, extended_field
     </sql>
    
-  	<insert id="insertSelective" parameterType="application.io.spring.technique.mybatis.api.model.MyBatis" useGeneratedKeys="true" keyProperty="id">
+  	<insert id="insertSelective" parameterType="application.io.spring.technique.shiro.api.model.AuthorizationUser" useGeneratedKeys="true" keyProperty="id">
     	insert into x_authorization_user
     	<trim prefix="(" suffix=")" suffixOverrides="," >
 			<if test="id != null">id,</if>
@@ -65,7 +65,7 @@
         	<if test="password != null">password,</if>
         	<if test="attr != null">attr,</if>
         	<if test="realName != null">real_name,</if>
-        	<if test="sex != null">sex,</if>
+        	<if test="gender != null">gender,</if>
         	<if test="birthday != null">birthday,</if>
         	<if test="officialPhone != null">official_phone,</if>
         	<if test="mobile != null">mobile,</if>
@@ -87,7 +87,7 @@
         	<if test="password != null">#{password,jdbcType=VARCHAR},</if>
         	<if test="attr != null">#{attr,jdbcType=VARCHAR},</if>
         	<if test="realName != null">#{realName,jdbcType=VARCHAR},</if>
-        	<if test="sex != null">#{sex,jdbcType=VARCHAR},</if>
+        	<if test="gender != null">#{gender,jdbcType=VARCHAR},</if>
         	<if test="birthday != null">#{birthday,jdbcType=TIMESTAMP},</if>
         	<if test="officialPhone != null">#{officialPhone,jdbcType=VARCHAR},</if>
         	<if test="mobile != null">#{mobile,jdbcType=VARCHAR},</if>
@@ -108,7 +108,7 @@
   	<insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
   		insert into x_authorization_user(<include refid="Base_Column_List_Without_Id"/>) values
     	<foreach collection="list" item="item" index="index" separator=",">
-      		(#{item.name,jdbcType=VARCHAR},#{item.password,jdbcType=VARCHAR},#{item.attr,jdbcType=VARCHAR},#{item.realName,jdbcType=VARCHAR},#{item.sex,jdbcType=VARCHAR},#{item.birthday,jdbcType=TIMESTAMP},#{item.officialPhone,jdbcType=VARCHAR},#{item.mobile,jdbcType=VARCHAR},#{item.homePhone,jdbcType=VARCHAR},#{item.email,jdbcType=VARCHAR},#{item.remark,jdbcType=VARCHAR},#{item.creator,jdbcType=BIGINT},#{item.status,jdbcType=VARCHAR},#{item.createTime,jdbcType=TIMESTAMP},#{item.code,jdbcType=VARCHAR},#{item.fingerprintLogin,jdbcType=VARCHAR},#{item.allowLoginType,jdbcType=VARCHAR},#{item.isInternalEmployee,jdbcType=VARCHAR},#{item.extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.technique.mybatis.utils.JSONTypeHandler})
+      		(#{item.name,jdbcType=VARCHAR},#{item.password,jdbcType=VARCHAR},#{item.attr,jdbcType=VARCHAR},#{item.realName,jdbcType=VARCHAR},#{item.gender,jdbcType=VARCHAR},#{item.birthday,jdbcType=TIMESTAMP},#{item.officialPhone,jdbcType=VARCHAR},#{item.mobile,jdbcType=VARCHAR},#{item.homePhone,jdbcType=VARCHAR},#{item.email,jdbcType=VARCHAR},#{item.remark,jdbcType=VARCHAR},#{item.creator,jdbcType=BIGINT},#{item.status,jdbcType=VARCHAR},#{item.createTime,jdbcType=TIMESTAMP},#{item.code,jdbcType=VARCHAR},#{item.fingerprintLogin,jdbcType=VARCHAR},#{item.allowLoginType,jdbcType=VARCHAR},#{item.isInternalEmployee,jdbcType=VARCHAR},#{item.extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.technique.mybatis.utils.JSONTypeHandler})
       	</foreach>
 	</insert>
 	
@@ -135,12 +135,12 @@
 			where id in <foreach collection="ids" item="valueitem" open="(" separator="," close=")">#{valueitem}</foreach>
 	</select>
 
-	<delete id="deleteByCondition" parameterType="application.io.spring.technique.mybatis.api.model.MyBatis" >
+	<delete id="deleteByCondition" parameterType="application.io.spring.technique.shiro.api.model.AuthorizationUser" >
     	delete from x_authorization_user
     	<include refid="Query_Where_Clause"/>
   	</delete>
   
-	<update id="updateByPrimaryKeySelective" parameterType="application.io.spring.technique.mybatis.api.model.MyBatis">
+	<update id="updateByPrimaryKeySelective" parameterType="application.io.spring.technique.shiro.api.model.AuthorizationUser">
 		update x_authorization_user
     	<set>
       		<if test="id != null">id = #{id,jdbcType=BIGINT},</if>
@@ -148,7 +148,7 @@
         	<if test="password != null">password = #{password,jdbcType=VARCHAR}</if>
         	<if test="attr != null">attr = #{attr,jdbcType=VARCHAR}</if>
         	<if test="realName != null">real_name = #{realName,jdbcType=VARCHAR}</if>
-        	<if test="sex != null">sex = #{sex,jdbcType=VARCHAR}</if>
+        	<if test="gender != null">gender = #{gender,jdbcType=VARCHAR}</if>
         	<if test="birthday != null">birthday = #{birthday,jdbcType=TIMESTAMP} :: timestamp with time zone</if>
         	<if test="officialPhone != null">official_phone = #{officialPhone,jdbcType=VARCHAR}</if>
         	<if test="mobile != null">mobile = #{mobile,jdbcType=VARCHAR}</if>
