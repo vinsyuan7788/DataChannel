@@ -74,7 +74,9 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 		this.baseDAO = SpringContextHolder.getBean(daoName);
 		
 		// Print information
-		System.out.println("=== BaseServiceImpl | beanName: " + beanName + " | daoName: " + daoName + " ===");
+		System.out.println("=== BaseServiceImpl"
+				+ " | beanName: " + beanName
+				+ " | daoName: " + daoName + " ===");
 	}
 	
 	@Override
