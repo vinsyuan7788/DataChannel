@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import application.io.spring.technique.mybatis.api.model.MyBatis;
-import application.io.spring.technique.springboot.utils.SpringContextHolder;
+import application.io.spring.technique.springboot.utils.SpringContextHolder1;
+import application.io.spring.technique.springboot.utils.SpringContextHolder2;
 
 @SuppressWarnings("unused")
 @RestController
@@ -52,9 +52,12 @@ public class SpringBootController {
 		Map<String, Object> data = new HashMap<>();
 		Map<String, Object> result = new HashMap<>();
 		
-		result.put("applicationName", SpringContextHolder.getApplicationContext().getApplicationName());
-		result.put("displayName", SpringContextHolder.getApplicationContext().getDisplayName());
-		result.put("beanNames", Arrays.asList(SpringContextHolder.getBeans()));
+		result.put("applicationNameFromSpringContextHolder1", SpringContextHolder1.getApplicationContext().getApplicationName());
+		result.put("displayNameFromSpringContextHolder1", SpringContextHolder1.getApplicationContext().getDisplayName());
+		result.put("beanNamesFromSpringContextHolder1", Arrays.asList(SpringContextHolder1.getBeans()));
+		result.put("applicationNameFromSpringContextHolder2", SpringContextHolder2.getApplicationContext().getApplicationName());
+		result.put("displayNameFromSpringContextHolder2", SpringContextHolder2.getApplicationContext().getDisplayName());
+		result.put("beanNamesFromSpringContextHolder2", Arrays.asList(SpringContextHolder2.getBeans()));
 		
 		data.put("status", 1);
 		data.put("msg", "Hello Spring-Boot!");
