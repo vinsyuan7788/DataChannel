@@ -42,7 +42,7 @@ public class BaseController<T extends Identifiable> {
 	 */
 	private void initBaseService() {
 		
-		// If baseDAO is existed, then no need to proceed and directly return
+		// If baseService is existed, then no need to proceed and directly return
 		if(baseService != null){
 			return;
 		}
@@ -59,12 +59,12 @@ public class BaseController<T extends Identifiable> {
 		 */
 		String serviceName = Character.toString(beanName.charAt(0)).toLowerCase() + beanName.substring(1) + "Service";
 		
-		// If the DAO bean is not existed according to the DAO name, then no need to proceed and directly return
+		// If the service bean is not existed according to the service name, then no need to proceed and directly return
 		if(!SpringContextHolder.existBean(serviceName)){
 			return;
 		}
 		
-		// Otherwise get the DAO bean according to the DAO name
+		// Otherwise get the service bean according to the service name
 		baseService = SpringContextHolder.getBean(serviceName);
 		
 		// Print information

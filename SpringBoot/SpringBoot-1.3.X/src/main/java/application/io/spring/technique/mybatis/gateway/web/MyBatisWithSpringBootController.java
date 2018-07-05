@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import application.io.spring.common.base.gateway.web.BaseController;
 import application.io.spring.technique.mybatis.api.model.MyBatis;
 import application.io.spring.technique.mybatis.api.service.MyBatisService;
 import net.sf.json.JSONObject;
@@ -24,7 +25,7 @@ import net.sf.json.JSONObject;
 @SuppressWarnings("unused")
 @RestController
 @RequestMapping("/mybatis/with-spring-boot")
-public class MyBatisWithSpringBootController {
+public class MyBatisWithSpringBootController extends BaseController<MyBatis> {
 
 	@Autowired
 	private HttpServletRequest request;
