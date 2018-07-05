@@ -52,6 +52,7 @@ public class SpringBootController {
 		Map<String, Object> data = new HashMap<>();
 		Map<String, Object> result = new HashMap<>();
 		
+		// Spring applicationContext can be retrieved by multiple times in different places in a project
 		result.put("applicationNameFromSpringContextHolder1", SpringContextHolder1.getApplicationContext().getApplicationName());
 		result.put("displayNameFromSpringContextHolder1", SpringContextHolder1.getApplicationContext().getDisplayName());
 		result.put("beanNamesFromSpringContextHolder1", Arrays.asList(SpringContextHolder1.getBeans()));
