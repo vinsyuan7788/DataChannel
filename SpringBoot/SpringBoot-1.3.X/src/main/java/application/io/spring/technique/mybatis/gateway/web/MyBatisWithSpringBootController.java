@@ -193,6 +193,7 @@ public class MyBatisWithSpringBootController extends BaseController<MyBatis> {
 		query.setVersion("3.4.1");
 		
 		MyBatis bean = myBatisService.selectOneByQuery(query);
+		result.put("beanBeforeUpdate", bean);
 		
 		String extendedField = (String) bean.getExtendedField();
 		JSONObject newExtendeField = JSONObject.fromObject(extendedField);
@@ -200,6 +201,7 @@ public class MyBatisWithSpringBootController extends BaseController<MyBatis> {
 		bean.setExtendedField(newExtendeField);
 		
 		boolean isUpdateByPrimaryKeySelectiveSuccessful = myBatisService.updateByPrimaryKeySelective(bean);
+		result.put("beanAfterUpdate", bean);
 		
 		if (isUpdateByPrimaryKeySelectiveSuccessful) {
 			result.put("isUpdateByPrimaryKeySelectiveSuccessful", isUpdateByPrimaryKeySelectiveSuccessful);
