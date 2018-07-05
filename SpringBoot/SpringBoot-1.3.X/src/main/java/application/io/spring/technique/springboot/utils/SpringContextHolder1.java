@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @SuppressWarnings("unchecked")
 @Lazy(false)
 @Component
-public class SpringContextHolder implements ApplicationContextAware {
+public class SpringContextHolder1 implements ApplicationContextAware {
 	
 	// Necessary static variables
     private static ApplicationContext springApplicationContext;
@@ -34,7 +34,7 @@ public class SpringContextHolder implements ApplicationContextAware {
     	beanNameSet.addAll(Arrays.asList(allBeanNames));
     	
     	// Print information
-    	System.out.println("=== SpringContextHolder"
+    	System.out.println("=== SpringContextHolder2"
     			+ " | springApplicationContext: " + springApplicationContext
     			+ " | beanNameSet: " + beanNameSet + " ===");
     }
