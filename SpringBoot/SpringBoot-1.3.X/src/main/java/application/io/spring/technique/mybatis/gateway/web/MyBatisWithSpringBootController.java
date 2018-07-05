@@ -189,10 +189,11 @@ public class MyBatisWithSpringBootController extends BaseController<MyBatis> {
 		Map<String, Object> result = new HashMap<>();
 		
 		MyBatis query = new MyBatis();
-		query.setRemark("from InsertSelective");
+		query.setRemark("from insertSelective");
 		query.setVersion("3.4.1");
 		
 		MyBatis bean = myBatisService.selectOneByQuery(query);
+		System.out.println("=== testUpdate | bean: " + bean + " ===");
 		
 		String extendedField = (String) bean.getExtendedField();
 		JSONObject newExtendeField = JSONObject.fromObject(extendedField);
