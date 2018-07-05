@@ -193,7 +193,6 @@ public class MyBatisWithSpringBootController extends BaseController<MyBatis> {
 		query.setVersion("3.4.1");
 		
 		MyBatis bean = myBatisService.selectOneByQuery(query);
-		System.out.println("=== testUpdate | bean: " + bean + " ===");
 		
 		String extendedField = (String) bean.getExtendedField();
 		JSONObject newExtendeField = JSONObject.fromObject(extendedField);
