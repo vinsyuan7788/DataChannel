@@ -164,6 +164,22 @@
 	    <groupId>com.google.code.gson</groupId>
 	    <artifactId>gson</artifactId>
     </dependency>
+	<!-- 
+		Apache Common Lang3: a package of Java utility classes for the classes that are in java.lang's hierarchy, or are considered to be so standard as to justify existence in java.lang.
+	-->
+	<dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>commons-lang3</artifactId>
+	    <version>3.4</version>
+	</dependency>
+	<!--
+		Google Collections Library: a suite of new collections and collection-related goodness for Java 5.0
+	-->
+	<dependency>
+	    <groupId>com.google.collections</groupId>
+	    <artifactId>google-collections</artifactId>
+	    <version>1.0</version>
+	</dependency>
 	
 	<!-- Here are the dependencies that need to be further studied -->
 	<!-- 

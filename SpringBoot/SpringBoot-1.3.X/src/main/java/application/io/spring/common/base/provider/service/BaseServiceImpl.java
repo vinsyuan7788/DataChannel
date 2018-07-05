@@ -5,12 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.beanutils.BeanUtils;
-
 import application.io.spring.common.base.api.model.Identifiable;
 import application.io.spring.common.base.api.service.BaseService;
 import application.io.spring.common.base.provider.dao.BaseDAO;
 import application.io.spring.common.base.utils.SpringContextHolder;
+import application.io.spring.common.utils.GsonUtils;
 
 @SuppressWarnings("unchecked")
 public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
@@ -179,7 +178,6 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 		}
 	}
 	
-
 	@Override
 	public Boolean updateByPrimaryKeySelective(T bean) throws Exception {
 		
@@ -196,7 +194,9 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 		
 		Map<String, Object> params = new HashMap<>();
 		
-		BeanUtils.describe(query);
+    	if (query != null) {
+    		params = GsonUtils.GSON.fromJson(GsonUtils.GSON.toJson(query), Map.class);
+    	}
 		
 		if (orderby != null) {
 			params.put("orderby", orderby);
