@@ -10,8 +10,10 @@ import application.io.spring.common.base.api.service.BaseService;
 import application.io.spring.common.base.provider.dao.BaseDAO;
 import application.io.spring.common.base.utils.SpringContextHolder;
 import application.io.spring.common.utils.GsonUtils;
+import lombok.extern.log4j.Log4j2;
 
 @SuppressWarnings("unchecked")
+@Log4j2
 public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 
 	// Here are necessary instance variables
@@ -81,6 +83,8 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
+			log.error("=== BaseServiceImpl | insertSelective throws an exception"
+					+ " | exception: " + e + " ===");
 			return false;
 		}
 	}
@@ -93,6 +97,8 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
+			log.error("=== BaseServiceImpl | insertBatch throws an exception"
+					+ " | exception: " + e + " ===");
 			return false;
 		}
 	}
@@ -104,6 +110,8 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 			return baseDAO.getPageableList(getCondition(query, null, 1L, 0L)).get(0);
 		} catch (Exception e) {
 			e.printStackTrace();
+			log.error("=== BaseServiceImpl | selectOneByQuery throws an exception"
+					+ " | exception: " + e + " ===");
 			return null;
 		}
 	}
@@ -115,6 +123,8 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 			return baseDAO.getPageableList(getCondition(query, null, null, null));
 		} catch (Exception e) {
 			e.printStackTrace();
+			log.error("=== BaseServiceImpl | selectAllByQuery throws an exception"
+					+ " | exception: " + e + " ===");
 			return null;
 		}
 	}
@@ -126,6 +136,8 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 			return baseDAO.getPageableList(getCondition(query, orderby, limit, offset));
 		} catch (Exception e) {
 			e.printStackTrace();
+			log.error("=== BaseServiceImpl | selectListByQuery throws an exception"
+					+ " | exception: " + e + " ===");
 			return null;
 		}
 	}
@@ -140,6 +152,8 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 			return baseDAO.selectByIdCollection(params);
 		} catch (Exception e) {
 			e.printStackTrace();
+			log.error("=== BaseServiceImpl | selectListByPrimaryKeyCollection throws an exception"
+					+ " | exception: " + e + " ===");
 			return null;
 		}
 	}
@@ -151,6 +165,8 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 			return baseDAO.getListCount(getCondition(query, null, null, null));
 		} catch (Exception e) {
 			e.printStackTrace();
+			log.error("=== BaseServiceImpl | getAllCountByQuery throws an exception"
+					+ " | exception: " + e + " ===");
 			return null;
 		}
 	}
@@ -162,6 +178,8 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 			return baseDAO.getListCount(getCondition(query, null, limit, offset));
 		} catch (Exception e) {
 			e.printStackTrace();
+			log.error("=== BaseServiceImpl | getListCountByQuery throws an exception"
+					+ " | exception: " + e + " ===");
 			return null;
 		}
 	}
@@ -174,6 +192,8 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
+			log.error("=== BaseServiceImpl | deleteByCondition throws an exception"
+					+ " | exception: " + e + " ===");
 			return false;
 		}
 	}
@@ -186,6 +206,8 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
+			log.error("=== BaseServiceImpl | updateByPrimaryKeySelective throws an exception"
+					+ " | exception: " + e + " ===");
 			return false;
 		}
 	}

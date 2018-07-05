@@ -14,9 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import application.io.spring.technique.shiro.api.model.AuthorizationResource;
 import application.io.spring.technique.shiro.api.model.AuthorizationRole;
+import application.io.spring.technique.shiro.api.model.AuthorizationRoleResource;
 import application.io.spring.technique.shiro.api.model.AuthorizationUser;
+import application.io.spring.technique.shiro.api.model.AuthorizationUserRole;
 import application.io.spring.technique.shiro.api.service.AuthorizationResourceService;
+import application.io.spring.technique.shiro.api.service.AuthorizationRoleResourceService;
 import application.io.spring.technique.shiro.api.service.AuthorizationRoleService;
+import application.io.spring.technique.shiro.api.service.AuthorizationUserRoleService;
 import application.io.spring.technique.shiro.api.service.AuthorizationUserService;
 
 /**
@@ -47,7 +51,11 @@ public class ShiroWithSpringBootController {
 	@Autowired
 	private AuthorizationRoleService authorizationRoleService;
 	@Autowired
+	private AuthorizationUserRoleService authorizationUserRoleService;
+	@Autowired
 	private AuthorizationResourceService authorizationResourceService;
+	@Autowired
+	private AuthorizationRoleResourceService authorizationRoleResourceService;
 
 	@RequestMapping(value = "/testAuthorizationUser", method = RequestMethod.GET)
 	public Map<String, Object> testAuthorizationUser() throws Exception {
@@ -99,6 +107,33 @@ public class ShiroWithSpringBootController {
 		}
 	}
 	
+	@RequestMapping(value = "/testAuthorizationUserRole", method = RequestMethod.GET)
+	public Map<String, Object> testAuthorizationUserRole() throws Exception {
+		
+		Map<String, Object> data = new HashMap<>();
+		Map<String, Object> result = new HashMap<>();
+		
+		try {
+			AuthorizationUserRole query = new AuthorizationUserRole();
+			query.setUserId(178L);
+			List<AuthorizationUserRole> authorizationRolesOfUser178 = authorizationUserRoleService.selectAllByQuery(query);
+			Long numberOfAuthorizationRolesOfUser178  = authorizationUserRoleService.getAllCountByQuery(query);
+			
+			result.put("authorizationRolesOfUser178", authorizationRolesOfUser178);
+			result.put("numberOfAuthorizationRolesOfUser178", numberOfAuthorizationRolesOfUser178);
+			data.put("status", 1);
+			data.put("msg", "success");
+			data.put("result", result);
+	 		return data;
+		} catch (Exception e) {
+			result.put("errMsg", e.getMessage());
+			data.put("status", -1);
+			data.put("msg", "failure");
+			data.put("result", result);
+	 		return data;
+		}
+	}
+	
 	@RequestMapping(value = "/testAuthorizationResource", method = RequestMethod.GET)
 	public Map<String, Object> testAuthorizationResource() throws Exception {
 		
@@ -111,6 +146,38 @@ public class ShiroWithSpringBootController {
 			List<AuthorizationResource> authorizationResources = authorizationResourceService.selectAllByQuery(query);
 			
 			result.put("authorizationResources", authorizationResources);
+			data.put("status", 1);
+			data.put("msg", "success");
+			data.put("result", result);
+	 		return data;
+		} catch (Exception e) {
+			result.put("errMsg", e.getMessage());
+			data.put("status", -1);
+			data.put("msg", "failure");
+			data.put("result", result);
+	 		return data;
+		}
+	}
+	
+	@RequestMapping(value = "/testAuthorizationRoleResource", method = RequestMethod.GET)
+	public Map<String, Object> testAuthorizationRoleResource() throws Exception {
+		
+		Map<String, Object> data = new HashMap<>();
+		Map<String, Object> result = new HashMap<>();
+		
+		try {
+			AuthorizationRoleResource query = new AuthorizationRoleResource();
+			query.setRoleId(40L);
+			List<AuthorizationRoleResource> authorizationResourcesOfRole40 = authorizationRoleResourceService.selectAllByQuery(query);
+			Long numberOfAuthorizationResourcesOfRole40 = authorizationRoleResourceService.getAllCountByQuery(query);
+			query.setRoleId(63L);
+			List<AuthorizationRoleResource> authorizationResourcesOfRole63 = authorizationRoleResourceService.selectAllByQuery(query);
+			Long numberOfAuthorizationResourcesOfRole63 = authorizationRoleResourceService.getAllCountByQuery(query);
+			
+			result.put("authorizationResourcesOfRole40", authorizationResourcesOfRole40);
+			result.put("numberOfAuthorizationResourcesOfRole40", numberOfAuthorizationResourcesOfRole40);
+			result.put("authorizationResourcesOfRole63", authorizationResourcesOfRole63);
+			result.put("numberOfAuthorizationResourcesOfRole63", numberOfAuthorizationResourcesOfRole63);
 			data.put("status", 1);
 			data.put("msg", "success");
 			data.put("result", result);

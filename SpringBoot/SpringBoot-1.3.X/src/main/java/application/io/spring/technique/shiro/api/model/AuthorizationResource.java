@@ -31,4 +31,14 @@ public class AuthorizationResource extends TreeModel {
     
     // extended field
     private Object extendedField;
+
+    /**
+     * 	For output display
+     */
+	@Override
+	public String toString() {
+		return "AuthorizationResource [resource=" + resource + ", resourceType=" + resourceType + ", code=" + code
+				+ ", createTime=" + createTime + ", updateTime=" + updateTime + ", remark=" + remark
+				+ ", extendedField=" + extendedField + "]";
+	}
 }

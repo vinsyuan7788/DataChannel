@@ -35,4 +35,14 @@ public class AuthorizationRole extends Identifiable {
     
     // extended field
     private Object extendedField;
+
+    /**
+     * 	For output display
+     */
+	@Override
+	public String toString() {
+		return "AuthorizationRole [name=" + name + ", seq=" + seq + ", code=" + code + ", roleGroup=" + roleGroup
+				+ ", createTime=" + createTime + ", updateTime=" + updateTime + ", remark=" + remark
+				+ ", extendedField=" + extendedField + "]";
+	}
 }

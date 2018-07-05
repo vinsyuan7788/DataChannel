@@ -22,7 +22,7 @@ public class TreeModel extends Identifiable {
     // right value: smaller than parent node's right value
     private Long rightValue;
     
-    // the sequence (or weight) of a resource
+    // the sequence (or weight) of a node
     private Long seq;
 
     /**

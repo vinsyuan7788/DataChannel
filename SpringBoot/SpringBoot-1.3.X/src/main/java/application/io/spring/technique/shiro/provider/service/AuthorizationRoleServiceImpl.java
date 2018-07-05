@@ -6,7 +6,7 @@ import application.io.spring.common.base.provider.service.BaseServiceImpl;
 import application.io.spring.technique.shiro.api.model.AuthorizationRole;
 import application.io.spring.technique.shiro.api.service.AuthorizationRoleService;
 
-@Service("authorizationRoleServiceImpl")
+@Service("authorizationRoleService")
 public class AuthorizationRoleServiceImpl extends BaseServiceImpl<AuthorizationRole> implements AuthorizationRoleService {
 
 }
