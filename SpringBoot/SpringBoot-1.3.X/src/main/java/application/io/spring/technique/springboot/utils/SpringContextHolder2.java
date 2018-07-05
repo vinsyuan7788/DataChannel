@@ -34,7 +34,7 @@ public class SpringContextHolder2 implements ApplicationContextAware {
     	beanNameSet.addAll(Arrays.asList(allBeanNames));
     	
     	// Print information
-    	System.out.println("=== SpringContextHolder"
+    	System.out.println("=== SpringContextHolder2"
     			+ " | springApplicationContext: " + springApplicationContext
     			+ " | beanNameSet: " + beanNameSet + " ===");
     }
