@@ -43,7 +43,7 @@ public class BaseController<T extends Identifiable> {
 	private void initBaseService() {
 		
 		// If baseDAO is existed, then no need to proceed and directly return
-		if(baseService != null){
+		if(this.baseService != null){
 			return;
 		}
 		
@@ -65,7 +65,7 @@ public class BaseController<T extends Identifiable> {
 		}
 		
 		// Otherwise get the DAO bean according to the DAO name
-		baseService = SpringContextHolder.getBean(serviceName);
+		this.baseService = SpringContextHolder.getBean(serviceName);
 		
 		// Print information
 		System.out.println("=== BaseServiceImpl | beanName: " + beanName + " | serviceName: " + serviceName + " ===");
