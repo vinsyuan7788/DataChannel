@@ -201,7 +201,7 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 		if (orderby != null) {
 			params.put("orderby", orderby);
 		} else {
-			params.put("orderby", "id desc");
+			params.put("orderby", null);
 		}
 		
 		if (limit != null) {

@@ -67,7 +67,7 @@ public class AuthorizationUser extends Identifiable {
     private String isInternalEmployee;
 
     /**
-     * 	For log output
+     * 	For output display
      */
 	@Override
 	public String toString() {

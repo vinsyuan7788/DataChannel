@@ -1,8 +1,38 @@
 package application.io.spring.technique.shiro.api.model;
 
-import application.io.spring.common.base.api.model.Identifiable;
+import java.util.Date;
 
+import application.io.spring.common.base.api.model.Identifiable;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class AuthorizationRole extends Identifiable {
 
 	private static final long serialVersionUID = 1L;
+	
+    // role name
+    private String name;
+    
+    // role display sequence
+    private Long seq;
+    
+    // role code
+    private String code;
+    
+    // role group
+    private String roleGroup;
+    
+    // create time
+    private Date createTime;
+    
+    // update time
+    private Date updateTime;
+    
+	// remark
+    private String remark;
+    
+    // extended field
+    private Object extendedField;
 }

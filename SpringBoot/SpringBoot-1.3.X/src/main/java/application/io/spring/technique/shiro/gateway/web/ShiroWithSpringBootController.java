@@ -1,18 +1,22 @@
 package application.io.spring.technique.shiro.gateway.web;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import application.io.spring.technique.shiro.api.model.AuthorizationResource;
+import application.io.spring.technique.shiro.api.model.AuthorizationRole;
 import application.io.spring.technique.shiro.api.model.AuthorizationUser;
+import application.io.spring.technique.shiro.api.service.AuthorizationResourceService;
+import application.io.spring.technique.shiro.api.service.AuthorizationRoleService;
 import application.io.spring.technique.shiro.api.service.AuthorizationUserService;
 
 /**
@@ -24,6 +28,7 @@ import application.io.spring.technique.shiro.api.service.AuthorizationUserServic
  *        -- t_usr_role: the roles that are necessary for the enterprise
  *        -- t_usr_role_src: the relation between roles and resources
  *        -- t_usr_src: the resources that can be accessed for users
+ *        -- t_log_security_audit: log the operation when a user is added or modified
  * 
  * @author vinsy
  *
@@ -39,9 +44,13 @@ public class ShiroWithSpringBootController {
 	private HttpServletResponse response;
 	@Autowired
 	private AuthorizationUserService authorizationUserService;
+	@Autowired
+	private AuthorizationRoleService authorizationRoleService;
+	@Autowired
+	private AuthorizationResourceService authorizationResourceService;
 
-	@RequestMapping(value = "/testSelectAuthorizationUser", method = RequestMethod.GET)
-	public Map<String, Object> testSelectAuthorizationUser() throws Exception {
+	@RequestMapping(value = "/testAuthorizationUser", method = RequestMethod.GET)
+	public Map<String, Object> testAuthorizationUser() throws Exception {
 		
 		Map<String, Object> data = new HashMap<>();
 		Map<String, Object> result = new HashMap<>();
@@ -52,6 +61,56 @@ public class ShiroWithSpringBootController {
 			AuthorizationUser authorizationUser = authorizationUserService.selectOneByQuery(query);
 			
 			result.put("authorizationUser", authorizationUser);
+			data.put("status", 1);
+			data.put("msg", "success");
+			data.put("result", result);
+	 		return data;
+		} catch (Exception e) {
+			result.put("errMsg", e.getMessage());
+			data.put("status", -1);
+			data.put("msg", "failure");
+			data.put("result", result);
+	 		return data;
+		}
+	}
+	
+	@RequestMapping(value = "/testAuthorizationRole", method = RequestMethod.GET)
+	public Map<String, Object> testAuthorizationRole() throws Exception {
+		
+		Map<String, Object> data = new HashMap<>();
+		Map<String, Object> result = new HashMap<>();
+		
+		try {
+			AuthorizationRole query = new AuthorizationRole();
+			query.setCode("admin");
+			AuthorizationRole authorizationRole = authorizationRoleService.selectOneByQuery(query);
+			
+			result.put("authorizationRole", authorizationRole);
+			data.put("status", 1);
+			data.put("msg", "success");
+			data.put("result", result);
+	 		return data;
+		} catch (Exception e) {
+			result.put("errMsg", e.getMessage());
+			data.put("status", -1);
+			data.put("msg", "failure");
+			data.put("result", result);
+	 		return data;
+		}
+	}
+	
+	@RequestMapping(value = "/testAuthorizationResource", method = RequestMethod.GET)
+	public Map<String, Object> testAuthorizationResource() throws Exception {
+		
+		Map<String, Object> data = new HashMap<>();
+		Map<String, Object> result = new HashMap<>();
+		
+		try {
+			AuthorizationResource query = new AuthorizationResource();
+			query.setCode("boxOperate");
+			List<AuthorizationResource> authorizationResources = authorizationResourceService.selectAllByQuery(query);
+			
+			result.put("authorizationResources", authorizationResources);
 			data.put("status", 1);
 			data.put("msg", "success");
 			data.put("result", result);

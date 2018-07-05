@@ -32,7 +32,12 @@ public class AuthorizationRealm extends AuthorizingRealm {
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		// TODO Auto-generated method stub
+		
+		AuthorizationUser authorizationUser = (AuthorizationUser) principals
+				.fromRealm(getClass().getName())
+				.iterator()
+				.next();
+		
 		return null;
 	}
 
@@ -53,7 +58,7 @@ public class AuthorizationRealm extends AuthorizingRealm {
 			return new SimpleAuthenticationInfo(
 					authorizationUser.getName(),
 					authorizationUser.getPassword(), 
-					getName()
+					getClass().getName()
 			);
 		} catch (Exception e) {
 			log.error("=== AuthorizationRealm.doGetAuthenticationInfo | there is an exception"

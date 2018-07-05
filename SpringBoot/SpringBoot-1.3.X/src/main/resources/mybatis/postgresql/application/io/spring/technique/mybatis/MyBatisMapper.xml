@@ -63,6 +63,21 @@
       		(#{item.name,jdbcType=VARCHAR},#{item.version,jdbcType=VARCHAR},#{item.releaseTime,jdbcType=TIMESTAMP},#{item.officialUrl,jdbcType=VARCHAR},#{item.contributor,jdbcType=VARCHAR},#{item.remark,jdbcType=VARCHAR},#{item.extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.technique.mybatis.utils.JSONTypeHandler})
       	</foreach>
 	</insert>
+  
+	<update id="updateByPrimaryKeySelective" parameterType="application.io.spring.technique.mybatis.api.model.MyBatis">
+		update z_my_batis
+    	<set>
+      		<if test="id != null">id = #{id,jdbcType=BIGINT},</if>
+     		<if test="name != null">name = #{name,jdbcType=VARCHAR},</if>
+      		<if test="version != null">version = #{version,jdbcType=VARCHAR},</if>
+      		<if test="releaseTime != null">release_time = #{releaseTime,jdbcType=TIMESTAMP},</if>
+      		<if test="officialUrl != null">official_url = #{officialUrl,jdbcType=VARCHAR},</if>
+      		<if test="contributor != null">contributor = #{contributor,jdbcType=VARCHAR},</if>
+      		<if test="remark != null">remark = #{remark,jdbcType=VARCHAR},</if>
+      		<if test="extendedField != null">extended_field = #{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.technique.mybatis.utils.JSONTypeHandler},</if>
+    	</set>
+    	where id = #{id,jdbcType=BIGINT}
+	</update>
 	
 	<select id="getPageableList" parameterType="java.util.Map" resultMap="BaseResultMap">
 		select <include refid="Base_Column_List"/> from z_my_batis
@@ -86,25 +101,10 @@
 		select <include refid="Base_Column_List"/> from z_my_batis
 			where id in <foreach collection="ids" item="valueitem" open="(" separator="," close=")">#{valueitem}</foreach>
 	</select>
-
+	
 	<delete id="deleteByCondition" parameterType="application.io.spring.technique.mybatis.api.model.MyBatis" >
     	delete from z_my_batis
     	<include refid="Query_Where_Clause"/>
   	</delete>
-  
-	<update id="updateByPrimaryKeySelective" parameterType="application.io.spring.technique.mybatis.api.model.MyBatis">
-		update z_my_batis
-    	<set>
-      		<if test="id != null">id = #{id,jdbcType=BIGINT},</if>
-     		<if test="name != null">name = #{name,jdbcType=VARCHAR},</if>
-      		<if test="version != null">version = #{version,jdbcType=VARCHAR},</if>
-      		<if test="releaseTime != null">release_time = #{releaseTime,jdbcType=TIMESTAMP},</if>
-      		<if test="officialUrl != null">official_url = #{officialUrl,jdbcType=VARCHAR},</if>
-      		<if test="contributor != null">contributor = #{contributor,jdbcType=VARCHAR},</if>
-      		<if test="remark != null">remark = #{remark,jdbcType=VARCHAR},</if>
-      		<if test="extendedField != null">extended_field = #{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.technique.mybatis.utils.JSONTypeHandler},</if>
-    	</set>
-    	where id = #{id,jdbcType=BIGINT}
-	</update>
-	
+  	
 </mapper>
