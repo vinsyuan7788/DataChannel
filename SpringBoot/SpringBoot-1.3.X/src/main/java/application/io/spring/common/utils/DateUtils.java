@@ -18,6 +18,9 @@ import org.apache.commons.lang3.time.FastDateFormat;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
 
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
 public class DateUtils {
 	
     // Grace style
@@ -146,7 +149,8 @@ public class DateUtils {
         try {
             return sdf.parse(str);
         } catch (ParseException e) {
-//            log.error("", e);
+        	log.error("=== DateUtils.parseDateClose | There is an exception"
+            		+ " | exception message: " + e.getMessage() + " ===");
         }
         return null;
     }
@@ -159,7 +163,8 @@ public class DateUtils {
         try {
             return sdf.parse(str);
         } catch (ParseException e) {
-//            log.error("", e);
+            log.error("=== DateUtils.parseDateClose | There is an exception"
+            		+ " | exception message: " + e.getMessage() + " ===");
         }
         return null;
     }

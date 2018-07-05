@@ -10,7 +10,7 @@ import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
  * @author vinsy
  *
  */
-public class CustomCredentialsMatcher extends SimpleCredentialsMatcher {
+public class CredentialsMatcher extends SimpleCredentialsMatcher {
 
 	/**
 	 * 	This is a method to implement how the credentials should be matched
