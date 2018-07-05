@@ -10,7 +10,7 @@
     	<result column="real_name" property="realName" jdbcType="VARCHAR"/>
     	<result column="gender" property="gender" jdbcType="VARCHAR"/>
     	<result column="birthday" property="birthday" jdbcType="TIMESTAMP"/>
-    	<result column="official_phone" property="officialPhone" jdbcType="VARCHAR"/>
+    	<result column="office_phone" property="officePhone" jdbcType="VARCHAR"/>
     	<result column="mobile" property="mobile" jdbcType="VARCHAR"/>
     	<result column="home_phone" property="homePhone" jdbcType="VARCHAR"/>
     	<result column="email" property="email" jdbcType="VARCHAR"/>
@@ -34,7 +34,7 @@
         	<if test="realName != null and realName != ''"> and real_name = #{realName,jdbcType=VARCHAR}</if>
         	<if test="gender != null and gender != ''"> and gender = #{gender,jdbcType=VARCHAR}</if>
         	<if test="birthday != null and birthday != ''"> and birthday = #{birthday,jdbcType=TIMESTAMP} :: timestamp with time zone</if>
-        	<if test="officialPhone != null and officialPhone != ''"> and official_phone = #{officialPhone,jdbcType=VARCHAR}</if>
+        	<if test="officePhone != null and officePhone != ''"> and office_phone = #{officePhone,jdbcType=VARCHAR}</if>
         	<if test="mobile != null and mobile != ''"> and mobile = #{mobile,jdbcType=VARCHAR}</if>
         	<if test="homePhone != null and homePhone != ''"> and home_phone = #{homePhone,jdbcType=VARCHAR}</if>
         	<if test="email != null and email != ''"> and email = #{email,jdbcType=VARCHAR}</if>
@@ -51,10 +51,10 @@
  	</sql>
  
  	<sql id="Base_Column_List">
-    	id, name, password, attr, real_name, gender, birthday, official_phone, mobile, home_phone, email, remark, creator, status, create_time, code, fingerprint_login, allow_login_type, is_internal_employee, extended_field
+    	id, name, password, attr, real_name, gender, birthday, office_phone, mobile, home_phone, email, remark, creator, status, create_time, code, fingerprint_login, allow_login_type, is_internal_employee, extended_field
     </sql>
     <sql id="Base_Column_List_Without_Id">
-    	name, password, attr, real_name, gender, birthday, official_phone, mobile, home_phone, email, remark, creator, status, create_time, code, fingerprint_login, allow_login_type, is_internal_employee, extended_field
+    	name, password, attr, real_name, gender, birthday, office_phone, mobile, home_phone, email, remark, creator, status, create_time, code, fingerprint_login, allow_login_type, is_internal_employee, extended_field
     </sql>
    
   	<insert id="insertSelective" parameterType="application.io.spring.technique.shiro.api.model.AuthorizationUser" useGeneratedKeys="true" keyProperty="id">
@@ -67,7 +67,7 @@
         	<if test="realName != null">real_name,</if>
         	<if test="gender != null">gender,</if>
         	<if test="birthday != null">birthday,</if>
-        	<if test="officialPhone != null">official_phone,</if>
+        	<if test="officePhone != null">office_phone,</if>
         	<if test="mobile != null">mobile,</if>
         	<if test="homePhone != null">home_phone,</if>
         	<if test="email != null">email,</if>
@@ -89,7 +89,7 @@
         	<if test="realName != null">#{realName,jdbcType=VARCHAR},</if>
         	<if test="gender != null">#{gender,jdbcType=VARCHAR},</if>
         	<if test="birthday != null">#{birthday,jdbcType=TIMESTAMP},</if>
-        	<if test="officialPhone != null">#{officialPhone,jdbcType=VARCHAR},</if>
+        	<if test="officePhone != null">#{officePhone,jdbcType=VARCHAR},</if>
         	<if test="mobile != null">#{mobile,jdbcType=VARCHAR},</if>
         	<if test="homePhone != null">#{homePhone,jdbcType=VARCHAR},</if>
         	<if test="email != null">#{email,jdbcType=VARCHAR},</if>
@@ -108,7 +108,7 @@
   	<insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
   		insert into x_authorization_user(<include refid="Base_Column_List_Without_Id"/>) values
     	<foreach collection="list" item="item" index="index" separator=",">
-      		(#{item.name,jdbcType=VARCHAR},#{item.password,jdbcType=VARCHAR},#{item.attr,jdbcType=VARCHAR},#{item.realName,jdbcType=VARCHAR},#{item.gender,jdbcType=VARCHAR},#{item.birthday,jdbcType=TIMESTAMP},#{item.officialPhone,jdbcType=VARCHAR},#{item.mobile,jdbcType=VARCHAR},#{item.homePhone,jdbcType=VARCHAR},#{item.email,jdbcType=VARCHAR},#{item.remark,jdbcType=VARCHAR},#{item.creator,jdbcType=BIGINT},#{item.status,jdbcType=VARCHAR},#{item.createTime,jdbcType=TIMESTAMP},#{item.code,jdbcType=VARCHAR},#{item.fingerprintLogin,jdbcType=VARCHAR},#{item.allowLoginType,jdbcType=VARCHAR},#{item.isInternalEmployee,jdbcType=VARCHAR},#{item.extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.technique.mybatis.utils.JSONTypeHandler})
+      		(#{item.name,jdbcType=VARCHAR},#{item.password,jdbcType=VARCHAR},#{item.attr,jdbcType=VARCHAR},#{item.realName,jdbcType=VARCHAR},#{item.gender,jdbcType=VARCHAR},#{item.birthday,jdbcType=TIMESTAMP},#{item.officePhone,jdbcType=VARCHAR},#{item.mobile,jdbcType=VARCHAR},#{item.homePhone,jdbcType=VARCHAR},#{item.email,jdbcType=VARCHAR},#{item.remark,jdbcType=VARCHAR},#{item.creator,jdbcType=BIGINT},#{item.status,jdbcType=VARCHAR},#{item.createTime,jdbcType=TIMESTAMP},#{item.code,jdbcType=VARCHAR},#{item.fingerprintLogin,jdbcType=VARCHAR},#{item.allowLoginType,jdbcType=VARCHAR},#{item.isInternalEmployee,jdbcType=VARCHAR},#{item.extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.technique.mybatis.utils.JSONTypeHandler})
       	</foreach>
 	</insert>
 	
@@ -150,7 +150,7 @@
         	<if test="realName != null">real_name = #{realName,jdbcType=VARCHAR}</if>
         	<if test="gender != null">gender = #{gender,jdbcType=VARCHAR}</if>
         	<if test="birthday != null">birthday = #{birthday,jdbcType=TIMESTAMP} :: timestamp with time zone</if>
-        	<if test="officialPhone != null">official_phone = #{officialPhone,jdbcType=VARCHAR}</if>
+        	<if test="officePhone != null">office_phone = #{officePhone,jdbcType=VARCHAR}</if>
         	<if test="mobile != null">mobile = #{mobile,jdbcType=VARCHAR}</if>
         	<if test="homePhone != null">home_phone = #{homePhone,jdbcType=VARCHAR}</if>
         	<if test="email != null">email = #{email,jdbcType=VARCHAR}</if>

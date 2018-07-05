@@ -148,6 +148,22 @@
 	    <version>2.4</version>
 	    <classifier>jdk15</classifier>
 	</dependency>
+	<!-- 
+		For conversion from XML to JSON
+		== Missing this dependency will cause an exception that class "nu/xom/Serializer" cannot be found
+	-->
+	<dependency>
+		<groupId>xom</groupId>
+		<artifactId>xom</artifactId>
+		<version>1.2.5</version>  
+    </dependency> 
+	<!-- 
+		GSON library: for providing utility regarding JSON
+	-->
+	<dependency>
+	    <groupId>com.google.code.gson</groupId>
+	    <artifactId>gson</artifactId>
+    </dependency>
 	
 	<!-- Here are the dependencies that need to be further studied -->
 	<!-- 

@@ -196,7 +196,7 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 		
 		Map<String, Object> params = new HashMap<>();
 		
-		BeanUtils.populate(query, params);
+		BeanUtils.describe(query);
 		
 		if (orderby != null) {
 			params.put("orderby", orderby);

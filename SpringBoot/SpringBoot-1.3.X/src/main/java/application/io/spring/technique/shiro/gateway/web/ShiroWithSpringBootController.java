@@ -1,13 +1,19 @@
 package application.io.spring.technique.shiro.gateway.web;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import application.io.spring.technique.shiro.api.model.AuthorizationUser;
+import application.io.spring.technique.shiro.api.service.AuthorizationUserService;
 
 /**
  * 	This is a class to test the integration between Shiro and Spring-Boot
@@ -31,9 +37,31 @@ public class ShiroWithSpringBootController {
 	private HttpServletRequest request;
 	@Autowired
 	private HttpServletResponse response;
+	@Autowired
+	private AuthorizationUserService authorizationUserService;
 
+	@RequestMapping(value = "/testSelectAuthorizationUser", method = RequestMethod.GET)
 	public Map<String, Object> testSelectAuthorizationUser() throws Exception {
 		
-		return null;
+		Map<String, Object> data = new HashMap<>();
+		Map<String, Object> result = new HashMap<>();
+		
+		try {
+			AuthorizationUser query = new AuthorizationUser();
+			query.setName("darienw");
+			AuthorizationUser authorizationUser = authorizationUserService.selectOneByQuery(query);
+			
+			result.put("authorizationUser", authorizationUser);
+			data.put("status", 1);
+			data.put("msg", "success");
+			data.put("result", result);
+	 		return data;
+		} catch (Exception e) {
+			result.put("errMsg", e.getMessage());
+			data.put("status", -1);
+			data.put("msg", "failure");
+			data.put("result", result);
+	 		return data;
+		}
 	}
 }
