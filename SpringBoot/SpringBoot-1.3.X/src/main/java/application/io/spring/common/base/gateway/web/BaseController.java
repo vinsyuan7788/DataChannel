@@ -66,10 +66,5 @@ public class BaseController<T extends Identifiable> {
 		
 		// Otherwise get the service bean according to the service name
 		baseService = SpringContextHolder.getBean(serviceName);
-		
-		// Print information
-		System.out.println("=== BaseServiceImpl"
-				+ " | beanName: " + beanName
-				+ " | serviceName: " + serviceName + " ===");
 	}
 }
