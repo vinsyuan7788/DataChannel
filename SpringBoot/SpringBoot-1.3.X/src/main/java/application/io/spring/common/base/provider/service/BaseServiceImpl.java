@@ -10,7 +10,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import application.io.spring.common.base.api.model.Identifiable;
 import application.io.spring.common.base.api.service.BaseService;
 import application.io.spring.common.base.provider.dao.BaseDAO;
-import application.io.spring.technique.springboot.utils.SpringContextHolder;
+import application.io.spring.common.base.utils.SpringContextHolder;
 
 @SuppressWarnings("unchecked")
 public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
