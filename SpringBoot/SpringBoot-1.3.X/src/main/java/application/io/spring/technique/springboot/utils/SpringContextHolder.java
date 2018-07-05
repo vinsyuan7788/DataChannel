@@ -33,7 +33,10 @@ public class SpringContextHolder implements ApplicationContextAware {
     	// Store them in a static way
     	beanNameSet.addAll(Arrays.asList(allBeanNames));
     	
-    	System.out.println("===================================");
+    	// Print information
+    	System.out.println("=== SpringContextHolder"
+    			+ " | springApplicationContext: " + springApplicationContext
+    			+ " | beanNameSet: " + beanNameSet + " ===");
     }
     
     /**
