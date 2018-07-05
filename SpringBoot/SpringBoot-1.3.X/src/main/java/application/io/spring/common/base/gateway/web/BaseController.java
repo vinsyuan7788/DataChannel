@@ -34,7 +34,7 @@ public class BaseController<T extends Identifiable> {
 		 * 	Get the type that extends this BaseServiceImpl<T extends Identifiable>
 		 * 	-- E.g., if "public class UserServiceImpl extends BaseServiceImpl<User>", clazz will be "User" class
 		 */
-		this.classOfActualTypeArgument = (Class<T>)((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+		classOfActualTypeArgument = (Class<T>)((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 	}
 	
 	/**
@@ -43,7 +43,7 @@ public class BaseController<T extends Identifiable> {
 	private void initBaseService() {
 		
 		// If baseDAO is existed, then no need to proceed and directly return
-		if(this.baseService != null){
+		if(baseService != null){
 			return;
 		}
 		
@@ -65,7 +65,7 @@ public class BaseController<T extends Identifiable> {
 		}
 		
 		// Otherwise get the DAO bean according to the DAO name
-		this.baseService = SpringContextHolder.getBean(serviceName);
+		baseService = SpringContextHolder.getBean(serviceName);
 		
 		// Print information
 		System.out.println("=== BaseServiceImpl"
