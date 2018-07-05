@@ -1,8 +1,8 @@
-package application.io.spring.technique.springboot.api.service;
+package application.io.spring.common.base.api.service;
 
 import java.util.List;
 
-import application.io.spring.technique.springboot.api.model.Identifiable;
+import application.io.spring.common.base.api.model.Identifiable;
 
 public interface BaseService<T extends Identifiable> {
 

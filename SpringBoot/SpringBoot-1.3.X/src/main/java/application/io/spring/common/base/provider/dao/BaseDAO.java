@@ -1,9 +1,9 @@
-package application.io.spring.technique.springboot.provider.dao;
+package application.io.spring.common.base.provider.dao;
 
 import java.util.List;
 import java.util.Map;
 
-import application.io.spring.technique.springboot.api.model.Identifiable;
+import application.io.spring.common.base.api.model.Identifiable;
 
 public interface BaseDAO<T extends Identifiable> {
 

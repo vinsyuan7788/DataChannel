@@ -7,11 +7,11 @@ import java.util.Set;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 @SuppressWarnings("unchecked")
 @Lazy(false)
-@Service("springContextHolder")
+@Component
 public class SpringContextHolder implements ApplicationContextAware {
 	
 	// Necessary static variables
@@ -32,6 +32,8 @@ public class SpringContextHolder implements ApplicationContextAware {
     	
     	// Store them in a static way
     	beanNameSet.addAll(Arrays.asList(allBeanNames));
+    	
+    	System.out.println("===================================");
     }
     
     /**

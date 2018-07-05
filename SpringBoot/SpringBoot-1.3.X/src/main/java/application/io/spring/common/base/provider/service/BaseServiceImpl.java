@@ -1,4 +1,4 @@
-package application.io.spring.technique.springboot.provider.service;
+package application.io.spring.common.base.provider.service;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.HashMap;
@@ -7,9 +7,9 @@ import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import application.io.spring.technique.springboot.api.model.Identifiable;
-import application.io.spring.technique.springboot.api.service.BaseService;
-import application.io.spring.technique.springboot.provider.dao.BaseDAO;
+import application.io.spring.common.base.api.model.Identifiable;
+import application.io.spring.common.base.api.service.BaseService;
+import application.io.spring.common.base.provider.dao.BaseDAO;
 import application.io.spring.technique.springboot.utils.SpringContextHolder;
 
 @SuppressWarnings("unchecked")

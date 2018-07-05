@@ -1,6 +1,6 @@
 package application.io.spring.technique.shiro.api.model;
 
-import application.io.spring.technique.springboot.api.model.Identifiable;
+import application.io.spring.common.base.api.model.Identifiable;
 
 public class AuthorizationUserRole extends Identifiable {
 
