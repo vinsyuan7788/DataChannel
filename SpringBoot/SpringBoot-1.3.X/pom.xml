@@ -180,6 +180,13 @@
 	    <artifactId>google-collections</artifactId>
 	    <version>1.0</version>
 	</dependency>
+	<!--
+		Log4j library: for providing LogManager, etc.
+	-->
+	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-core</artifactId>
+    </dependency>	
 	
 	<!-- Here are the dependencies that need to be further studied -->
 	<!-- 
