@@ -18,7 +18,7 @@ import application.io.spring.technique.mybatis.api.model.MyBatis;
 @SuppressWarnings("unused")
 @RestController
 @RequestMapping("/mybatis")
-public class MyBatisController extends BaseController<MyBatis> {
+public class MyBatisController {
 
 	@Autowired
 	private Environment springBootEnvironment;
