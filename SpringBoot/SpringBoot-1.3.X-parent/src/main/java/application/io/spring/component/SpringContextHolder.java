@@ -23,6 +23,8 @@ public class SpringContextHolder implements ApplicationContextAware {
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) {
     	
+    	System.out.println("============================================");
+    	
     	// Store Spring application context and store it in a static way
     	springApplicationContext = applicationContext;
     	
