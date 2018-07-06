@@ -127,6 +127,15 @@
 	    <version>1.4.0</version>
 	</dependency>
 	
+	<!-- Here are the dependencies regarding Spring -->
+	<!--
+		Spring-security core component
+	-->
+	<dependency>
+	    <groupId>org.springframework.security</groupId>
+	    <artifactId>spring-security-core</artifactId>
+	</dependency>
+	
 	<!-- Here are the dependencies regarding utility -->
 	<!-- 
 		Lombok: for auto-assignment of getters and setters, log4j2, etc.

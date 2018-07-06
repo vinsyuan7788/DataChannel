@@ -1,13 +1,18 @@
 package application.io.spring.technique.shiro.gateway.web;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,12 +23,14 @@ import application.io.spring.technique.shiro.api.model.AuthorizationRole;
 import application.io.spring.technique.shiro.api.model.AuthorizationRoleResource;
 import application.io.spring.technique.shiro.api.model.AuthorizationUser;
 import application.io.spring.technique.shiro.api.model.AuthorizationUserRole;
+import application.io.spring.technique.shiro.api.model.utils.LoginInfo;
 import application.io.spring.technique.shiro.api.service.AuthorizationResourceService;
 import application.io.spring.technique.shiro.api.service.AuthorizationRoleResourceService;
 import application.io.spring.technique.shiro.api.service.AuthorizationRoleService;
 import application.io.spring.technique.shiro.api.service.AuthorizationUserRoleService;
 import application.io.spring.technique.shiro.api.service.AuthorizationUserService;
 import application.io.spring.technique.shiro.api.vo.AuthorizationUserVo;
+import application.io.spring.technique.shiro.utils.ShiroUtils;
 
 /**
  * 	This is a class to test the integration between Shiro and Spring-Boot
@@ -49,6 +56,8 @@ public class ShiroWithSpringBootController {
 	@Autowired
 	private HttpServletResponse response;
 	@Autowired
+	private HttpSession session;
+	@Autowired
 	private AuthorizationUserService authorizationUserService;
 	@Autowired
 	private AuthorizationRoleService authorizationRoleService;
@@ -71,7 +80,7 @@ public class ShiroWithSpringBootController {
 			
 			AuthorizationUser authorizationUser = authorizationUserService.selectOneByQuery(query);
 			List<AuthorizationUserVo> authorizationUserVos = authorizationUserService.selectAllUserResourcesByName(query);
-			List<String> authorizationResources = new ArrayList<String>();
+			Set<String> authorizationResources = new HashSet<String>();
 			for (AuthorizationUserVo authorizationUserVo : authorizationUserVos) {
 				authorizationResources.add(authorizationUserVo.getResourceCode());
 			}
@@ -204,6 +213,95 @@ public class ShiroWithSpringBootController {
 			data.put("msg", "failure");
 			data.put("result", result);
 	 		return data;
+		}
+	}
+	
+	@RequestMapping(value = "/testLogin", method = RequestMethod.POST)
+	public Map<String, Object> testLogin(AuthorizationUser authorizationUser) throws Exception {
+		
+		Map<String, Object> data = new HashMap<>();
+		Map<String, Object> result = new HashMap<>();
+		
+		// Do the Shiro login and get the login information
+		LoginInfo loginInfo = ShiroUtils.login(authorizationUser.getName(), authorizationUser.getPassword());
+		
+		// If login succeeds
+		if (loginInfo.getIsLogin().booleanValue() == true) {
+			
+			// Get the subject
+			Subject currentUser = loginInfo.getSubject();
+			
+			// Get the principal
+			String username = (String) currentUser.getPrincipal();
+			result.put("loginMsg", username + " has logged-in");
+			
+			// Store user-name into session
+			session.setAttribute("username", username);
+			
+			// Return data
+			data.put("status", 1);
+			data.put("msg", "authentication succeeds");
+			data.put("result", result);
+			return data;
+			
+		// If login fails
+		} else {
+			
+			// Return data
+			result.put("errMsg", loginInfo.getMsg());
+			data.put("status", -1);
+			data.put("msg", "authentication fails");
+			data.put("result", result);
+			return data;
+		}
+	}
+	
+	@RequestMapping(value = "/testLogout", method = RequestMethod.POST)
+	public Map<String, Object> testLogout() throws Exception {
+		
+		Map<String, Object> data = new HashMap<>();
+		Map<String, Object> result = new HashMap<>();
+		
+		// Get the subject
+		Subject currentUser = SecurityUtils.getSubject();
+		
+		// If subject is not null
+		if (currentUser != null) {
+		
+			// Store some information
+			result.put("principal", currentUser.getPrincipal());
+			result.put("isRemembered", currentUser.isRemembered());
+			
+			// if subject is authenticated
+			if (currentUser.isAuthenticated()) {
+				
+				// Log the subject out
+				currentUser.logout();
+			
+				// Return data
+				data.put("status", 1);
+				data.put("msg", "success");
+				data.put("result", result);
+				return data;
+				
+			// If subject is not authenticated
+			} else {
+				
+				// Return data
+				data.put("status", -1);
+				data.put("msg", "subject not authenticated");
+				data.put("result", result);
+				return data;
+			}
+			
+		// If subject is null
+		} else {
+			
+			// Return data
+			data.put("status", -1);
+			data.put("msg", "subject not existed");
+			data.put("result", result);
+			return data;
 		}
 	}
 }
