@@ -7,11 +7,13 @@
 //import org.springframework.context.ApplicationContext;
 //import org.springframework.context.ApplicationContextAware;
 //import org.springframework.context.annotation.Lazy;
+//import org.springframework.core.annotation.Order;
 //import org.springframework.stereotype.Component;
 //
 //@SuppressWarnings("unchecked")
 //@Lazy(false)
 //@Component
+//@Order(1)
 //public class SpringContextHolder implements ApplicationContextAware {
 //	
 //	// Necessary static variables
