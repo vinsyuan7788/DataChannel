@@ -9,6 +9,7 @@
   
   <modules>
   	<module>SpringBoot-1.3.X</module>
+  	<module>SpringBoot-1.3.X-parent</module>
   </modules>
   
   <properties>
