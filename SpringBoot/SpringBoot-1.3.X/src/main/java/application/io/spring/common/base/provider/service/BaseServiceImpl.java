@@ -212,7 +212,7 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 		}
 	}
 	
-	private Map<String, Object> getCondition(T query, String orderby, Long limit, Long offset) throws Exception {
+	public Map<String, Object> getCondition(T query, String orderby, Long limit, Long offset) throws Exception {
 		
 		Map<String, Object> params = new HashMap<>();
 		

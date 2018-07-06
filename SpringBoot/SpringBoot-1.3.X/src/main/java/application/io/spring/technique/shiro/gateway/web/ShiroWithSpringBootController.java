@@ -1,5 +1,6 @@
 package application.io.spring.technique.shiro.gateway.web;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,7 @@ import application.io.spring.technique.shiro.api.service.AuthorizationRoleResour
 import application.io.spring.technique.shiro.api.service.AuthorizationRoleService;
 import application.io.spring.technique.shiro.api.service.AuthorizationUserRoleService;
 import application.io.spring.technique.shiro.api.service.AuthorizationUserService;
+import application.io.spring.technique.shiro.api.vo.AuthorizationUserVo;
 
 /**
  * 	This is a class to test the integration between Shiro and Spring-Boot
@@ -66,9 +68,17 @@ public class ShiroWithSpringBootController {
 		try {
 			AuthorizationUser query = new AuthorizationUser();
 			query.setName("darienw");
+			
 			AuthorizationUser authorizationUser = authorizationUserService.selectOneByQuery(query);
+			List<AuthorizationUserVo> authorizationUserVos = authorizationUserService.selectAllUserResourcesByName(query);
+			List<String> authorizationResources = new ArrayList<String>();
+			for (AuthorizationUserVo authorizationUserVo : authorizationUserVos) {
+				authorizationResources.add(authorizationUserVo.getResourceCode());
+			}
 			
 			result.put("authorizationUser", authorizationUser);
+			result.put("authorizationResources", authorizationResources);
+			result.put("numberOfAuthorizationResources", authorizationResources.size());
 			data.put("status", 1);
 			data.put("msg", "success");
 			data.put("result", result);
@@ -91,6 +101,7 @@ public class ShiroWithSpringBootController {
 		try {
 			AuthorizationRole query = new AuthorizationRole();
 			query.setCode("admin");
+			
 			AuthorizationRole authorizationRole = authorizationRoleService.selectOneByQuery(query);
 			
 			result.put("authorizationRole", authorizationRole);
@@ -116,6 +127,7 @@ public class ShiroWithSpringBootController {
 		try {
 			AuthorizationUserRole query = new AuthorizationUserRole();
 			query.setUserId(178L);
+			
 			List<AuthorizationUserRole> authorizationRolesOfUser178 = authorizationUserRoleService.selectAllByQuery(query);
 			Long numberOfAuthorizationRolesOfUser178  = authorizationUserRoleService.getAllCountByQuery(query);
 			
@@ -143,6 +155,7 @@ public class ShiroWithSpringBootController {
 		try {
 			AuthorizationResource query = new AuthorizationResource();
 			query.setCode("boxOperate");
+			
 			List<AuthorizationResource> authorizationResources = authorizationResourceService.selectAllByQuery(query);
 			
 			result.put("authorizationResources", authorizationResources);
@@ -168,9 +181,12 @@ public class ShiroWithSpringBootController {
 		try {
 			AuthorizationRoleResource query = new AuthorizationRoleResource();
 			query.setRoleId(40L);
+			
 			List<AuthorizationRoleResource> authorizationResourcesOfRole40 = authorizationRoleResourceService.selectAllByQuery(query);
 			Long numberOfAuthorizationResourcesOfRole40 = authorizationRoleResourceService.getAllCountByQuery(query);
+			
 			query.setRoleId(63L);
+			
 			List<AuthorizationRoleResource> authorizationResourcesOfRole63 = authorizationRoleResourceService.selectAllByQuery(query);
 			Long numberOfAuthorizationResourcesOfRole63 = authorizationRoleResourceService.getAllCountByQuery(query);
 			

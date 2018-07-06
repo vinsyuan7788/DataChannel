@@ -11,6 +11,8 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import application.io.spring.technique.shiro.api.model.AuthorizationUser;
+import application.io.spring.technique.shiro.api.service.AuthorizationRoleResourceService;
+import application.io.spring.technique.shiro.api.service.AuthorizationUserRoleService;
 import application.io.spring.technique.shiro.api.service.AuthorizationUserService;
 import lombok.extern.log4j.Log4j2;
 
@@ -33,10 +35,14 @@ public class AuthorizationRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		
+		// Get the AuthorizationUser instance from realm
 		AuthorizationUser authorizationUser = (AuthorizationUser) principals
 				.fromRealm(getClass().getName())
 				.iterator()
 				.next();
+		
+		// Query the (permissions of) resources according to authorizationUser
+		
 		
 		return null;
 	}
@@ -56,7 +62,7 @@ public class AuthorizationRealm extends AuthorizingRealm {
 			
 			AuthorizationUser authorizationUser = authorizationUserService.selectOneByQuery(query);
 			return new SimpleAuthenticationInfo(
-					authorizationUser.getName(),
+					authorizationUser,
 					authorizationUser.getPassword(), 
 					getClass().getName()
 			);
