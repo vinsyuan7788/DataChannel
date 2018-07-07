@@ -13,7 +13,6 @@
 //@SuppressWarnings("unchecked")
 //@Lazy(false)
 //@Component
-//@Order(1)
 //public class SpringContextHolder implements ApplicationContextAware {
 //	
 //	// Necessary static variables

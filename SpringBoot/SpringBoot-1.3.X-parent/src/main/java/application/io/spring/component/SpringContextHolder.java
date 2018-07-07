@@ -6,13 +6,11 @@ import java.util.Set;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @SuppressWarnings("unchecked")
 @Lazy(false)
 @Component
-@Order(1)
 public class SpringContextHolder implements ApplicationContextAware {
 	
 	// Necessary static variables
@@ -24,8 +22,6 @@ public class SpringContextHolder implements ApplicationContextAware {
      */
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) {
-    	
-    	System.out.println("============================================");
     	
     	// Store Spring application context and store it in a static way
     	springApplicationContext = applicationContext;
