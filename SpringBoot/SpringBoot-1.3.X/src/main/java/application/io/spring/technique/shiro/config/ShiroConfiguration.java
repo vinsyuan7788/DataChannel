@@ -22,8 +22,45 @@
 // *
 // */
 //@Configuration
-//public class ShiroConfig {
-//
+//public class ShiroConfiguration {
+//	
+//    /**
+//     * 	This is a bean to create a custom credential matcher
+//     * 
+//     * @return
+//     */
+//    @Bean(name="credentialsMatcher")
+//    public CredentialsMatcher credentialsMatcher() {
+//        return new CredentialsMatcher();
+//    }
+//    
+//    /**
+//     * 	This is a bean to create a custom authorization realm
+//     * 
+//     * @param matcher
+//     * @return
+//     */
+//    @Bean(name="authorizationRealm")
+//    public AuthorizationRealm authRealm(@Qualifier("credentialsMatcher") CredentialsMatcher matcher) {
+//        AuthorizationRealm authorizationRealm = new AuthorizationRealm();
+//        authorizationRealm.setCredentialsMatcher(matcher);
+//        return authorizationRealm;
+//    }
+//    
+//	/**
+//	 * 	This is a bean to create Shiro security manager
+//	 * 
+//	 * @param authorizationRealm
+//	 * @return
+//	 */
+//    @Bean(name="securityManager")
+//    public SecurityManager securityManager(@Qualifier("authorizationRealm") AuthorizationRealm authorizationRealm) {
+//        System.out.println("--------------shiro已经加载----------------");
+//        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+//        securityManager.setRealm(authorizationRealm);
+//        return securityManager;
+//    }
+//    
 //	/**
 //	 * 	This is a bean to create a Shiro filter
 //	 * 
@@ -55,43 +92,6 @@
 //        return shiroFilterFactoryBean;
 //    }
 //	
-//	/**
-//	 * 	This is a bean to create Shiro security manager
-//	 * 
-//	 * @param authorizationRealm
-//	 * @return
-//	 */
-//    @Bean(name="securityManager")
-//    public SecurityManager securityManager(@Qualifier("authorizationRealm") AuthorizationRealm authorizationRealm) {
-//        System.out.println("--------------shiro已经加载----------------");
-//        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-//        securityManager.setRealm(authorizationRealm);
-//        return securityManager;
-//    }
-//    
-//    /**
-//     * 	This is a bean to create a custom authorization realm
-//     * 
-//     * @param matcher
-//     * @return
-//     */
-//    @Bean(name="authorizationRealm")
-//    public AuthorizationRealm authRealm(@Qualifier("credentialsMatcher") CredentialsMatcher matcher) {
-//        AuthorizationRealm authorizationRealm = new AuthorizationRealm();
-//        authorizationRealm.setCredentialsMatcher(matcher);
-//        return authorizationRealm;
-//    }
-//    
-//    /**
-//     * 	This is a bean to create a custom credential matcher
-//     * 
-//     * @return
-//     */
-//    @Bean(name="credentialsMatcher")
-//    public CredentialsMatcher credentialsMatcher() {
-//        return new CredentialsMatcher();
-//    }
-//    
 //    /**
 //     * 	This is a bean to facilitate Shiro configuration in Spring
 //     * 

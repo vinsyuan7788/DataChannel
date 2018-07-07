@@ -4,15 +4,15 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>application.data.channel</groupId>
-    <artifactId>SpringBoot</artifactId>
+    <artifactId>SpringBoot-Parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>SpringBoot-1.3.X-parent</artifactId>
-  <name>SpringBoot-1.3.X-parent</name>
+  <artifactId>SpringBoot-1.3.X-Parent</artifactId>
+  <name>SpringBoot-1.3.X-Parent</name>
   <url>http://maven.apache.org</url>
-  
+
 	<!-- Here specifies the version for all dependencies -->
-	<dependencyManagement>  
+ 	<dependencyManagement>  
 	     <dependencies>  
 	        <dependency>  
 	            <!-- Import dependency management for Spring Boot -->  
@@ -22,29 +22,37 @@
 	            <type>pom</type>  
 	            <scope>import</scope>  
 	        </dependency>  
-	    </dependencies>
+	    </dependencies>  
 	</dependencyManagement>
     
-  <dependencies>
+  <dependencies> 	
   	<!-- Here are the dependencies regarding Spring-boot -->
   	<!-- 
   		Spring-boot web application starter: for building web application 
   		== Including RESTful, applications using Spring MVC, etc.
   		== Use Tomcat as the default embedded container
   	-->
-	<dependency>  
+ 	<dependency>  
 	    <groupId>org.springframework.boot</groupId>  
 	    <artifactId>spring-boot-starter-web</artifactId>  
 	</dependency>
-
+	
 	<!-- Here are the dependencies regarding Spring -->
 	<!--
 		Spring-security core component
 	-->
-	<dependency>
+ 	<dependency>
 	    <groupId>org.springframework.security</groupId>
 	    <artifactId>spring-security-core</artifactId>
 	</dependency>
+	<!--
+		Spring-transaction component
+	-->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-tx</artifactId>
+	</dependency>
+	
   </dependencies>
   
 	<!-- Directory specification, plug-ins and packages for Maven build -->
@@ -101,15 +109,6 @@
 					 <artifactId>spring-boot-maven-plugin</artifactId>
 					 <version>1.3.5.RELEASE</version>
 				</plugin>
-				<!--
-					This plugin is used to integrates the resource files
-					== Confirmed usable version: 2.6
-				-->   
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-resources-plugin</artifactId>
-					<version>2.6</version>
-				</plugin>
 			</plugins>
 		</pluginManagement>
 		
@@ -126,14 +125,6 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<configuration>
-					<!-- specify UTF-8, ISO-8859-1 or any other file encoding -->
-					<encoding>UTF-8</encoding>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

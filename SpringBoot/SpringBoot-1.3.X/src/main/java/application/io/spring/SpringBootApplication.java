@@ -2,14 +2,14 @@ package application.io.spring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ImportResource;
 
 @EnableAutoConfiguration
 @ComponentScan("application.io.spring")
-@ImportResource("classpath:/mybatis/spring-mybatis.xml")
 //@EnableAspectJAutoProxy
-public class SpringBootApplication {
+public class SpringBootApplication extends SpringBootServletInitializer {
 
 	/**
 	 * 	This is a main method for execution
@@ -19,4 +19,9 @@ public class SpringBootApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootApplication.class, args);
 	}
+	
+	@Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {    
+        return application.sources(SpringBootApplication.class);    
+    }
 }

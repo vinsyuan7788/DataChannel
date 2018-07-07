@@ -1,4 +1,5 @@
-package application.io.spring.component;
+package application.io.spring.common.component;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;

@@ -8,8 +8,8 @@ import java.util.Map;
 import application.io.spring.common.base.api.model.Identifiable;
 import application.io.spring.common.base.api.service.BaseService;
 import application.io.spring.common.base.provider.dao.BaseDAO;
+import application.io.spring.common.base.utils.SpringContextHolder;
 import application.io.spring.common.utils.GsonUtils;
-import application.io.spring.component.SpringContextHolder;
 import lombok.extern.log4j.Log4j2;
 
 @SuppressWarnings("unchecked")

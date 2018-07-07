@@ -4,7 +4,7 @@ import java.lang.reflect.ParameterizedType;
 
 import application.io.spring.common.base.api.model.Identifiable;
 import application.io.spring.common.base.api.service.BaseService;
-import application.io.spring.component.SpringContextHolder;
+import application.io.spring.common.base.utils.SpringContextHolder;
 
 @SuppressWarnings("unchecked")
 public class BaseController<T extends Identifiable> {
