@@ -3,7 +3,7 @@ package application.io.spring.common.service;
 public class InitOrder {
 	
 	/*
-	 *  order 越大 约先初始化
+	 *  order越大越先初始化
 	 */
 	public static final Integer INTERCEPT_ORDER = 1000;    //  >= 1000
 	public static final Integer QUEUE_ORDER = 10000;        // >= 10000
