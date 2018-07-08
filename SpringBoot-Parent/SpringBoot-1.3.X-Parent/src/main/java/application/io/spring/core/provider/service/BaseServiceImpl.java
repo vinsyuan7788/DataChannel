@@ -1,15 +1,15 @@
-package application.io.spring.common.base.provider.service;
+package application.io.spring.core.provider.service;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import application.io.spring.common.base.api.model.Identifiable;
-import application.io.spring.common.base.api.service.BaseService;
-import application.io.spring.common.base.provider.dao.BaseDAO;
-import application.io.spring.common.base.utils.SpringContextHolder;
+import application.io.spring.common.component.SpringContextHolder;
 import application.io.spring.common.utils.GsonUtils;
+import application.io.spring.core.api.model.Identifiable;
+import application.io.spring.core.api.service.BaseService;
+import application.io.spring.core.provider.dao.BaseDAO;
 import lombok.extern.log4j.Log4j2;
 
 @SuppressWarnings("unchecked")

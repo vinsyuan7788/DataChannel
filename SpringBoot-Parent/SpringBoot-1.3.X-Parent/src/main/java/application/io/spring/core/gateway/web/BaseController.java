@@ -1,10 +1,10 @@
-package application.io.spring.common.base.gateway.web;
+package application.io.spring.core.gateway.web;
 
 import java.lang.reflect.ParameterizedType;
 
-import application.io.spring.common.base.api.model.Identifiable;
-import application.io.spring.common.base.api.service.BaseService;
-import application.io.spring.common.base.utils.SpringContextHolder;
+import application.io.spring.common.component.SpringContextHolder;
+import application.io.spring.core.api.model.Identifiable;
+import application.io.spring.core.api.service.BaseService;
 
 @SuppressWarnings("unchecked")
 public class BaseController<T extends Identifiable> {

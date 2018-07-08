@@ -53,6 +53,46 @@
 	    <artifactId>spring-tx</artifactId>
 	</dependency>
 	
+	<!-- Here are the dependencies regarding utility -->
+	<!-- 
+		Lombok: for auto-assignment of getters and setters, log4j2, etc.
+	-->
+	<dependency>
+	    <groupId>org.projectlombok</groupId>
+	    <artifactId>lombok</artifactId>
+	    <version>1.16.20</version>
+	    <!-- <scope>provided</scope> -->
+	</dependency>
+	<!--
+		Log4j library: for providing LogManager, etc.
+	-->
+	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-core</artifactId>
+	</dependency>
+	<!-- 
+		GSON library: for providing utility regarding JSON
+	-->
+	<dependency>
+	    <groupId>com.google.code.gson</groupId>
+	    <artifactId>gson</artifactId>
+	    </dependency>
+	<!-- 
+		Apache Common Lang3: a package of Java utility classes for the classes that are in java.lang's hierarchy, or are considered to be so standard as to justify existence in java.lang.
+	-->
+	<dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>commons-lang3</artifactId>
+	    <version>3.4</version>
+	</dependency>
+	<!--
+		Google Collections Library: a suite of new collections and collection-related goodness for Java 5.0
+	-->
+	<dependency>
+	    <groupId>com.google.collections</groupId>
+	    <artifactId>google-collections</artifactId>
+	    <version>1.0</version>
+	</dependency>
   </dependencies>
   
 	<!-- Directory specification, plug-ins and packages for Maven build -->

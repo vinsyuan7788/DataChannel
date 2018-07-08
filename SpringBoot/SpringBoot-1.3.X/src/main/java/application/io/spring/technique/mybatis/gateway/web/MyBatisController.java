@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import application.io.spring.common.base.gateway.web.BaseController;
-import application.io.spring.technique.mybatis.api.model.MyBatis;
-
 @SuppressWarnings("unused")
 @RestController
 @RequestMapping("/mybatis")

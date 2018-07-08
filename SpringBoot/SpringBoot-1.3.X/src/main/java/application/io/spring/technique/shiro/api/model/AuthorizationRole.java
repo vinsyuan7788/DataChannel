@@ -2,7 +2,7 @@ package application.io.spring.technique.shiro.api.model;
 
 import java.util.Date;
 
-import application.io.spring.common.base.api.model.Identifiable;
+import application.io.spring.core.api.model.Identifiable;
 import lombok.Getter;
 import lombok.Setter;
 
