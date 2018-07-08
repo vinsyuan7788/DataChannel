@@ -101,14 +101,14 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/**/*Logout*.*", "anon");
         /* 
          * 	The following resources can be accessed anonymously
-         * 	-- Including the testing of Spring-Boot, MyBatis, etc.
+         * 	-- Including the testing of Spring-Boot, MyBatis, Redis, Log4j2, etc.
          *  -- Including partial testing of Shiro, etc.
          * 	-- Including error, etc.
          */
         filterChainDefinitionMap.put("/**/spring-boot/**", "anon");
-        filterChainDefinitionMap.put("/**/spring-boot/**.*", "anon");
         filterChainDefinitionMap.put("/**/mybatis/**", "anon");
-        filterChainDefinitionMap.put("/**/mybatis/**.*", "anon");
+        filterChainDefinitionMap.put("/**/redis/**", "anon");
+        filterChainDefinitionMap.put("/**/log4j2/**", "anon");
         filterChainDefinitionMap.put("/**/shiro/helloShiro", "anon");
         filterChainDefinitionMap.put("/**/shiro/helloShiro.*", "anon");
         filterChainDefinitionMap.put("/**/shiro/authentication/**", "anon");

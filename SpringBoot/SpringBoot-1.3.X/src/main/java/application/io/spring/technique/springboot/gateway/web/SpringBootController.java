@@ -20,7 +20,7 @@ import application.io.spring.technique.springboot.utils.SpringContextHolder1;
 import application.io.spring.technique.springboot.utils.SpringContextHolder2;
 import net.sf.json.JSONObject;
 
-@SuppressWarnings({ "unused", "unchecked" })
+@SuppressWarnings({ "unused" })
 @RestController
 @RequestMapping("/spring-boot")
 public class SpringBootController {
