@@ -1,4 +1,4 @@
-package application.io.spring.common.configuration;
+package application.io.spring.common.mybatis;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;

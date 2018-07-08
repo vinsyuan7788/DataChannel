@@ -1,4 +1,4 @@
-package application.io.spring.core.api.model;
+package application.io.spring.core.base.api.model;
 
 import java.io.Serializable;
 

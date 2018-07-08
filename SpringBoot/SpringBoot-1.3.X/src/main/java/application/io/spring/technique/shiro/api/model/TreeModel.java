@@ -1,6 +1,6 @@
 package application.io.spring.technique.shiro.api.model;
 
-import application.io.spring.core.api.model.Identifiable;
+import application.io.spring.core.base.api.model.Identifiable;
 import lombok.Getter;
 import lombok.Setter;
 

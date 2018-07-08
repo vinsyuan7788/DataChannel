@@ -1,10 +1,11 @@
-package application.io.spring.core.api.service;
+package application.io.spring.core.base.api.service;
 
 import java.util.List;
 
-import application.io.spring.core.api.model.Identifiable;
+import application.io.spring.common.service.InitService;
+import application.io.spring.core.base.api.model.Identifiable;
 
-public interface BaseService<T extends Identifiable> {
+public interface BaseService<T extends Identifiable> extends InitService {
 
 	public Boolean insertSelective(T bean) throws Exception;
 	

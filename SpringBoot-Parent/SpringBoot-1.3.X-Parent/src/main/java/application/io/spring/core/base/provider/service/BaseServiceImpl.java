@@ -1,15 +1,17 @@
-package application.io.spring.core.provider.service;
+package application.io.spring.core.base.provider.service;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import application.io.spring.common.component.SpringContextHolder;
+import application.io.spring.common.exception.CommonException;
+import application.io.spring.common.service.AbstractInitService;
+import application.io.spring.common.spring.SpringContextHolder;
 import application.io.spring.common.utils.GsonUtils;
-import application.io.spring.core.api.model.Identifiable;
-import application.io.spring.core.api.service.BaseService;
-import application.io.spring.core.provider.dao.BaseDAO;
+import application.io.spring.core.base.api.model.Identifiable;
+import application.io.spring.core.base.api.service.BaseService;
+import application.io.spring.core.base.provider.dao.BaseDAO;
 import lombok.extern.log4j.Log4j2;
 
 @SuppressWarnings("unchecked")
@@ -27,9 +29,6 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 		
 		// Initialize class of actual type argument
 		initClassOfActualTypeArgument();
-		
-		// Initialize base DAO
-		initBaseDAO();
 	}
 	
 	/**
@@ -73,6 +72,18 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 		
 		// Otherwise get the DAO bean according to the DAO name
 		baseDAO = SpringContextHolder.getBean(daoName);
+	}
+	
+	@Override
+	public int getOrder() {
+		return AbstractInitService.SERVICE_ORDER;
+	}
+
+	@Override
+	public void init() throws CommonException {
+
+		// Initialize base DAO
+		initBaseDAO();
 	}
 	
 	@Override

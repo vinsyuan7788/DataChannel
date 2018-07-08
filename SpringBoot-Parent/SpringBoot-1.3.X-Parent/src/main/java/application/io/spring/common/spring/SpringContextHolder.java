@@ -1,4 +1,4 @@
-package application.io.spring.common.service;
+package application.io.spring.common.spring;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -7,11 +7,11 @@ import java.util.Set;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 @SuppressWarnings("unchecked")
 @Lazy(false)
-@Service("springContextHolder")
+@Component
 public class SpringContextHolder implements ApplicationContextAware {
 	
 	// Necessary static variables

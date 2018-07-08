@@ -1,13 +1,16 @@
-package application.io.spring.core.gateway.web;
+package application.io.spring.core.base.gateway.web;
 
 import java.lang.reflect.ParameterizedType;
 
-import application.io.spring.common.component.SpringContextHolder;
-import application.io.spring.core.api.model.Identifiable;
-import application.io.spring.core.api.service.BaseService;
+import application.io.spring.common.exception.CommonException;
+import application.io.spring.common.service.AbstractInitService;
+import application.io.spring.common.service.InitService;
+import application.io.spring.common.spring.SpringContextHolder;
+import application.io.spring.core.base.api.model.Identifiable;
+import application.io.spring.core.base.api.service.BaseService;
 
 @SuppressWarnings("unchecked")
-public class BaseController<T extends Identifiable> {
+public class BaseController<T extends Identifiable> implements InitService {
 
 	// Here are necessary instance variables
     private Class<T> classOfActualTypeArgument;
@@ -20,9 +23,6 @@ public class BaseController<T extends Identifiable> {
 		
 		// Initialize class of actual type argument
 		initClassOfActualTypeArgument();
-		
-		// Initialize base service
-		initBaseService();
 	}
 	
 	/**
@@ -66,5 +66,17 @@ public class BaseController<T extends Identifiable> {
 		
 		// Otherwise get the service bean according to the service name
 		baseService = SpringContextHolder.getBean(serviceName);
+	}
+	
+	@Override
+	public int getOrder() {
+		return AbstractInitService.CONTROLLER_ORDER;
+	}
+
+	@Override
+	public void init() throws CommonException {
+
+		// Initialize base service
+		initBaseService();
 	}
 }
