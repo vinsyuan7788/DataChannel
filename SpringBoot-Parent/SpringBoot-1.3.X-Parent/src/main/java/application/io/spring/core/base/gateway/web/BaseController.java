@@ -4,7 +4,6 @@ import java.lang.reflect.ParameterizedType;
 
 import application.io.spring.common.exception.CommonException;
 import application.io.spring.common.service.InitService;
-import application.io.spring.common.service.utils.InitOrder;
 import application.io.spring.common.spring.SpringContextHolder;
 import application.io.spring.core.base.api.model.Identifiable;
 import application.io.spring.core.base.api.service.BaseService;
@@ -70,7 +69,7 @@ public class BaseController<T extends Identifiable> implements InitService {
 	
 	@Override
 	public int getInitOrder() {
-		return InitOrder.CONTROLLER_ORDER;
+		return InitService.CONTROLLER_ORDER;
 	}
 
 	@Override
