@@ -35,7 +35,15 @@ public class SpringContextListener implements ApplicationListener<ContextRefresh
 		}
 	}
 	
-	private void initSystem(ApplicationContext context) throws CommonException{
+	/**
+	 * 	This is a method for injected beans to do the initialization of instance variables that are also injected beans
+	 * 	-- E.g., after injection of BeanServiceImpl, BeanServiceImpl still needs initialize BaseDAO, which is also an injected bean
+	 *     -- Using this method can complete such initialization, namely initialize BaseDAO for BaseServiceImpl
+	 *     
+	 * @param context
+	 * @throws CommonException
+	 */
+	private void initSystem(ApplicationContext context) throws CommonException {
 		
 		// Get the names of all injected beans
 		String[] beanNames = context.getBeanDefinitionNames();	
@@ -88,7 +96,7 @@ public class SpringContextListener implements ApplicationListener<ContextRefresh
 			for (Object injectedBean : correspondingBeans) {
 				
 				// If the bean is an instance of InitService, invoke its "init" method
-				if(injectedBean instanceof InitService){
+				if (injectedBean instanceof InitService) {
 					((InitService) injectedBean).init();
 				}
 			}
