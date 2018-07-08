@@ -92,6 +92,14 @@
 		<artifactId>xom</artifactId>
 		<version>1.2.5</version>  
     </dependency>
+    <!--
+    	Apache Common BeanUtils library: for providing an easy-to-use but flexible wrapper around reflection and introspection
+    -->
+	<dependency>
+	    <groupId>commons-beanutils</groupId>
+	    <artifactId>commons-beanutils</artifactId>
+	    <version>1.9.3</version>
+	</dependency>
 	
 	<!-- Here are the dependencies that need to be further studied -->
 	<!-- 

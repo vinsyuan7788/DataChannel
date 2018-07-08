@@ -87,7 +87,10 @@ public class ShiroConfiguration {
          * 	   -- authc: 表示需要认证才能访问
          */
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-        // The following URL can be accessed anonymously
+        /* 
+         * 	The following URL can be accessed anonymously
+         * 	-- Including login and logout
+         */
         filterChainDefinitionMap.put("/**/login*", "anon");
         filterChainDefinitionMap.put("/**/login*.*", "anon");
         filterChainDefinitionMap.put("/**/*Login*", "anon");
@@ -96,6 +99,23 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/**/logout*.*","anon");
         filterChainDefinitionMap.put("/**/*Logout*", "anon");
         filterChainDefinitionMap.put("/**/*Logout*.*", "anon");
+        /* 
+         * 	The following resources can be accessed anonymously
+         * 	-- Including the testing of Spring-Boot, MyBatis, etc.
+         *  -- Including partial testing of Shiro, etc.
+         * 	-- Including error, etc.
+         */
+        filterChainDefinitionMap.put("/**/spring-boot/**", "anon");
+        filterChainDefinitionMap.put("/**/spring-boot/**.*", "anon");
+        filterChainDefinitionMap.put("/**/mybatis/**", "anon");
+        filterChainDefinitionMap.put("/**/mybatis/**.*", "anon");
+        filterChainDefinitionMap.put("/**/shiro/helloShiro", "anon");
+        filterChainDefinitionMap.put("/**/shiro/helloShiro.*", "anon");
+        filterChainDefinitionMap.put("/**/shiro/authentication/**", "anon");
+        filterChainDefinitionMap.put("/**/shiro/authorization/**", "anon");
+        filterChainDefinitionMap.put("/**/shiro/session/**", "anon");
+        filterChainDefinitionMap.put("/**/shiro/coding/**", "anon");
+        filterChainDefinitionMap.put("/**/shiro/cryption/**", "anon");
         filterChainDefinitionMap.put("/error","anon");
         // The following URL must be accessed authentically
         filterChainDefinitionMap.put("/*", "authc");

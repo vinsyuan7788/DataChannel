@@ -194,6 +194,20 @@
 		<!-- Here specifies the necessary plugins, which must be included by plugin management -->
 		<plugins>
 			<plugin>
+				<groupId>org.springframework.boot</groupId>  
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                	<mainClass>application.io.spring.HelloSpringBoot</mainClass>
+                </configuration>
+                <executions>
+                    <execution>  
+                        <goals>  
+                            <goal>repackage</goal>  
+                        </goals>  
+                    </execution>  
+                </executions>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<executions>
