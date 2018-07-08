@@ -1,4 +1,4 @@
-package application.io.spring.common.service;
+package application.io.spring.common.service.utils;
 
 public class InitOrder {
 	

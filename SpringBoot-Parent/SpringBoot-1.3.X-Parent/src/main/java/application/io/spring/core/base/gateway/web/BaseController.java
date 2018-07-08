@@ -3,8 +3,8 @@ package application.io.spring.core.base.gateway.web;
 import java.lang.reflect.ParameterizedType;
 
 import application.io.spring.common.exception.CommonException;
-import application.io.spring.common.service.InitOrder;
 import application.io.spring.common.service.InitService;
+import application.io.spring.common.service.utils.InitOrder;
 import application.io.spring.common.spring.SpringContextHolder;
 import application.io.spring.core.base.api.model.Identifiable;
 import application.io.spring.core.base.api.service.BaseService;

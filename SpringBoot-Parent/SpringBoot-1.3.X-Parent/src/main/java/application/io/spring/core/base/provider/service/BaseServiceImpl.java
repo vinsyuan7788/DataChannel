@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import application.io.spring.common.exception.CommonException;
-import application.io.spring.common.service.InitOrder;
+import application.io.spring.common.service.utils.InitOrder;
 import application.io.spring.common.spring.SpringContextHolder;
 import application.io.spring.common.utils.GsonUtils;
 import application.io.spring.core.base.api.model.Identifiable;
