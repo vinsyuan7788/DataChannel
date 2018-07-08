@@ -41,8 +41,8 @@ public class ShiroConfiguration {
      * @return
      */
     @Bean(name="authorizationRealm")
-    public AuthorizationRealm authRealm(@Qualifier("credentialsMatcher") CredentialsMatcher matcher) {
-        AuthorizationRealm authorizationRealm = new AuthorizationRealm();
+    public AuthorizationRealm authorizationRealm(@Qualifier("credentialsMatcher") CredentialsMatcher matcher) {
+    	AuthorizationRealm authorizationRealm = new AuthorizationRealm();
         authorizationRealm.setCredentialsMatcher(matcher);
         return authorizationRealm;
     }
@@ -55,8 +55,7 @@ public class ShiroConfiguration {
 	 */
     @Bean(name="securityManager")
     public SecurityManager securityManager(@Qualifier("authorizationRealm") AuthorizationRealm authorizationRealm) {
-        System.out.println("--------------shiro已经加载----------------");
-        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+    	DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(authorizationRealm);
         return securityManager;
     }
@@ -69,7 +68,7 @@ public class ShiroConfiguration {
 	 */
 	@Bean(name="shiroFilter")
     public ShiroFilterFactoryBean shiroFilter(@Qualifier("securityManager") SecurityManager securityManager) {
-        
+		
 		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 		shiroFilterFactoryBean.setSecurityManager(securityManager);
         
@@ -77,13 +76,15 @@ public class ShiroConfiguration {
 		shiroFilterFactoryBean.setLoginUrl("/login");
 		shiroFilterFactoryBean.setSuccessUrl("/home");
         
-        //配置访问权限
+        /*
+         * 	配置访问权限<br/>
+         * 	-- anon: 表示可以匿名访问
+         * 	-- authc: 表示需要认证才能访问
+         */
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-        filterChainDefinitionMap.put("/jsp/login.jsp*", "anon"); 	//表示可以匿名访问
-        filterChainDefinitionMap.put("/testLogin", "anon"); 
-        filterChainDefinitionMap.put("/testLogout*","anon");
-        filterChainDefinitionMap.put("/jsp/error.jsp*","anon");
-        filterChainDefinitionMap.put("/jsp/index.jsp*","authc");
+        filterChainDefinitionMap.put("/api/shiro/with-spring-boot/testLogin", "anon"); 
+        filterChainDefinitionMap.put("/api/shiro/with-spring-boot/testLogout*","anon");
+        filterChainDefinitionMap.put("/error","anon");
         filterChainDefinitionMap.put("/*", "authc");				//表示需要认证才可以访问
         filterChainDefinitionMap.put("/**", "authc");				//表示需要认证才可以访问
         filterChainDefinitionMap.put("/*.*", "authc");
@@ -123,8 +124,8 @@ public class ShiroConfiguration {
      * @return
      */
     @Bean
-    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(@Qualifier("securityManager") SecurityManager securityManager) {
-        AuthorizationAttributeSourceAdvisor advisor=new AuthorizationAttributeSourceAdvisor();
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(@Qualifier("securityManager") SecurityManager securityManager) {	
+    	AuthorizationAttributeSourceAdvisor advisor=new AuthorizationAttributeSourceAdvisor();
         advisor.setSecurityManager(securityManager);
         return advisor;
     }
