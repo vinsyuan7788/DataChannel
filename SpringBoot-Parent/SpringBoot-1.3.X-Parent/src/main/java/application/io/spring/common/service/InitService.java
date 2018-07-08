@@ -3,8 +3,10 @@ package application.io.spring.common.service;
 import application.io.spring.common.exception.CommonException;
 
 /**
- * 	This is an interface to be implemented for initialization of instance variables for injected beans <br/>
- * 	-- This interface also contains some static variables that represent the initialization order
+ * 	This is an interface to be implemented for initialization of instance variables for injected beans. <br/>
+ * 	<p>
+ * 	This interface also contains some static variables that represent the initialization order
+ * 	</p>
  * 
  * @author vinsy
  *

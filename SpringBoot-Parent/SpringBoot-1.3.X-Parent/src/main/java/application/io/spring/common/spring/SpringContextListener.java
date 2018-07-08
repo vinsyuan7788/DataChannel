@@ -36,9 +36,11 @@ public class SpringContextListener implements ApplicationListener<ContextRefresh
 	}
 	
 	/**
-	 * 	This is a method for injected beans to do the initialization of instance variables that are also injected beans
-	 * 	-- E.g., after injection of BeanServiceImpl, BeanServiceImpl still needs initialize BaseDAO, which is also an injected bean
-	 *     -- Using this method can complete such initialization, namely initialize BaseDAO for BaseServiceImpl
+	 * 	This is a method for injected beans to do the initialization of instance variables that are also injected beans. <br/>
+	 *  <p>
+	 * 	E.g., after injection of BeanServiceImpl, BeanServiceImpl still needs initialize BaseDAO, which is also an injected bean. 
+	 *  Using this method can complete such initialization, namely initialize BaseDAO for BaseServiceImpl.
+	 *  </p>
 	 *     
 	 * @param context
 	 * @throws CommonException
