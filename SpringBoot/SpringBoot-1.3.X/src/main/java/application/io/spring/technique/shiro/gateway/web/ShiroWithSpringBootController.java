@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,8 +56,6 @@ public class ShiroWithSpringBootController {
 	private HttpServletRequest request;
 	@Autowired
 	private HttpServletResponse response;
-	@Autowired
-	private HttpSession session;
 	@Autowired
 	private AuthorizationUserService authorizationUserService;
 	@Autowired
@@ -216,8 +215,8 @@ public class ShiroWithSpringBootController {
 		}
 	}
 	
-	@RequestMapping(value = "/testLogin", method = RequestMethod.POST)
-	public Map<String, Object> testLogin(AuthorizationUser authorizationUser) throws Exception {
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public Map<String, Object> login(AuthorizationUser authorizationUser) throws Exception {
 		
 		Map<String, Object> data = new HashMap<>();
 		Map<String, Object> result = new HashMap<>();
@@ -234,6 +233,9 @@ public class ShiroWithSpringBootController {
 			// Get the principal
 			String username = (String) currentUser.getPrincipal();
 			result.put("loginMsg", username + " has logged-in");
+			
+			// Get the session of current user
+			Session session = currentUser.getSession();
 			
 			// Store user-name into session
 			session.setAttribute("username", username);
@@ -256,8 +258,8 @@ public class ShiroWithSpringBootController {
 		}
 	}
 	
-	@RequestMapping(value = "/testLogout", method = RequestMethod.POST)
-	public Map<String, Object> testLogout() throws Exception {
+	@RequestMapping(value = "/logout", method = RequestMethod.POST)
+	public Map<String, Object> logout() throws Exception {
 		
 		Map<String, Object> data = new HashMap<>();
 		Map<String, Object> result = new HashMap<>();

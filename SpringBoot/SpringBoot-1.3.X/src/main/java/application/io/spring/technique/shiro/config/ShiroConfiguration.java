@@ -77,17 +77,30 @@ public class ShiroConfiguration {
 		shiroFilterFactoryBean.setSuccessUrl("/home");
         
         /*
-         * 	配置访问权限<br/>
-         * 	-- anon: 表示可以匿名访问
-         * 	-- authc: 表示需要认证才能访问
+         * 	配置访问权限:
+         * 	-- For URL pattern:
+         *     -- ?: match one character
+         *     -- *: match multiple characters
+         *     -- **: match one or multiple level of directories
+         * 	-- For accessibility:
+         * 	   -- anon: 表示可以匿名访问
+         * 	   -- authc: 表示需要认证才能访问
          */
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-        filterChainDefinitionMap.put("/api/shiro/with-spring-boot/testLogin", "anon"); 
-        filterChainDefinitionMap.put("/api/shiro/with-spring-boot/testLogout*","anon");
+        // The following URL can be accessed anonymously
+        filterChainDefinitionMap.put("/**/login*", "anon");
+        filterChainDefinitionMap.put("/**/login*.*", "anon");
+        filterChainDefinitionMap.put("/**/*Login*", "anon");
+        filterChainDefinitionMap.put("/**/*Login*.*", "anon");
+        filterChainDefinitionMap.put("/**/logout*","anon");
+        filterChainDefinitionMap.put("/**/logout*.*","anon");
+        filterChainDefinitionMap.put("/**/*Logout*", "anon");
+        filterChainDefinitionMap.put("/**/*Logout*.*", "anon");
         filterChainDefinitionMap.put("/error","anon");
-        filterChainDefinitionMap.put("/*", "authc");				//表示需要认证才可以访问
-        filterChainDefinitionMap.put("/**", "authc");				//表示需要认证才可以访问
+        // The following URL must be accessed authentically
+        filterChainDefinitionMap.put("/*", "authc");
         filterChainDefinitionMap.put("/*.*", "authc");
+        filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         
         return shiroFilterFactoryBean;
