@@ -3,7 +3,7 @@ package application.io.spring.core.base.gateway.web;
 import java.lang.reflect.ParameterizedType;
 
 import application.io.spring.common.exception.CommonException;
-import application.io.spring.common.service.AbstractInitService;
+import application.io.spring.common.service.InitOrder;
 import application.io.spring.common.service.InitService;
 import application.io.spring.common.spring.SpringContextHolder;
 import application.io.spring.core.base.api.model.Identifiable;
@@ -69,8 +69,8 @@ public class BaseController<T extends Identifiable> implements InitService {
 	}
 	
 	@Override
-	public int getOrder() {
-		return AbstractInitService.CONTROLLER_ORDER;
+	public int getInitOrder() {
+		return InitOrder.CONTROLLER_ORDER;
 	}
 
 	@Override

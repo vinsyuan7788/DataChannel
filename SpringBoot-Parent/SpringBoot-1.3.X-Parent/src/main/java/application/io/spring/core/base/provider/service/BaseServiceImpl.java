@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import application.io.spring.common.exception.CommonException;
-import application.io.spring.common.service.AbstractInitService;
+import application.io.spring.common.service.InitOrder;
 import application.io.spring.common.spring.SpringContextHolder;
 import application.io.spring.common.utils.GsonUtils;
 import application.io.spring.core.base.api.model.Identifiable;
@@ -75,8 +75,8 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 	}
 	
 	@Override
-	public int getOrder() {
-		return AbstractInitService.SERVICE_ORDER;
+	public int getInitOrder() {
+		return InitOrder.SERVICE_ORDER;
 	}
 
 	@Override

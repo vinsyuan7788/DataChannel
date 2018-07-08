@@ -4,7 +4,7 @@ import application.io.spring.common.exception.CommonException;
 
 public interface InitService {
 	
-	public int getOrder();
+	public int getInitOrder();
 
 	public void init() throws CommonException;
 }

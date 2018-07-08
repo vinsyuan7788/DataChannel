@@ -1,8 +1,6 @@
 package application.io.spring.common.service;
 
-import application.io.spring.common.exception.CommonException;
-
-public abstract class AbstractInitService {
+public class InitOrder {
 	
 	/*
 	 *  order 越大 约先初始化
@@ -13,9 +11,4 @@ public abstract class AbstractInitService {
 	public static final Integer SCHEDULE_ORDER = 30000;   // >= 20000
 	public static final Integer SERVICE_ORDER = 50000;	    // >= 50000
 	public static final Integer CONFIGURE_ORDER = 80000;   // >= 80000
-	
-	public abstract int getOrder();
-
-	public abstract void init() throws CommonException;
-	
 }
