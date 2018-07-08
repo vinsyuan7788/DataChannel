@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 	This is a class to serve as a base class for all identifiable Java beans (or models, POJOs, etc.)
+ * 	This is a class to serve as a bean to be extended for identification and serialization
  * 
  * @author vinsy
  *

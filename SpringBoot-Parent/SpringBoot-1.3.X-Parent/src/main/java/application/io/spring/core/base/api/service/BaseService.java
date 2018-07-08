@@ -5,6 +5,13 @@ import java.util.List;
 import application.io.spring.common.service.InitService;
 import application.io.spring.core.base.api.model.Identifiable;
 
+/**
+ * 	This is a interface that serves as a service to be implemented for commonly-used operation
+ * 
+ * @author vinsy
+ *
+ * @param <T>
+ */
 public interface BaseService<T extends Identifiable> extends InitService {
 
 	public Boolean insertSelective(T bean) throws Exception;

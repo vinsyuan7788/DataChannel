@@ -5,6 +5,13 @@ import java.util.Map;
 
 import application.io.spring.core.base.api.model.Identifiable;
 
+/**
+ * 	This is a class that serves as DAO to be implemented for commonly-used operation
+ * 
+ * @author vinsy
+ *
+ * @param <T>
+ */
 public interface BaseDAO<T extends Identifiable> {
 
 	public void insertSelective(T bean) throws Exception;

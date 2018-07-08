@@ -14,6 +14,13 @@ import application.io.spring.core.base.api.service.BaseService;
 import application.io.spring.core.base.provider.dao.BaseDAO;
 import lombok.extern.log4j.Log4j2;
 
+/**
+ * 	This is a class that implements all commonly-used operation
+ * 
+ * @author vinsy
+ *
+ * @param <T>
+ */
 @SuppressWarnings("unchecked")
 @Log4j2
 public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {

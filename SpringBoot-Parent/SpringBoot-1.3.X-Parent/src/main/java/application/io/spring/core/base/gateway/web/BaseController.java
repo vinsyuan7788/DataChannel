@@ -8,6 +8,13 @@ import application.io.spring.common.spring.SpringContextHolder;
 import application.io.spring.core.base.api.model.Identifiable;
 import application.io.spring.core.base.api.service.BaseService;
 
+/**
+ * 	This is a class that serves as a controller and can be extended for commonly-used operation
+ * 
+ * @author vinsy
+ *
+ * @param <T>
+ */
 @SuppressWarnings("unchecked")
 public class BaseController<T extends Identifiable> implements InitService {
 
