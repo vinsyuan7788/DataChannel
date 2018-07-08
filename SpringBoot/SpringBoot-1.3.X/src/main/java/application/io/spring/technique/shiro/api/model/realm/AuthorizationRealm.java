@@ -64,7 +64,7 @@ public class AuthorizationRealm extends AuthorizingRealm {
 			}
 			
 			// Put all resources into Shiro for authorization check
-			SimpleAuthorizationInfo authorizationInfo =new SimpleAuthorizationInfo();
+			SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 			authorizationInfo.addStringPermissions(authorizationResources);
 			
 			// Return authorization information
