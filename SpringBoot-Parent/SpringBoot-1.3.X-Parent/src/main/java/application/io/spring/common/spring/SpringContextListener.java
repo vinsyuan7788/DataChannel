@@ -25,6 +25,8 @@ public class SpringContextListener implements ApplicationListener<ContextRefresh
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 
+		System.out.println("================= SpringContextListener ==================");
+		
 		if (((ApplicationContextEvent) event).getApplicationContext().getParent() == null) {
 			try {
 				this.initSystem(SpringContextHolder.getApplicationContext());
