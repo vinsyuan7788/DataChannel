@@ -6,7 +6,11 @@
   <packaging>pom</packaging>
   <name>${project.artifactId}</name>
   <description>Middleware</description>
-  
+ 
+  <modules>
+  	<module>Authorization</module>
+  </modules>
+   
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -22,7 +26,4 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <modules>
-  	<module>Authorization</module>
-  </modules>
 </project>
