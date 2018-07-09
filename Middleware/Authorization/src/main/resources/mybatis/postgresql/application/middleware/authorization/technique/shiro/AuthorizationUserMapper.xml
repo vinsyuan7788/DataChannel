@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="application.middleware.authorization.business.provider.dao.AuthorizationUserDAO" >
+  
+	<resultMap id="BaseResultMap" type="application.middleware.authorization.business.api.model.AuthorizationUser" >
+    	<id column="id" property="id" jdbcType="BIGINT"/>
+    	<result column="name" property="name" jdbcType="VARCHAR"/>
+    	<result column="password" property="password" jdbcType="VARCHAR"/>
+    	<result column="attr" property="attr" jdbcType="VARCHAR"/>
+    	<result column="real_name" property="realName" jdbcType="VARCHAR"/>
+    	<result column="gender" property="gender" jdbcType="VARCHAR"/>
+    	<result column="birthday" property="birthday" jdbcType="TIMESTAMP"/>
+    	<result column="office_phone" property="officePhone" jdbcType="VARCHAR"/>
+    	<result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+    	<result column="home_phone" property="homePhone" jdbcType="VARCHAR"/>
+    	<result column="email" property="email" jdbcType="VARCHAR"/>
+    	<result column="remark" property="remark" jdbcType="VARCHAR"/>
+    	<result column="creator" property="creator" jdbcType="BIGINT"/>
+    	<result column="status" property="status" jdbcType="VARCHAR"/>
+    	<result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    	<result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    	<result column="code" property="code" jdbcType="VARCHAR"/>
+    	<result column="fingerprint_login" property="fingerprintLogin" jdbcType="VARCHAR"/>
+    	<result column="allow_login_type" property="allowLoginType" jdbcType="VARCHAR"/>
+    	<result column="is_internal_employee" property="isInternalEmployee" jdbcType="VARCHAR"/>
+    	<result column="extended_field" property="extendedField" jdbcType="OTHER" typeHandler="application.io.spring.common.utils.mybatis.JSONTypeHandler"/>
+	</resultMap>
+
+	<sql id="Query_Where_Clause">
+		<where>
+			<if test="id != null"> and id = #{id,jdbcType=BIGINT}</if>
+        	<if test="name != null and name != ''"> and name = #{name,jdbcType=VARCHAR}</if>
+        	<if test="password != null and password != ''"> and password = #{password,jdbcType=VARCHAR}</if>
+        	<if test="attr != null and attr != ''"> and attr = #{attr,jdbcType=VARCHAR}</if>
+        	<if test="realName != null and realName != ''"> and real_name = #{realName,jdbcType=VARCHAR}</if>
+        	<if test="gender != null and gender != ''"> and gender = #{gender,jdbcType=VARCHAR}</if>
+        	<if test="birthday != null and birthday != ''"> and birthday = #{birthday,jdbcType=TIMESTAMP} :: timestamp with time zone</if>
+        	<if test="officePhone != null and officePhone != ''"> and office_phone = #{officePhone,jdbcType=VARCHAR}</if>
+        	<if test="mobile != null and mobile != ''"> and mobile = #{mobile,jdbcType=VARCHAR}</if>
+        	<if test="homePhone != null and homePhone != ''"> and home_phone = #{homePhone,jdbcType=VARCHAR}</if>
+        	<if test="email != null and email != ''"> and email = #{email,jdbcType=VARCHAR}</if>
+        	<if test="remark != null and remark != ''"> and remark = #{remark,jdbcType=VARCHAR}</if>
+        	<if test="creator != null and creator != ''"> and creator = #{creator,jdbcType=BIGINT}</if>
+        	<if test="status != null and status != ''"> and status = #{status,jdbcType=VARCHAR}</if>
+        	<if test="createTime != null and createTime != ''"> and create_time = #{createTime,jdbcType=TIMESTAMP} :: timestamp with time zone</if>
+        	<if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime,jdbcType=TIMESTAMP} :: timestamp with time zone</if>
+        	<if test="code != null and code != ''"> and code = #{code,jdbcType=VARCHAR}</if>
+        	<if test="fingerprintLogin != null and fingerprintLogin != ''"> and fingerprint_login = #{fingerprintLogin,jdbcType=VARCHAR}</if>
+        	<if test="allowLoginType != null and allowLoginType != ''"> and allow_login_type = #{allowLoginType,jdbcType=VARCHAR}</if>
+        	<if test="isInternalEmployee != null and isInternalEmployee != ''"> and is_internal_employee = #{isInternalEmployee,jdbcType=VARCHAR}</if>
+        	<if test="extendedField != null and extendedField != ''"> and extended_field = #{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.utils.mybatis.JSONTypeHandler}</if>
+    	</where>
+ 	</sql>
+ 
+ 	<sql id="Base_Column_List">
+    	id, name, password, attr, real_name, gender, birthday, office_phone, mobile, home_phone, email, remark, creator, status, create_time, update_time, code, fingerprint_login, allow_login_type, is_internal_employee, extended_field
+    </sql>
+    <sql id="Base_Column_List_Without_Id">
+    	name, password, attr, real_name, gender, birthday, office_phone, mobile, home_phone, email, remark, creator, status, create_time, update_time, code, fingerprint_login, allow_login_type, is_internal_employee, extended_field
+    </sql>
+   
+  	<insert id="insertSelective" parameterType="application.io.spring.technique.shiro.api.model.AuthorizationUser" useGeneratedKeys="true" keyProperty="id">
+    	insert into x_authorization_user
+    	<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="id != null">id,</if>
+        	<if test="name != null">name,</if>
+        	<if test="password != null">password,</if>
+        	<if test="attr != null">attr,</if>
+        	<if test="realName != null">real_name,</if>
+        	<if test="gender != null">gender,</if>
+        	<if test="birthday != null">birthday,</if>
+        	<if test="officePhone != null">office_phone,</if>
+        	<if test="mobile != null">mobile,</if>
+        	<if test="homePhone != null">home_phone,</if>
+        	<if test="email != null">email,</if>
+        	<if test="remark != null">remark,</if>
+        	<if test="creator != null">creator,</if>
+        	<if test="status != null">status,</if>
+        	<if test="createTime != null">create_time,</if>
+        	<if test="updateTime != null">update_time,</if>
+        	<if test="code != null">code,</if>
+        	<if test="fingerprintLogin != null">fingerprint_login,</if>
+        	<if test="allowLoginType != null">allow_login_type,</if>
+        	<if test="isInternalEmployee != null">is_internal_employee,</if>
+        	<if test="extendedField != null">extended_field,</if>
+    	</trim>
+    	<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="id != null">#{id,jdbcType=BIGINT},</if>
+        	<if test="name != null">#{name,jdbcType=VARCHAR},</if>
+        	<if test="password != null">#{password,jdbcType=VARCHAR},</if>
+        	<if test="attr != null">#{attr,jdbcType=VARCHAR},</if>
+        	<if test="realName != null">#{realName,jdbcType=VARCHAR},</if>
+        	<if test="gender != null">#{gender,jdbcType=VARCHAR},</if>
+        	<if test="birthday != null">#{birthday,jdbcType=TIMESTAMP},</if>
+        	<if test="officePhone != null">#{officePhone,jdbcType=VARCHAR},</if>
+        	<if test="mobile != null">#{mobile,jdbcType=VARCHAR},</if>
+        	<if test="homePhone != null">#{homePhone,jdbcType=VARCHAR},</if>
+        	<if test="email != null">#{email,jdbcType=VARCHAR},</if>
+        	<if test="remark != null">#{remark,jdbcType=VARCHAR},</if>
+        	<if test="creator != null">#{creator,jdbcType=BIGINT},</if>
+        	<if test="status != null">#{status,jdbcType=VARCHAR},</if>
+        	<if test="createTime != null">#{createTime,jdbcType=TIMESTAMP},</if>
+        	<if test="updateTime != null">#{updateTime,jdbcType=TIMESTAMP},</if>
+        	<if test="code != null">#{code,jdbcType=VARCHAR},</if>
+        	<if test="fingerprintLogin != null">#{fingerprintLogin,jdbcType=VARCHAR},</if>
+        	<if test="allowLoginType != null">#{allowLoginType,jdbcType=VARCHAR},</if>
+        	<if test="isInternalEmployee != null">#{isInternalEmployee,jdbcType=VARCHAR},</if>
+        	<if test="extendedField != null">#{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.utils.mybatis.JSONTypeHandler},</if>
+    	</trim>
+	</insert>
+	
+  	<insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+  		insert into x_authorization_user(<include refid="Base_Column_List_Without_Id"/>) values
+    	<foreach collection="list" item="item" index="index" separator=",">
+      		(#{item.name,jdbcType=VARCHAR},#{item.password,jdbcType=VARCHAR},#{item.attr,jdbcType=VARCHAR},#{item.realName,jdbcType=VARCHAR},#{item.gender,jdbcType=VARCHAR},#{item.birthday,jdbcType=TIMESTAMP},#{item.officePhone,jdbcType=VARCHAR},#{item.mobile,jdbcType=VARCHAR},#{item.homePhone,jdbcType=VARCHAR},#{item.email,jdbcType=VARCHAR},#{item.remark,jdbcType=VARCHAR},#{item.creator,jdbcType=BIGINT},#{item.status,jdbcType=VARCHAR},#{item.createTime,jdbcType=TIMESTAMP},#{item.updateTime,jdbcType=TIMESTAMP},#{item.code,jdbcType=VARCHAR},#{item.fingerprintLogin,jdbcType=VARCHAR},#{item.allowLoginType,jdbcType=VARCHAR},#{item.isInternalEmployee,jdbcType=VARCHAR},#{item.extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.utils.mybatis.JSONTypeHandler})
+      	</foreach>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="application.io.spring.technique.shiro.api.model.AuthorizationUser">
+		update x_authorization_user
+    	<set>
+      		<if test="id != null">id = #{id,jdbcType=BIGINT},</if>
+        	<if test="name != null">name = #{name,jdbcType=VARCHAR},</if>
+        	<if test="password != null">password = #{password,jdbcType=VARCHAR},</if>
+        	<if test="attr != null">attr = #{attr,jdbcType=VARCHAR},</if>
+        	<if test="realName != null">real_name = #{realName,jdbcType=VARCHAR},</if>
+        	<if test="gender != null">gender = #{gender,jdbcType=VARCHAR},</if>
+        	<if test="birthday != null">birthday = #{birthday,jdbcType=TIMESTAMP},</if>
+        	<if test="officePhone != null">office_phone = #{officePhone,jdbcType=VARCHAR},</if>
+        	<if test="mobile != null">mobile = #{mobile,jdbcType=VARCHAR},</if>
+        	<if test="homePhone != null">home_phone = #{homePhone,jdbcType=VARCHAR},</if>
+        	<if test="email != null">email = #{email,jdbcType=VARCHAR},</if>
+        	<if test="remark != null">remark = #{remark,jdbcType=VARCHAR},</if>
+        	<if test="creator != null">creator = #{creator,jdbcType=BIGINT},</if>
+        	<if test="status != null">status = #{status,jdbcType=VARCHAR},</if>
+        	<if test="createTime != null">create_time = #{createTime,jdbcType=TIMESTAMP},</if>
+        	<if test="updateTime != null">update_time = #{updateTime,jdbcType=TIMESTAMP},</if>
+        	<if test="code != null">code = #{code,jdbcType=VARCHAR},</if>
+        	<if test="fingerprintLogin != null">fingerprint_login = #{fingerprintLogin,jdbcType=VARCHAR},</if>
+        	<if test="allowLoginType != null">allow_login_type = #{allowLoginType,jdbcType=VARCHAR},</if>
+        	<if test="isInternalEmployee != null">is_internal_employee = #{isInternalEmployee,jdbcType=VARCHAR},</if>
+        	<if test="extendedField != null">extended_field = #{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.utils.mybatis.JSONTypeHandler},</if>
+    	</set>
+    	where id = #{id,jdbcType=BIGINT}
+	</update>
+		
+	<select id="getPageableList" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List"/> from x_authorization_user
+    	<include refid="Query_Where_Clause"/>
+    	<if test="orderby != null"> order by ${orderby} </if>
+    	<if test="limit != null"> limit ${limit} </if>
+    	<if test="offset != null"> offset ${offset} </if>
+	</select>
+	
+	<select id="getListCount" parameterType="java.util.Map" resultType="java.lang.Long">
+		select count(id) from x_authorization_user
+	   	<include refid="Query_Where_Clause"/>
+	   	<if test="orderby != null"> order by ${orderby} </if>
+	   	<if test="limit != null"> limit ${limit} </if>
+	   	<if test="offset != null"> offset ${offset} </if>
+	</select>
+	
+	<select id="selectByIdCollection" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List"/> from x_authorization_user
+			where id in <foreach collection="ids" item="valueitem" open="(" separator="," close=")">#{valueitem}</foreach>
+	</select>
+	
+	<delete id="deleteByCondition" parameterType="application.io.spring.technique.shiro.api.model.AuthorizationUser" >
+    	delete from x_authorization_user
+    	<include refid="Query_Where_Clause"/>
+  	</delete>
+  	
+</mapper>

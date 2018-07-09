@@ -2,6 +2,7 @@ package application.middleware.authorization.business.api.model;
 
 import java.util.Date;
 
+import application.io.spring.core.base.api.model.TreeModel;
 import lombok.Getter;
 import lombok.Setter;
 

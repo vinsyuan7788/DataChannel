@@ -1,4 +1,4 @@
-package application.io.spring.technique.shiro.api.model;
+package application.io.spring.core.base.api.model;
 
 import application.io.spring.core.base.api.model.Identifiable;
 import lombok.Getter;
