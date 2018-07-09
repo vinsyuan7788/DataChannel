@@ -1,6 +1,0 @@
-server:
-  port: 35791
-
-spring:
-  profiles:
-    active: local
