@@ -7,7 +7,7 @@ import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 
 @EnableAutoConfiguration
-@ComponentScan("application.io.spring")
+@ComponentScan(value = { "application.io.spring", "application.middleware.authorization" })
 //@EnableAspectJAutoProxy
 public class SpringBootApplication extends SpringBootServletInitializer {
 

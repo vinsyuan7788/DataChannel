@@ -20,20 +20,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import application.io.spring.technique.shiro.api.model.AuthorizationResource;
-import application.io.spring.technique.shiro.api.model.AuthorizationRole;
-import application.io.spring.technique.shiro.api.model.AuthorizationRoleResource;
-import application.io.spring.technique.shiro.api.model.AuthorizationUser;
-import application.io.spring.technique.shiro.api.model.AuthorizationUserRole;
-import application.io.spring.technique.shiro.api.model.utils.LoginInfo;
-import application.io.spring.technique.shiro.api.service.AuthorizationResourceService;
-import application.io.spring.technique.shiro.api.service.AuthorizationRoleResourceService;
-import application.io.spring.technique.shiro.api.service.AuthorizationRoleService;
-import application.io.spring.technique.shiro.api.service.AuthorizationUserRoleService;
-import application.io.spring.technique.shiro.api.service.AuthorizationUserService;
-import application.io.spring.technique.shiro.api.vo.AuthorizationUserResourceVo;
-import application.io.spring.technique.shiro.api.vo.AuthorizationUserRoleVo;
-import application.io.spring.technique.shiro.utils.ShiroUtils;
+import application.middleware.authorization.business.api.model.AuthorizationResource;
+import application.middleware.authorization.business.api.model.AuthorizationRole;
+import application.middleware.authorization.business.api.model.AuthorizationRoleResource;
+import application.middleware.authorization.business.api.model.AuthorizationUser;
+import application.middleware.authorization.business.api.model.AuthorizationUserRole;
+import application.middleware.authorization.business.api.service.AuthorizationResourceService;
+import application.middleware.authorization.business.api.service.AuthorizationRoleResourceService;
+import application.middleware.authorization.business.api.service.AuthorizationRoleService;
+import application.middleware.authorization.business.api.service.AuthorizationUserRoleService;
+import application.middleware.authorization.business.api.service.AuthorizationUserService;
+import application.middleware.authorization.business.api.vo.AuthorizationUserResourceVo;
+import application.middleware.authorization.business.api.vo.AuthorizationUserRoleVo;
+import application.middleware.authorization.technique.shiro.utils.LoginInfo;
+import application.middleware.authorization.technique.shiro.utils.ShiroUtils;
 
 /**
  * 	This is a class to test the integration between Shiro and Spring-Boot
