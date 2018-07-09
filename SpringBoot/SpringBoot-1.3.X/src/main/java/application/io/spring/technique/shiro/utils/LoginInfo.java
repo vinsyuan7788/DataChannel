@@ -1,4 +1,4 @@
-package application.io.spring.technique.shiro.api.model.utils;
+package application.io.spring.technique.shiro.utils;
 
 import java.io.Serializable;
 
