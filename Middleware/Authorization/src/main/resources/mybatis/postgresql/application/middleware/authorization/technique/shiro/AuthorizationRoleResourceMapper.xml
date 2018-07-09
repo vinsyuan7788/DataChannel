@@ -8,7 +8,7 @@
     	<result column="resource_id" property="resourceId" jdbcType="BIGINT"/>
     	<result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
     	<result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
-    	<result column="extended_field" property="extendedField" jdbcType="OTHER" typeHandler="application.io.spring.common.utils.mybatis.JSONTypeHandler"/>
+    	<result column="extended_field" property="extendedField" jdbcType="OTHER" typeHandler="application.io.spring.common.mybatis.JSONTypeHandler"/>
 	</resultMap>
 
 	<sql id="Query_Where_Clause">
@@ -18,7 +18,7 @@
         	<if test="resourceId != null and resourceId != ''"> and resource_id = #{resourceId,jdbcType=BIGINT}</if>
         	<if test="createTime != null and createTime != ''"> and create_time = #{createTime,jdbcType=TIMESTAMP} :: timestamp with time zone</if>
         	<if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime,jdbcType=TIMESTAMP} :: timestamp with time zone</if>
-        	<if test="extendedField != null and extendedField != ''"> and extended_field = #{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.utils.mybatis.JSONTypeHandler}</if>
+        	<if test="extendedField != null and extendedField != ''"> and extended_field = #{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.mybatis.JSONTypeHandler}</if>
     	</where>
  	</sql>
  
@@ -45,14 +45,14 @@
         	<if test="resourceId != null">#{resourceId,jdbcType=BIGINT},</if>
         	<if test="createTime != null">#{createTime,jdbcType=TIMESTAMP},</if>
         	<if test="updateTime != null">#{updateTime,jdbcType=TIMESTAMP},</if>
-        	<if test="extendedField != null">#{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.utils.mybatis.JSONTypeHandler},</if>
+        	<if test="extendedField != null">#{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.mybatis.JSONTypeHandler},</if>
     	</trim>
 	</insert>
 	
   	<insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
   		insert into x_authorization_role_resource(<include refid="Base_Column_List_Without_Id"/>) values
     	<foreach collection="list" item="item" index="index" separator=",">
-      		(#{item.roleId,jdbcType=BIGINT},#{item.resourceId,jdbcType=BIGINT},#{item.createTime,jdbcType=TIMESTAMP},#{item.updateTime,jdbcType=TIMESTAMP},#{item.extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.utils.mybatis.JSONTypeHandler})
+      		(#{item.roleId,jdbcType=BIGINT},#{item.resourceId,jdbcType=BIGINT},#{item.createTime,jdbcType=TIMESTAMP},#{item.updateTime,jdbcType=TIMESTAMP},#{item.extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.mybatis.JSONTypeHandler})
       	</foreach>
 	</insert>
 	
@@ -64,7 +64,7 @@
         	<if test="resourceId != null">resource_id = #{resourceId,jdbcType=VARCHAR},</if>
         	<if test="createTime != null">create_time = #{createTime,jdbcType=TIMESTAMP},</if>
         	<if test="updateTime != null">update_time = #{updateTime,jdbcType=TIMESTAMP},</if>
-        	<if test="extendedField != null">extended_field = #{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.utils.mybatis.JSONTypeHandler},</if>
+        	<if test="extendedField != null">extended_field = #{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.mybatis.JSONTypeHandler},</if>
     	</set>
     	where id = #{id,jdbcType=BIGINT}
 	</update>

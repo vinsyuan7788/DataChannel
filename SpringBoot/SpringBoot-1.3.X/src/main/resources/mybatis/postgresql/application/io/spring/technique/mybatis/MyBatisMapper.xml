@@ -10,7 +10,7 @@
     	<result column="official_url" property="officialUrl" jdbcType="VARCHAR"/>
     	<result column="contributor" property="contributor" jdbcType="VARCHAR"/>
     	<result column="remark" property="remark" jdbcType="VARCHAR"/>
-    	<result column="extended_field" property="extendedField" jdbcType="OTHER" typeHandler="application.io.spring.technique.mybatis.utils.JSONTypeHandler"/>
+    	<result column="extended_field" property="extendedField" jdbcType="OTHER" typeHandler="application.io.spring.common.mybatis.JSONTypeHandler"/>
 	</resultMap>
 
 	<sql id="Query_Where_Clause">
@@ -22,7 +22,7 @@
         	<if test="officialUrl != null and officialUrl != ''"> and official_url = #{officialUrl,jdbcType=VARCHAR}</if>
         	<if test="contributor != null and contributor != ''"> and contributor = #{contributor,jdbcType=VARCHAR}</if>
         	<if test="remark != null and remark != ''"> and remark = #{remark,jdbcType=VARCHAR}</if>
-        	<if test="extendedField != null and extendedField != ''"> and extended_field = #{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.technique.mybatis.utils.JSONTypeHandler}</if>
+        	<if test="extendedField != null and extendedField != ''"> and extended_field = #{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.mybatis.JSONTypeHandler}</if>
     	</where>
  	</sql>
  
@@ -53,14 +53,14 @@
       		<if test="officialUrl != null">#{officialUrl,jdbcType=VARCHAR},</if>
       		<if test="contributor != null">#{contributor,jdbcType=VARCHAR},</if>
       		<if test="remark != null">#{remark,jdbcType=VARCHAR},</if>
-      		<if test="extendedField != null">#{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.technique.mybatis.utils.JSONTypeHandler},</if>
+      		<if test="extendedField != null">#{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.mybatis.JSONTypeHandler},</if>
     	</trim>
 	</insert>
 	
   	<insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
   		insert into z_my_batis(<include refid="Base_Column_List_Without_Id"/>) values
     	<foreach collection="list" item="item" index="index" separator=",">
-      		(#{item.name,jdbcType=VARCHAR},#{item.version,jdbcType=VARCHAR},#{item.releaseTime,jdbcType=TIMESTAMP},#{item.officialUrl,jdbcType=VARCHAR},#{item.contributor,jdbcType=VARCHAR},#{item.remark,jdbcType=VARCHAR},#{item.extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.technique.mybatis.utils.JSONTypeHandler})
+      		(#{item.name,jdbcType=VARCHAR},#{item.version,jdbcType=VARCHAR},#{item.releaseTime,jdbcType=TIMESTAMP},#{item.officialUrl,jdbcType=VARCHAR},#{item.contributor,jdbcType=VARCHAR},#{item.remark,jdbcType=VARCHAR},#{item.extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.mybatis.JSONTypeHandler})
       	</foreach>
 	</insert>
   
@@ -74,7 +74,7 @@
       		<if test="officialUrl != null">official_url = #{officialUrl,jdbcType=VARCHAR},</if>
       		<if test="contributor != null">contributor = #{contributor,jdbcType=VARCHAR},</if>
       		<if test="remark != null">remark = #{remark,jdbcType=VARCHAR},</if>
-      		<if test="extendedField != null">extended_field = #{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.technique.mybatis.utils.JSONTypeHandler},</if>
+      		<if test="extendedField != null">extended_field = #{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.mybatis.JSONTypeHandler},</if>
     	</set>
     	where id = #{id,jdbcType=BIGINT}
 	</update>

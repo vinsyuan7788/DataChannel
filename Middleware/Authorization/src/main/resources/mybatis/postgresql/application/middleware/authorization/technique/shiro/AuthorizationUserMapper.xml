@@ -23,7 +23,7 @@
     	<result column="fingerprint_login" property="fingerprintLogin" jdbcType="VARCHAR"/>
     	<result column="allow_login_type" property="allowLoginType" jdbcType="VARCHAR"/>
     	<result column="is_internal_employee" property="isInternalEmployee" jdbcType="VARCHAR"/>
-    	<result column="extended_field" property="extendedField" jdbcType="OTHER" typeHandler="application.io.spring.common.utils.mybatis.JSONTypeHandler"/>
+    	<result column="extended_field" property="extendedField" jdbcType="OTHER" typeHandler="application.io.spring.common.mybatis.JSONTypeHandler"/>
 	</resultMap>
 
 	<sql id="Query_Where_Clause">
@@ -48,7 +48,7 @@
         	<if test="fingerprintLogin != null and fingerprintLogin != ''"> and fingerprint_login = #{fingerprintLogin,jdbcType=VARCHAR}</if>
         	<if test="allowLoginType != null and allowLoginType != ''"> and allow_login_type = #{allowLoginType,jdbcType=VARCHAR}</if>
         	<if test="isInternalEmployee != null and isInternalEmployee != ''"> and is_internal_employee = #{isInternalEmployee,jdbcType=VARCHAR}</if>
-        	<if test="extendedField != null and extendedField != ''"> and extended_field = #{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.utils.mybatis.JSONTypeHandler}</if>
+        	<if test="extendedField != null and extendedField != ''"> and extended_field = #{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.mybatis.JSONTypeHandler}</if>
     	</where>
  	</sql>
  
@@ -105,14 +105,14 @@
         	<if test="fingerprintLogin != null">#{fingerprintLogin,jdbcType=VARCHAR},</if>
         	<if test="allowLoginType != null">#{allowLoginType,jdbcType=VARCHAR},</if>
         	<if test="isInternalEmployee != null">#{isInternalEmployee,jdbcType=VARCHAR},</if>
-        	<if test="extendedField != null">#{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.utils.mybatis.JSONTypeHandler},</if>
+        	<if test="extendedField != null">#{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.mybatis.JSONTypeHandler},</if>
     	</trim>
 	</insert>
 	
   	<insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
   		insert into x_authorization_user(<include refid="Base_Column_List_Without_Id"/>) values
     	<foreach collection="list" item="item" index="index" separator=",">
-      		(#{item.name,jdbcType=VARCHAR},#{item.password,jdbcType=VARCHAR},#{item.attr,jdbcType=VARCHAR},#{item.realName,jdbcType=VARCHAR},#{item.gender,jdbcType=VARCHAR},#{item.birthday,jdbcType=TIMESTAMP},#{item.officePhone,jdbcType=VARCHAR},#{item.mobile,jdbcType=VARCHAR},#{item.homePhone,jdbcType=VARCHAR},#{item.email,jdbcType=VARCHAR},#{item.remark,jdbcType=VARCHAR},#{item.creator,jdbcType=BIGINT},#{item.status,jdbcType=VARCHAR},#{item.createTime,jdbcType=TIMESTAMP},#{item.updateTime,jdbcType=TIMESTAMP},#{item.code,jdbcType=VARCHAR},#{item.fingerprintLogin,jdbcType=VARCHAR},#{item.allowLoginType,jdbcType=VARCHAR},#{item.isInternalEmployee,jdbcType=VARCHAR},#{item.extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.utils.mybatis.JSONTypeHandler})
+      		(#{item.name,jdbcType=VARCHAR},#{item.password,jdbcType=VARCHAR},#{item.attr,jdbcType=VARCHAR},#{item.realName,jdbcType=VARCHAR},#{item.gender,jdbcType=VARCHAR},#{item.birthday,jdbcType=TIMESTAMP},#{item.officePhone,jdbcType=VARCHAR},#{item.mobile,jdbcType=VARCHAR},#{item.homePhone,jdbcType=VARCHAR},#{item.email,jdbcType=VARCHAR},#{item.remark,jdbcType=VARCHAR},#{item.creator,jdbcType=BIGINT},#{item.status,jdbcType=VARCHAR},#{item.createTime,jdbcType=TIMESTAMP},#{item.updateTime,jdbcType=TIMESTAMP},#{item.code,jdbcType=VARCHAR},#{item.fingerprintLogin,jdbcType=VARCHAR},#{item.allowLoginType,jdbcType=VARCHAR},#{item.isInternalEmployee,jdbcType=VARCHAR},#{item.extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.mybatis.JSONTypeHandler})
       	</foreach>
 	</insert>
 	
@@ -139,7 +139,7 @@
         	<if test="fingerprintLogin != null">fingerprint_login = #{fingerprintLogin,jdbcType=VARCHAR},</if>
         	<if test="allowLoginType != null">allow_login_type = #{allowLoginType,jdbcType=VARCHAR},</if>
         	<if test="isInternalEmployee != null">is_internal_employee = #{isInternalEmployee,jdbcType=VARCHAR},</if>
-        	<if test="extendedField != null">extended_field = #{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.utils.mybatis.JSONTypeHandler},</if>
+        	<if test="extendedField != null">extended_field = #{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.mybatis.JSONTypeHandler},</if>
     	</set>
     	where id = #{id,jdbcType=BIGINT}
 	</update>
