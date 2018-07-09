@@ -45,6 +45,7 @@
  	<dependency>
 	    <groupId>org.springframework.security</groupId>
 	    <artifactId>spring-security-core</artifactId>
+	    <version>4.0.4.RELEASE</version>
 	</dependency>
 	
 	<!-- Here are the dependencies regarding utility -->
@@ -52,7 +53,6 @@
 	    <groupId>org.projectlombok</groupId>
 	    <artifactId>lombok</artifactId>
 	    <version>1.16.20</version>
-	    <scope>provided</scope>
 	</dependency>
   </dependencies>
   
