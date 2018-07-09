@@ -7,6 +7,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @ImportResource("classpath:/mybatis/spring-mybatis-authorization.xml")
-public class MyBatisConfiguration {
+public class MyBatisAuthorizationConfiguration {
 
 }
