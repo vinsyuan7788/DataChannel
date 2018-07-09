@@ -37,6 +37,14 @@
 	    <artifactId>shiro-ehcache</artifactId>
 	    <version>1.4.0</version>
 	</dependency>
+	
+	<!-- Here are the dependencies regarding utility -->
+	<dependency>
+	    <groupId>org.projectlombok</groupId>
+	    <artifactId>lombok</artifactId>
+	    <version>1.16.20</version>
+	    <scope>provided</scope>
+	</dependency>
   </dependencies>
   
 	<!-- Directory specification, plug-ins and packages for Maven build -->
