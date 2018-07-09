@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AuthorizationUserVo extends AuthorizationUser {
+public class AuthorizationUserResourceVo extends AuthorizationUser {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -24,8 +24,8 @@ public class AuthorizationUserVo extends AuthorizationUser {
 
 	@Override
 	public String toString() {
-		return "AuthorizationUserVo [resourceId=" + resourceId + ", resourceName=" + resourceName + ", resource="
-				+ resource + ", resourceType=" + resourceType + ", resourceParentId=" + resourceParentId
+		return "AuthorizationUserResourceVo [resourceId=" + resourceId + ", resourceName=" + resourceName
+				+ ", resource=" + resource + ", resourceType=" + resourceType + ", resourceParentId=" + resourceParentId
 				+ ", resourceCode=" + resourceCode + "]";
 	}
 }

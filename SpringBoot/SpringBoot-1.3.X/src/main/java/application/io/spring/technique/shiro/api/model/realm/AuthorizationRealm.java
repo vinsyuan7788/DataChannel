@@ -17,7 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import application.io.spring.technique.shiro.api.model.AuthorizationUser;
 import application.io.spring.technique.shiro.api.service.AuthorizationUserService;
-import application.io.spring.technique.shiro.api.vo.AuthorizationUserVo;
+import application.io.spring.technique.shiro.api.vo.AuthorizationUserResourceVo;
+import application.io.spring.technique.shiro.api.vo.AuthorizationUserRoleVo;
 import lombok.extern.log4j.Log4j2;
 
 /**
@@ -42,16 +43,28 @@ public class AuthorizationRealm extends AuthorizingRealm {
 		// Normally
 		try {
 			
-			// Get the AuthorizationUser instance from realm
+			// Get the username from realm
 			String username = (String) principals
 					.fromRealm(getClass().getName())
 					.iterator()
 					.next();
 			
-			// Query all (permissions of) resources according to authorizationUser
+			// Query all roles according to the username
 			AuthorizationUser authorizationUser = new AuthorizationUser();
 			authorizationUser.setName(username);
-			List<AuthorizationUserVo> authorizationUserVos = authorizationUserService.selectAllUserResourcesByName(authorizationUser);
+			List<AuthorizationUserRoleVo> authorizationUserRoleVos = authorizationUserService.selectAllUserRolesByName(authorizationUser);
+			
+			/* 
+			 * 	Store all roles into a set
+			 * 	-- Using set here just in case that one user may have the duplicate role
+			 */
+			Set<String> authorizationRoles = new HashSet<String>();
+			for (AuthorizationUserRoleVo authorizationUserRoleVo : authorizationUserRoleVos) {
+				authorizationRoles.add(authorizationUserRoleVo.getRoleCode());
+			}			
+			
+			// Query all (permissions of) resources according to username
+			List<AuthorizationUserResourceVo> authorizationUserResourceVos = authorizationUserService.selectAllUserResourcesByName(authorizationUser);
 			
 			/* 
 			 * 	Store all resources into a set
@@ -59,12 +72,13 @@ public class AuthorizationRealm extends AuthorizingRealm {
 			 *     -- In this case there is no need to store duplicate (permission of) resource
 			 */
 			Set<String> authorizationResources = new HashSet<String>();
-			for (AuthorizationUserVo authorizationUserVo : authorizationUserVos) {
-				authorizationResources.add(authorizationUserVo.getResourceCode());
+			for (AuthorizationUserResourceVo authorizationUserResourceVo : authorizationUserResourceVos) {
+				authorizationResources.add(authorizationUserResourceVo.getResourceCode());
 			}
 			
-			// Put all resources into Shiro for authorization check
+			// Put all roles and resources into Shiro for authorization check
 			SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+			authorizationInfo.addRoles(authorizationRoles);
 			authorizationInfo.addStringPermissions(authorizationResources);
 			
 			// Return authorization information

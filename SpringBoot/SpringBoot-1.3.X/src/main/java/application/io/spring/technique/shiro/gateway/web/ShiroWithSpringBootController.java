@@ -8,13 +8,12 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.session.Session;
-import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +31,8 @@ import application.io.spring.technique.shiro.api.service.AuthorizationRoleResour
 import application.io.spring.technique.shiro.api.service.AuthorizationRoleService;
 import application.io.spring.technique.shiro.api.service.AuthorizationUserRoleService;
 import application.io.spring.technique.shiro.api.service.AuthorizationUserService;
-import application.io.spring.technique.shiro.api.vo.AuthorizationUserVo;
+import application.io.spring.technique.shiro.api.vo.AuthorizationUserResourceVo;
+import application.io.spring.technique.shiro.api.vo.AuthorizationUserRoleVo;
 import application.io.spring.technique.shiro.utils.ShiroUtils;
 
 /**
@@ -69,6 +69,7 @@ public class ShiroWithSpringBootController {
 	@Autowired
 	private AuthorizationRoleResourceService authorizationRoleResourceService;
 
+	@RequiresRoles(value = { "franchiseeBase", "imaginaryRole" }, logical = Logical.OR)
 	@RequiresPermissions(value = { "boxOperate", "imaginaryPermission" }, logical = Logical.OR)
 	@RequestMapping(value = "/testAuthorizationUser", method = RequestMethod.GET)
 	public Map<String, Object> testAuthorizationUser() throws Exception {
@@ -81,15 +82,24 @@ public class ShiroWithSpringBootController {
 			query.setName("darienw");
 			
 			AuthorizationUser authorizationUser = authorizationUserService.selectOneByQuery(query);
-			List<AuthorizationUserVo> authorizationUserVos = authorizationUserService.selectAllUserResourcesByName(query);
-			Set<String> authorizationResources = new HashSet<String>();
-			for (AuthorizationUserVo authorizationUserVo : authorizationUserVos) {
-				authorizationResources.add(authorizationUserVo.getResourceCode());
-			}
-			
 			result.put("authorizationUser", authorizationUser);
+			
+			List<AuthorizationUserRoleVo> authorizationUserRoleVos = authorizationUserService.selectAllUserRolesByName(query);
+			Set<String> authorizationRoles = new HashSet<>();
+			for (AuthorizationUserRoleVo authorizationUserRoleVo : authorizationUserRoleVos) {
+				authorizationRoles.add(authorizationUserRoleVo.getRoleCode());
+			}
+			result.put("authorizationRoles", authorizationRoles);
+			result.put("numberOfAuthorizationRoles", authorizationRoles.size());
+			
+			List<AuthorizationUserResourceVo> authorizationUserResourceVos = authorizationUserService.selectAllUserResourcesByName(query);
+			Set<String> authorizationResources = new HashSet<>();
+			for (AuthorizationUserResourceVo authorizationUserResourceVo : authorizationUserResourceVos) {
+				authorizationResources.add(authorizationUserResourceVo.getResourceCode());
+			}	
 			result.put("authorizationResources", authorizationResources);
 			result.put("numberOfAuthorizationResources", authorizationResources.size());
+			
 			data.put("status", 1);
 			data.put("msg", "success");
 			data.put("result", result);
@@ -103,6 +113,7 @@ public class ShiroWithSpringBootController {
 		}
 	}
 	
+	@RequiresRoles(value = { "imaginaryRole" })
 	@RequiresPermissions(value = { "imaginaryPermission" })
 	@RequestMapping(value = "/testAuthorizationRole", method = RequestMethod.GET)
 	public Map<String, Object> testAuthorizationRole() throws Exception {
@@ -130,6 +141,7 @@ public class ShiroWithSpringBootController {
 		}
 	}
 	
+	@RequiresRoles(value = { "franchiseeBase" })
 	@RequiresPermissions(value = { "boxOperate" })
 	@RequestMapping(value = "/testAuthorizationUserRole", method = RequestMethod.GET)
 	public Map<String, Object> testAuthorizationUserRole() throws Exception {
@@ -159,6 +171,7 @@ public class ShiroWithSpringBootController {
 		}
 	}
 	
+	@RequiresRoles(value = { "franchiseeBase", "imaginaryRole" }, logical = Logical.OR)
 	@RequiresPermissions(value = { "boxOperate", "imaginaryPermission" }, logical = Logical.AND)
 	@RequestMapping(value = "/testAuthorizationResource", method = RequestMethod.GET)
 	public Map<String, Object> testAuthorizationResource() throws Exception {
@@ -186,6 +199,7 @@ public class ShiroWithSpringBootController {
 		}
 	}
 	
+	@RequiresRoles(value = { "franchiseeBase", "imaginaryRole" }, logical = Logical.OR)
 	@RequiresPermissions(value = { "boxOperate", "imaginaryPermission" }, logical = Logical.OR)
 	@RequestMapping(value = "/testAuthorizationRoleResource", method = RequestMethod.GET)
 	public Map<String, Object> testAuthorizationRoleResource() throws Exception {

@@ -5,9 +5,12 @@ import java.util.Map;
 
 import application.io.spring.core.base.provider.dao.BaseDAO;
 import application.io.spring.technique.shiro.api.model.AuthorizationUser;
-import application.io.spring.technique.shiro.api.vo.AuthorizationUserVo;
+import application.io.spring.technique.shiro.api.vo.AuthorizationUserResourceVo;
+import application.io.spring.technique.shiro.api.vo.AuthorizationUserRoleVo;
 
 public interface AuthorizationUserDAO extends BaseDAO<AuthorizationUser> {
 
-	public List<AuthorizationUserVo> selectAllUserResourcesByName(Map<String, Object> params) throws Exception;
+	public List<AuthorizationUserRoleVo> selectAllUserRolesByName(Map<String, Object> params) throws Exception;
+	
+	public List<AuthorizationUserResourceVo> selectAllUserResourcesByName(Map<String, Object> params) throws Exception;
 }
