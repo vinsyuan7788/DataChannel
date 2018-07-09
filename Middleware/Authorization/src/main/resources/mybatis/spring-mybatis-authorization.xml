@@ -16,6 +16,5 @@
 
 	<import resource="spring-mybatis-authorization-default.xml"/>	
 	<import resource="spring-mybatis-authorization-mapper.xml"/>
-	<import resource="spring-mybatis-authorization-proxy.xml"/>
 </beans>
 
