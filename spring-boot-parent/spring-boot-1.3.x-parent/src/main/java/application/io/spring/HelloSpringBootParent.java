@@ -6,7 +6,7 @@ package application.io.spring;
  * @author vinsy
  *
  */
-public class HelloSpringBoot {
+public class HelloSpringBootParent {
 	
 	/**
 	 * 	This is a main method for execution
@@ -14,6 +14,6 @@ public class HelloSpringBoot {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("Hello SpringBoot!");
+		System.out.println("Hello SpringBootParent!");
 	}
 }

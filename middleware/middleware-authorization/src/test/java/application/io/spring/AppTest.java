@@ -1,4 +1,4 @@
-package application.middleware.authorization;
+package application.io.spring;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
