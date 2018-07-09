@@ -100,7 +100,6 @@
 	    <groupId>org.projectlombok</groupId>
 	    <artifactId>lombok</artifactId>
 	    <version>1.16.20</version>
-	    <!-- <scope>provided</scope> -->
 	</dependency>
 	<!--
 		Log4j library: for providing LogManager, etc.
