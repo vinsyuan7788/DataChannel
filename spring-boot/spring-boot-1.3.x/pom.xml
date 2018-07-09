@@ -37,7 +37,7 @@
 	<dependency>
 		<groupId>org.springframework.data</groupId>
 		<artifactId>spring-data-redis</artifactId>
-		<version>1.6.4.RELEASE</version><!--$NO-MVN-MAN-VER$-->
+		<version>1.6.4.RELEASE</version>
 	</dependency>
 	<!-- 
 		Jedis: for providing blazingly small and sane Redis java client
@@ -45,7 +45,7 @@
 	<dependency>
 		<groupId>redis.clients</groupId>
 		<artifactId>jedis</artifactId>
-		<version>2.7.3</version><!--$NO-MVN-MAN-VER$-->
+		<version>2.7.3</version>
 	</dependency>
 	<!--
 		Spring JDBC component
@@ -53,7 +53,17 @@
 	<dependency>
 		<groupId>org.springframework</groupId>
 		<artifactId>spring-jdbc</artifactId>
-		<version>4.2.6.RELEASE</version><!--$NO-MVN-MAN-VER$-->
+		<version>4.2.6.RELEASE</version>
+	</dependency>
+	
+ 	<!-- Here are the dependencies for middle-ware testing -->
+	<!--
+		Spring-transaction component
+	-->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-tx</artifactId>
+	    <version>4.2.6.RELEASE</version>
 	</dependency>
 	
 	<!-- Here are the dependencies regarding utility -->
