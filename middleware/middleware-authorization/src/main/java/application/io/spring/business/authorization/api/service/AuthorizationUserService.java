@@ -1,10 +1,10 @@
-package application.io.spring.business.api.service;
+package application.io.spring.business.authorization.api.service;
 
 import java.util.List;
 
-import application.io.spring.business.api.model.AuthorizationUser;
-import application.io.spring.business.api.vo.AuthorizationUserResourceVo;
-import application.io.spring.business.api.vo.AuthorizationUserRoleVo;
+import application.io.spring.business.authorization.api.model.AuthorizationUser;
+import application.io.spring.business.authorization.api.vo.AuthorizationUserResourceVo;
+import application.io.spring.business.authorization.api.vo.AuthorizationUserRoleVo;
 import application.io.spring.core.base.api.service.BaseService;
 
 public interface AuthorizationUserService extends BaseService<AuthorizationUser> {

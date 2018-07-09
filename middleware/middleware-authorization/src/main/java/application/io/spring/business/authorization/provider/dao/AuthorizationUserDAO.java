@@ -1,11 +1,11 @@
-package application.io.spring.business.provider.dao;
+package application.io.spring.business.authorization.provider.dao;
 
 import java.util.List;
 import java.util.Map;
 
-import application.io.spring.business.api.model.AuthorizationUser;
-import application.io.spring.business.api.vo.AuthorizationUserResourceVo;
-import application.io.spring.business.api.vo.AuthorizationUserRoleVo;
+import application.io.spring.business.authorization.api.model.AuthorizationUser;
+import application.io.spring.business.authorization.api.vo.AuthorizationUserResourceVo;
+import application.io.spring.business.authorization.api.vo.AuthorizationUserRoleVo;
 import application.io.spring.core.base.provider.dao.BaseDAO;
 
 public interface AuthorizationUserDAO extends BaseDAO<AuthorizationUser> {

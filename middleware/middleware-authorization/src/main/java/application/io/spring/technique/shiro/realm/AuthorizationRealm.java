@@ -15,10 +15,10 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import application.io.spring.business.api.model.AuthorizationUser;
-import application.io.spring.business.api.service.AuthorizationUserService;
-import application.io.spring.business.api.vo.AuthorizationUserResourceVo;
-import application.io.spring.business.api.vo.AuthorizationUserRoleVo;
+import application.io.spring.business.authorization.api.model.AuthorizationUser;
+import application.io.spring.business.authorization.api.service.AuthorizationUserService;
+import application.io.spring.business.authorization.api.vo.AuthorizationUserResourceVo;
+import application.io.spring.business.authorization.api.vo.AuthorizationUserRoleVo;
 import lombok.extern.log4j.Log4j2;
 
 /**

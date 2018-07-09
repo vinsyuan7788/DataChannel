@@ -1,6 +1,6 @@
-package application.io.spring.business.api.vo;
+package application.io.spring.business.authorization.api.vo;
 
-import application.io.spring.business.api.model.AuthorizationUser;
+import application.io.spring.business.authorization.api.model.AuthorizationUser;
 import lombok.Getter;
 import lombok.Setter;
 

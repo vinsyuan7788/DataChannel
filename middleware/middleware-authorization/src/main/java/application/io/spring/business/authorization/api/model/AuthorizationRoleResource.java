@@ -1,4 +1,4 @@
-package application.io.spring.business.api.model;
+package application.io.spring.business.authorization.api.model;
 
 import java.util.Date;
 

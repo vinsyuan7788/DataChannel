@@ -1,6 +1,6 @@
-package application.io.spring.business.api.service;
+package application.io.spring.business.authorization.api.service;
 
-import application.io.spring.business.api.model.AuthorizationRoleResource;
+import application.io.spring.business.authorization.api.model.AuthorizationRoleResource;
 import application.io.spring.core.base.api.service.BaseService;
 
 public interface AuthorizationRoleResourceService extends BaseService<AuthorizationRoleResource> {
