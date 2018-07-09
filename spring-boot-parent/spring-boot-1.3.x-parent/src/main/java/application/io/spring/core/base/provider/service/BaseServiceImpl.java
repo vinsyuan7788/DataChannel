@@ -125,6 +125,8 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 	public T selectOneByQuery(T query) throws Exception {
 		
 		try {
+			System.out.println("==================== 根据条件选择一个 ==================");
+			System.out.println("==================== " + baseDAO + " ==================");
 			return baseDAO.getPageableList(getCondition(query, null, 1L, 0L)).get(0);
 		} catch (Exception e) {
 			e.printStackTrace();

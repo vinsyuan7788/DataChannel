@@ -1,5 +1,5 @@
 server:
-  port: 13579
+  port: 24680
   context-path: /spring-boot-application
   servlet-path: /api
   
