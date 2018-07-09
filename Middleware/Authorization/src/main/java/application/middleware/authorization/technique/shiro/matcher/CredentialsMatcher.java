@@ -6,6 +6,8 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 
+import application.middleware.authorization.technique.shiro.utils.ShiroUtils;
+
 /**
  * 	This is a class to implement a custom credentials matcher
  * 
@@ -30,7 +32,7 @@ public class CredentialsMatcher extends SimpleCredentialsMatcher {
 		String rawPasswordFromToken = new String(((UsernamePasswordToken) token).getPassword());
 		
 		// Encode raw password with salt into an encoded password
-		String encodedPassword = md5PasswordEncoder.encodePassword(rawPasswordFromToken, "royalnu-password");
+		String encodedPassword = md5PasswordEncoder.encodePassword(rawPasswordFromToken, ShiroUtils.SALT);
 		
 		/*
 		 * 	Get the credentials from AuthenicationInfo
