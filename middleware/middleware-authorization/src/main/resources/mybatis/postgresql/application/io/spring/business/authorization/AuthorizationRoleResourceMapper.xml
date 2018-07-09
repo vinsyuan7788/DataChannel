@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="application.io.spring.business.provider.dao.AuthorizationRoleResourceDAO" >
+<mapper namespace="application.io.spring.business.authorization.provider.dao.AuthorizationRoleResourceDAO" >
   
-	<resultMap id="BaseResultMap" type="application.io.spring.business.api.model.AuthorizationRoleResource" >
+	<resultMap id="BaseResultMap" type="application.io.spring.business.authorization.api.model.AuthorizationRoleResource" >
     	<id column="id" property="id" jdbcType="BIGINT"/>
     	<result column="role_id" property="roleId" jdbcType="BIGINT"/>
     	<result column="resource_id" property="resourceId" jdbcType="BIGINT"/>
@@ -29,7 +29,7 @@
     	role_id, resource_id, create_time, update_time, extended_field
     </sql>
    
-  	<insert id="insertSelective" parameterType="application.io.spring.business.api.model.AuthorizationRoleResource" useGeneratedKeys="true" keyProperty="id">
+  	<insert id="insertSelective" parameterType="application.io.spring.business.authorization.api.model.AuthorizationRoleResource" useGeneratedKeys="true" keyProperty="id">
     	insert into x_authorization_role_resource
     	<trim prefix="(" suffix=")" suffixOverrides="," >
 			<if test="id != null">id,</if>
@@ -56,7 +56,7 @@
       	</foreach>
 	</insert>
 	
-	<update id="updateByPrimaryKeySelective" parameterType="application.io.spring.business.api.model.AuthorizationRoleResource">
+	<update id="updateByPrimaryKeySelective" parameterType="application.io.spring.business.authorization.api.model.AuthorizationRoleResource">
 		update x_authorization_role_resource
     	<set>
       		<if test="id != null">id = #{id,jdbcType=BIGINT},</if>
@@ -69,7 +69,7 @@
     	where id = #{id,jdbcType=BIGINT}
 	</update>
 	
-	<delete id="deleteByCondition" parameterType="application.io.spring.business.api.model.AuthorizationRoleResource" >
+	<delete id="deleteByCondition" parameterType="application.io.spring.business.authorization.api.model.AuthorizationRoleResource" >
     	delete from x_authorization_role_resource
     	<include refid="Query_Where_Clause"/>
   	</delete>
