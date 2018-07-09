@@ -4,11 +4,11 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>application.data.channel</groupId>
-    <artifactId>SpringCloud</artifactId>
+    <artifactId>spring-cloud</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>SpringCloud-Brixton</artifactId>
-  <name>SpringCloud-Brixton</name>
+  <artifactId>spring-cloud-brixton</artifactId>
+  <name>spring-cloud-brixton</name>
   <url>http://maven.apache.org</url>
 
   <dependencies>
