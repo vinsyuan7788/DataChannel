@@ -53,7 +53,6 @@
 	    <artifactId>spring-tx</artifactId>
 	</dependency>
 	
-	
 	<!-- Here are the dependencies regarding MyBatis -->
 	<!-- 
 		MyBatis core component
