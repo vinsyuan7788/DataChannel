@@ -6,6 +6,9 @@ import org.apache.shiro.subject.Subject;
 
 public class ShiroUtils {
 
+	/**
+	 * 	This is a salt for password encryption
+	 */
 	public static String SALT = "royalnu-password";
 	
 	/**
