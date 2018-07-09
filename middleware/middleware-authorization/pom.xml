@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>application.data.channel</groupId>
+    <artifactId>middleware</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>middleware-authorization</artifactId>
+  <name>middleware-authorization</name>
+  <url>http://maven.apache.org</url>
+
+  <dependencies>
+  	<!-- Here are the dependencies built from local Maven projects or modules-->
+  	<dependency>
+  		<groupId>application.data.channel</groupId>
+  		<artifactId>spring-boot-1.3.x-parent</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  	
+	<!-- Here are the dependencies regarding Shiro  -->	
+	<!-- 
+		Shiro core component
+	-->
+	<dependency>
+	    <groupId>org.apache.shiro</groupId>
+	    <artifactId>shiro-core</artifactId>
+	    <version>1.4.0</version>
+	</dependency>
+	<!-- 
+		Shiro component that supports Spring
+	-->
+	<dependency>
+	    <groupId>org.apache.shiro</groupId>
+	    <artifactId>shiro-spring</artifactId>
+	    <version>1.4.0</version>
+	</dependency>
+	<!-- 
+		Shiro component that supports Ehcache
+	-->
+	<dependency>
+	    <groupId>org.apache.shiro</groupId>
+	    <artifactId>shiro-ehcache</artifactId>
+	    <version>1.4.0</version>
+	</dependency>
+  </dependencies>
+  
+	<!-- Directory specification, plug-ins and packages for Maven build -->
+	<build>
+		<!-- Here specifies main and test directory of source and resources -->
+	    <sourceDirectory>src/main/java</sourceDirectory>
+	    <resources>
+	    	<resource>
+	    		<directory>src/main/resources</directory>
+	   		</resource>
+		</resources>
+	    <testSourceDirectory>src/test/java</testSourceDirectory>
+	    <testResources>
+	    	<testResource>
+	    		<directory>src/test/resources</directory>
+	   		</testResource>
+		</testResources>
+		
+		<!-- Here specifies the plugins that can be used by the children POM files (including this file) of this file -->
+		<pluginManagement>
+			<plugins>
+				<!--
+					This plugin is used to compile the sources of current project
+					== Confirmed usable version: 2.0.2, 3.6.1
+				-->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.6.1</version>
+				</plugin>
+				<!--  
+					This plugin is used to package necessary dependencies and specify main class
+					== Confirmed usable version: 2.4.1
+				-->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>  
+		            <artifactId>maven-shade-plugin</artifactId>  
+		            <version>2.4.1</version>
+				</plugin>
+				<!-- 
+					This plugin is used to pakcage a executable jar for Spring-boot
+					== Confirmed usable version: 1.3.5
+				 -->
+				<plugin>
+					 <groupId>org.springframework.boot</groupId>
+					 <artifactId>spring-boot-maven-plugin</artifactId>
+					 <version>1.3.5.RELEASE</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		
+		<!-- Here specifies the necessary plugins, which must be included by plugin management -->
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>  
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                	<mainClass>application.middleware.authorization.HelloAuthorizationMiddleware</mainClass>
+                </configuration>
+                <executions>
+                    <execution>  
+                        <goals>  
+                            <goal>repackage</goal>  
+                        </goals>  
+                    </execution>  
+                </executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>  
+	            <groupId>org.apache.maven.plugins</groupId>  
+	            <artifactId>maven-shade-plugin</artifactId>  
+	            <executions>  
+	                <execution>  
+	                    <phase>package</phase>  
+	                    <goals>  
+	                        <goal>shade</goal>  
+	                    </goals>  
+	                    <configuration>  
+	                        <transformers>
+	                        	<!-- Here specifies the main class for this Maven project after packaging -->
+	                            <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">  
+	                                <mainClass>application.middleware.authorization.HelloAuthorizationMiddleware</mainClass>
+	                            </transformer>  
+	                        </transformers>  
+	                    </configuration>  
+	                </execution>  
+	            </executions>  
+	        </plugin>
+		</plugins>
+	</build>
+</project>
