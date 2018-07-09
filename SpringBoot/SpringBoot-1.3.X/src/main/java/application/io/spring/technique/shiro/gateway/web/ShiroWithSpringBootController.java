@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
@@ -67,6 +69,7 @@ public class ShiroWithSpringBootController {
 	@Autowired
 	private AuthorizationRoleResourceService authorizationRoleResourceService;
 
+	@RequiresPermissions(value = { "boxOperate", "imaginaryPermission" }, logical = Logical.OR)
 	@RequestMapping(value = "/testAuthorizationUser", method = RequestMethod.GET)
 	public Map<String, Object> testAuthorizationUser() throws Exception {
 		
@@ -100,6 +103,7 @@ public class ShiroWithSpringBootController {
 		}
 	}
 	
+	@RequiresPermissions(value = { "imaginaryPermission" })
 	@RequestMapping(value = "/testAuthorizationRole", method = RequestMethod.GET)
 	public Map<String, Object> testAuthorizationRole() throws Exception {
 		
@@ -126,6 +130,7 @@ public class ShiroWithSpringBootController {
 		}
 	}
 	
+	@RequiresPermissions(value = { "boxOperate" })
 	@RequestMapping(value = "/testAuthorizationUserRole", method = RequestMethod.GET)
 	public Map<String, Object> testAuthorizationUserRole() throws Exception {
 		
@@ -154,6 +159,7 @@ public class ShiroWithSpringBootController {
 		}
 	}
 	
+	@RequiresPermissions(value = { "boxOperate", "imaginaryPermission" }, logical = Logical.AND)
 	@RequestMapping(value = "/testAuthorizationResource", method = RequestMethod.GET)
 	public Map<String, Object> testAuthorizationResource() throws Exception {
 		
@@ -180,6 +186,7 @@ public class ShiroWithSpringBootController {
 		}
 	}
 	
+	@RequiresPermissions(value = { "boxOperate", "imaginaryPermission" }, logical = Logical.OR)
 	@RequestMapping(value = "/testAuthorizationRoleResource", method = RequestMethod.GET)
 	public Map<String, Object> testAuthorizationRoleResource() throws Exception {
 		
