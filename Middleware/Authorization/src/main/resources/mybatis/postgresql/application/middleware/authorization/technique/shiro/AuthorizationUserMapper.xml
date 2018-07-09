@@ -59,7 +59,7 @@
     	name, password, attr, real_name, gender, birthday, office_phone, mobile, home_phone, email, remark, creator, status, create_time, update_time, code, fingerprint_login, allow_login_type, is_internal_employee, extended_field
     </sql>
    
-  	<insert id="insertSelective" parameterType="application.io.spring.technique.shiro.api.model.AuthorizationUser" useGeneratedKeys="true" keyProperty="id">
+  	<insert id="insertSelective" parameterType="application.middleware.authorization.business.api.model.AuthorizationUser" useGeneratedKeys="true" keyProperty="id">
     	insert into x_authorization_user
     	<trim prefix="(" suffix=")" suffixOverrides="," >
 			<if test="id != null">id,</if>
@@ -116,7 +116,7 @@
       	</foreach>
 	</insert>
 	
-	<update id="updateByPrimaryKeySelective" parameterType="application.io.spring.technique.shiro.api.model.AuthorizationUser">
+	<update id="updateByPrimaryKeySelective" parameterType="application.middleware.authorization.business.api.model.AuthorizationUser">
 		update x_authorization_user
     	<set>
       		<if test="id != null">id = #{id,jdbcType=BIGINT},</if>
@@ -165,7 +165,7 @@
 			where id in <foreach collection="ids" item="valueitem" open="(" separator="," close=")">#{valueitem}</foreach>
 	</select>
 	
-	<delete id="deleteByCondition" parameterType="application.io.spring.technique.shiro.api.model.AuthorizationUser" >
+	<delete id="deleteByCondition" parameterType="application.middleware.authorization.business.api.model.AuthorizationUser" >
     	delete from x_authorization_user
     	<include refid="Query_Where_Clause"/>
   	</delete>

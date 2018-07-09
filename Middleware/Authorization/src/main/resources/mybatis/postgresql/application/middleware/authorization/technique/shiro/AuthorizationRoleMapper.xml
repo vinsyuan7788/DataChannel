@@ -35,7 +35,7 @@
     	name, seq, code, role_group, create_time, update_time, remark, extended_field
     </sql>
    
-  	<insert id="insertSelective" parameterType="application.io.spring.technique.shiro.api.model.AuthorizationRole" useGeneratedKeys="true" keyProperty="id">
+  	<insert id="insertSelective" parameterType="application.middleware.authorization.business.api.model.AuthorizationRole" useGeneratedKeys="true" keyProperty="id">
     	insert into x_authorization_role
     	<trim prefix="(" suffix=")" suffixOverrides="," >
 			<if test="id != null">id,</if>
@@ -68,7 +68,7 @@
       	</foreach>
 	</insert>
 	
-	<update id="updateByPrimaryKeySelective" parameterType="application.io.spring.technique.shiro.api.model.AuthorizationRole">
+	<update id="updateByPrimaryKeySelective" parameterType="application.middleware.authorization.business.api.model.AuthorizationRole">
 		update x_authorization_role
     	<set>
       		<if test="id != null">id = #{id,jdbcType=BIGINT},</if>
@@ -84,7 +84,7 @@
     	where id = #{id,jdbcType=BIGINT}
 	</update>
 	
-	<delete id="deleteByCondition" parameterType="application.io.spring.technique.shiro.api.model.AuthorizationRole" >
+	<delete id="deleteByCondition" parameterType="application.middleware.authorization.business.api.model.AuthorizationRole" >
     	delete from x_authorization_role
     	<include refid="Query_Where_Clause"/>
   	</delete>
