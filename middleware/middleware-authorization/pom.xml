@@ -113,12 +113,12 @@
 		</pluginManagement>
 		
 		<!-- Here specifies the necessary plugins, which must be included by plugin management -->
-		<!-- <plugins>
+		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>  
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                	<mainClass>application.io.spring.MiddlewareAuthorizationApplication</mainClass>
+                	<mainClass>application.io.spring.HelloAuthorizationMiddleware</mainClass>
                 </configuration>
                 <executions>
                     <execution>  
@@ -151,15 +151,15 @@
 	                    </goals>  
 	                    <configuration>  
 	                        <transformers>
-	                        	Here specifies the main class for this Maven project after packaging
+	                        	<!-- Here specifies the main class for this Maven project after packaging -->
 	                            <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">  
-	                                <mainClass>application.io.spring.MiddlewareAuthorizationApplication</mainClass>
+	                                <mainClass>application.io.spring.HelloAuthorizationMiddleware</mainClass>
 	                            </transformer>  
 	                        </transformers>  
 	                    </configuration>  
 	                </execution>  
 	            </executions>  
 	        </plugin>
-		</plugins> -->
+		</plugins>
 	</build>
 </project>

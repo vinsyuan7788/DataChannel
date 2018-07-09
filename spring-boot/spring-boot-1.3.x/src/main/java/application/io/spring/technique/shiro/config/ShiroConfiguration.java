@@ -21,7 +21,7 @@ import application.io.spring.technique.shiro.api.model.realm.AuthorizationRealm;
  * @author vinsy
  *
  */
-@Configuration
+//@Configuration
 public class ShiroConfiguration {
 	
     /**
