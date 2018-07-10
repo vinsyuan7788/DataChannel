@@ -43,6 +43,7 @@
         <property name="mapperLocations" >
             <list>
                 <value>classpath:/mybatis/postgresql/application/io/spring/**/*.xml</value>
+                <!-- This one is necessary for middleware-authorization, otherwise it cannot match the statement from BaseDAO -->
                 <value>classpath:/mybatis/postgresql/application/io/spring/business/authorization/*.xml</value>
             </list>
         </property> 
