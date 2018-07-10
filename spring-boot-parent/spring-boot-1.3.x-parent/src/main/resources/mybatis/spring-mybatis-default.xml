@@ -43,6 +43,7 @@
         <property name="mapperLocations" >
             <list>
                 <value>classpath:/mybatis/postgresql/application/io/spring/**/*.xml</value>
+                <value>classpath:/mybatis/postgresql/application/io/spring/business/authorization/*.xml</value>
             </list>
         </property> 
     </bean>
