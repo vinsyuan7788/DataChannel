@@ -335,7 +335,7 @@ public abstract class AbstractReadGeneratorXml {
 				resultList.add("import com.fasterxml.jackson.core.JsonProcessingException;");
 				resultList.add("import " + PackagePrefixUtils.COMMON_PACKAGE_PREFIX + ".exception.CommonException;");
 				resultList.add("import " + PackagePrefixUtils.COMMON_PACKAGE_PREFIX + ".utils.json.GsonUtils;");
-				resultList.add("import " + PackagePrefixUtils.COMMON_PACKAGE_PREFIX + ".validate.JsonSchemaValidator;");
+				resultList.add("import " + PackagePrefixUtils.COMMON_PACKAGE_PREFIX + ".validator.JsonSchemaValidator;");
 				resultList.add("import " + PackagePrefixUtils.CACHE_PACKAGE_PREFIX + ".redis.service.StringRedisCache;");
 				resultList.add("import " + PackagePrefixUtils.CACHE_PACKAGE_PREFIX + ".utils.FileRedisCacheUtils;");
 				resultList.add("import " + PackagePrefixUtils.BASE_PACKAGE_PREFIX + ".gateway.web.BaseController;");
@@ -490,7 +490,7 @@ public abstract class AbstractReadGeneratorXml {
 				resultList.add("import com.fasterxml.jackson.core.JsonProcessingException;");
 				resultList.add("import " + PackagePrefixUtils.COMMON_PACKAGE_PREFIX + ".exception.CommonException;");
 				resultList.add("import " + PackagePrefixUtils.COMMON_PACKAGE_PREFIX + ".utils.json.GsonUtils;");
-				resultList.add("import " + PackagePrefixUtils.COMMON_PACKAGE_PREFIX + ".validate.JsonSchemaValidator;");
+				resultList.add("import " + PackagePrefixUtils.COMMON_PACKAGE_PREFIX + ".validator.JsonSchemaValidator;");
 				resultList.add("import " + PackagePrefixUtils.CACHE_PACKAGE_PREFIX + ".redis.service.StringRedisCache;");
 				resultList.add("import " + PackagePrefixUtils.CACHE_PACKAGE_PREFIX + ".utils.FileRedisCacheUtils;");
 				resultList.add("import " + PackagePrefixUtils.BASE_PACKAGE_PREFIX + ".gateway.web.BaseController;");
