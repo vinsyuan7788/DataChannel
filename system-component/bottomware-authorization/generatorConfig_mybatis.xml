@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <classPathEntry location="postgresql-9.4-1208.jdbc4.jar"/>
+    <context id="context_test" targetRuntime="MyBatis3">
+        <commentGenerator type="application.org.mybatis.common.generator.mybatis.rewrite.RemarkDefaultCommentGenerator">
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <jdbcConnection driverClass="org.postgresql.Driver" connectionURL="jdbc:postgresql://localhost:5432/xyes" userId="postgres" password="postgres">
+            <property name="remarksReporting" value="true"/>
+            <property name="useInformationSchema" value="true"/>
+        </jdbcConnection>
+        <javaModelGenerator targetPackage="application.io.spring.test.api.model" targetProject="D:/GitRepository/Application/DataChannel/system-component/bottomware-authorization/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="rootClass" value="com.royalnu.core.module.com.Identifiable"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <sqlMapGenerator targetPackage="mybatis.postgresql.application.io.spring.test" targetProject="D:/GitRepository/Application/DataChannel/system-component/bottomware-authorization/src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <javaClientGenerator targetPackage="application.io.spring.test.provider.dao" targetProject="D:/GitRepository/Application/DataChannel/system-component/bottomware-authorization/src/main/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <table schema="" tableName="x_authorization_resource" domainObjectName="AuthorizationResource" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+    </context>
+</generatorConfiguration>

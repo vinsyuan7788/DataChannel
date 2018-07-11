@@ -69,26 +69,6 @@
 	</dependency>
 	
 	<!-- Here are the dependencies regarding utility -->
-	<!-- 
-		JSON library: for transforming beans, maps, collections, java arrays and XML to JSON
-		== "<classifier>jdk15</classifier>" is necessary, which is not mentioned by the Maven central repository
-		   == If this is not included, first-time updating Maven project with Eclipse will report an error that this dependency is missing
-	-->
-	<dependency>
-	    <groupId>net.sf.json-lib</groupId>
-	    <artifactId>json-lib</artifactId>
-	    <version>2.4</version>
-	    <classifier>jdk15</classifier>
-	</dependency>
-	<!-- 
-		For conversion from XML to JSON
-		== Missing this dependency will cause an exception that class "nu/xom/Serializer" cannot be found
-	-->
-	<dependency>
-		<groupId>xom</groupId>
-		<artifactId>xom</artifactId>
-		<version>1.2.5</version>  
-    </dependency>
     <!--
     	Apache Common BeanUtils library: for providing an easy-to-use but flexible wrapper around reflection and introspection
     -->

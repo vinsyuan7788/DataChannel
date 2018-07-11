@@ -23,6 +23,7 @@
 	<!--
 		Spring-transaction component
 	-->
+	<!-- 
  	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-tx</artifactId>
@@ -33,7 +34,8 @@
 		<artifactId>spring-jdbc</artifactId>
 		<version>4.2.6.RELEASE</version>
 	</dependency>
-	
+	 -->
+	 
 	<!-- Here are the dependencies regarding Shiro  -->	
 	<!-- 
 		Shiro core component

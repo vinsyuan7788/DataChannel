@@ -25,6 +25,8 @@ public abstract class AbstractReadGeneratorXml {
 	private static final String SERVICE_NAME = "Service.java";
 	private static final String SERVICE_IMPL_NAME = "ServiceImpl.java";
 	private static final String ENCODING = "UTF-8";
+	private static final String BASE_PACKAGE_PREFIX = "application.io.spring.core.base";
+	private static final String CACHE_PACKAGE_PREFIX = "applicaiton.io.spring.core.cache";
 	protected String serviceTemplateFilePath;
 	protected String serviceImplTemplateFilePath;
 	protected String controllerTemplateFilePath;
@@ -140,8 +142,8 @@ public abstract class AbstractReadGeneratorXml {
 				//修改service生成兼容jsonb
 				resultList.add("package " + serviceGeneratorTag.getTargetPackage() + ";");
 				resultList.add("");
-				resultList.add("import com.royalnu.core.module.com.BaseService;");
-				resultList.add("import com.royalnu.core.module.com.PageVo;");
+				resultList.add("import " + BASE_PACKAGE_PREFIX + ".api.service.BaseService;");
+				resultList.add("import " + BASE_PACKAGE_PREFIX + ".api.vo.PageVo;");
 				resultList.add("import " + modelJava + ";");
 				resultList.add("");
 				resultList.add("/**");
@@ -207,8 +209,8 @@ public abstract class AbstractReadGeneratorXml {
 				resultList.add("import net.sf.json.JSONObject;");
 				resultList.add("import org.springframework.stereotype.Service;");
 				resultList.add("import com.royalnu.common.utils.json.GsonUtil;");
-				resultList.add("import com.royalnu.core.module.com.PageVo;");
-				resultList.add("import com.royalnu.core.module.com.impl.BaseServiceImpl;");
+				resultList.add("import " + BASE_PACKAGE_PREFIX + ".api.vo.PageVo;");
+				resultList.add("import " + BASE_PACKAGE_PREFIX + ".provider.service.BaseServiceImpl;");
 				resultList.add("import " + serviceGeneratorTag.getTargetPackage() + "." + domainObjectName + "Service;");
 				resultList.add("import " + daoGeneratorTag.getTargetPackage() + "." + domainObjectName + "DAO;");
 				resultList.add("");
@@ -334,10 +336,10 @@ public abstract class AbstractReadGeneratorXml {
 				resultList.add("import com.royalnu.common.exception.CommonException;");
 				resultList.add("import com.royalnu.common.utils.json.GsonUtil;");
 				resultList.add("import com.royalnu.common.validate.json.JsonSchemaValidator;");
-				resultList.add("import com.royalnu.core.component.cache.redis.service.StringRedisCache;");
-				resultList.add("import com.royalnu.core.module.cache.util.FileRedisCacheUtil;");
-				resultList.add("import com.royalnu.core.module.com.BaseController;");
-				resultList.add("import com.royalnu.core.module.com.PageVo;");
+				resultList.add("import " + CACHE_PACKAGE_PREFIX + ".redis.service.StringRedisCache;");
+				resultList.add("import " + CACHE_PACKAGE_PREFIX + ".utils.FileRedisCacheUtils;");
+				resultList.add("import " + BASE_PACKAGE_PREFIX + ".gateway.web.BaseController;");
+				resultList.add("import " + BASE_PACKAGE_PREFIX + ".api.vo.PageVo;");
 				resultList.add("import " + modelGeneratorTag.getTargetPackage() + "." + domainObjectName + ";");
 				resultList.add("import " + serviceGeneratorTag.getTargetPackage() + "." + domainObjectName + "Service;");
 				resultList.add("import " + packageString +"FilePath;");
@@ -489,10 +491,10 @@ public abstract class AbstractReadGeneratorXml {
 				resultList.add("import com.royalnu.common.exception.CommonException;");
 				resultList.add("import com.royalnu.common.utils.json.GsonUtil;");
 				resultList.add("import com.royalnu.common.validate.json.JsonSchemaValidator;");
-				resultList.add("import com.royalnu.core.component.cache.redis.service.StringRedisCache;");
-				resultList.add("import com.royalnu.core.module.cache.util.FileRedisCacheUtil;");
-				resultList.add("import com.royalnu.core.module.com.BaseController;");
-				resultList.add("import com.royalnu.core.module.com.PageVo;");
+				resultList.add("import " + CACHE_PACKAGE_PREFIX + ".redis.service.StringRedisCache;");
+				resultList.add("import " + CACHE_PACKAGE_PREFIX + ".utils.FileRedisCacheUtils;");
+				resultList.add("import " + BASE_PACKAGE_PREFIX + ".gateway.web.BaseController;");
+				resultList.add("import " + BASE_PACKAGE_PREFIX + ".api.vo.PageVo;");
 				resultList.add("import " + modelGeneratorTag.getTargetPackage() + "." + domainObjectName + ";");
 				resultList.add("import " + serviceGeneratorTag.getTargetPackage() + "." + domainObjectName + "Service;");
 				resultList.add("import " + packageString +"FilePath;");
@@ -770,8 +772,8 @@ public abstract class AbstractReadGeneratorXml {
 			resultList.add(" *	");
 			resultList.add(" * 	@ClassName: RedisKeyPrefixUtil");
 			resultList.add(" *  @Description redis缓存前缀公共类，避免redis缓存key重复，建议key值所需的前缀都在此类配置");
-			resultList.add(" *	@author linpeixiong");
-			resultList.add(" *  @date 2017年10月13日 下午4:24:24 ");
+			resultList.add(" *	@author vinsy");
+			resultList.add(" *  @date 2018年7月11日 下午4:24:24 ");
 			resultList.add(" *	");
 			resultList.add(" *	@Description 以下仅以es-preferential-server中的RedisKeyPrefixUtil作为例子，更多用法参考es-api-server和es-manger-server");
 			resultList.add(" *	@author vinsy");
@@ -962,7 +964,7 @@ public abstract class AbstractReadGeneratorXml {
 				//修改dao生成兼容jsonb
 				resultList.add(lineList.get(0));
 				resultList.add("");
-				resultList.add("import com.royalnu.core.module.com." + rootDaoName + ";");
+				resultList.add("import " + BASE_PACKAGE_PREFIX + ".provider.dao." + rootDaoName + ";");
 				resultList.add("import " + modelJava + ";");
 				resultList.add("import java.util.List;");
 				resultList.add("import java.util.Map;");
