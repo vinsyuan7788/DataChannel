@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="application.io.spring.business.authorization.provider.dao.AuthorizationResourceDAO" >
+  
+	<resultMap id="BaseResultMap" type="application.io.spring.business.authorization.api.model.AuthorizationResource" >
+    	<id column="id" property="id" jdbcType="BIGINT"/>
+    	<result column="name" property="name" jdbcType="VARCHAR"/>
+    	<result column="resource" property="resource" jdbcType="VARCHAR"/>
+    	<result column="resource_type" property="resourceType" jdbcType="VARCHAR"/>
+    	<result column="seq" property="seq" jdbcType="BIGINT"/>
+    	<result column="parent_id" property="parentId" jdbcType="BIGINT"/>
+    	<result column="left_value" property="leftValue" jdbcType="BIGINT"/>
+    	<result column="right_value" property="rightValue" jdbcType="BIGINT"/>
+    	<result column="code" property="code" jdbcType="VARCHAR"/>
+    	<result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    	<result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    	<result column="remark" property="remark" jdbcType="VARCHAR"/>
+    	<result column="extended_field" property="extendedField" jdbcType="OTHER" typeHandler="application.io.spring.common.mybatis.JSONTypeHandler"/>
+	</resultMap>
+
+	<sql id="Query_Where_Clause">
+		<where>
+			<if test="id != null"> and id = #{id,jdbcType=BIGINT}</if>
+        	<if test="name != null and name != ''"> and name = #{name,jdbcType=VARCHAR}</if>
+        	<if test="resource != null and resource != ''"> and resource = #{resource,jdbcType=VARCHAR}</if>
+        	<if test="resourceType != null and resourceType != ''"> and resource_type = #{resourceType,jdbcType=VARCHAR}</if>
+        	<if test="seq != null and seq != ''"> and seq = #{seq,jdbcType=BIGINT}</if>
+        	<if test="parentId != null and parentId != ''"> and parent_id = #{parentId,jdbcType=BIGINT}</if>
+        	<if test="leftValue != null and leftValue != ''"> and left_value = #{leftValue,jdbcType=BIGINT}</if>
+        	<if test="rightValue != null and rightValue != ''"> and right_value = #{rightValue,jdbcType=BIGINT}</if>
+        	<if test="code != null and code != ''"> and code = #{code,jdbcType=VARCHAR}</if>
+        	<if test="createTime != null and createTime != ''"> and create_time = #{createTime,jdbcType=TIMESTAMP} :: timestamp with time zone</if>
+        	<if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime,jdbcType=TIMESTAMP} :: timestamp with time zone</if>
+        	<if test="remark != null and remark != ''"> and remark = #{remark,jdbcType=VARCHAR}</if>
+        	<if test="extendedField != null and extendedField != ''"> and extended_field = #{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.mybatis.JSONTypeHandler}</if>
+    	</where>
+ 	</sql>
+ 
+ 	<sql id="Base_Column_List">
+    	id, name, resource, resource_type, seq, parent_id, left_value, right_value, code, create_time, update_time, remark, extended_field
+    </sql>
+    <sql id="Base_Column_List_Without_Id">
+    	name, resource, resource_type, seq, parent_id, left_value, right_value, code, create_time, update_time, remark, extended_field
+    </sql>
+   
+  	<insert id="insertSelective" parameterType="application.io.spring.business.authorization.api.model.AuthorizationResource" useGeneratedKeys="true" keyProperty="id">
+    	insert into x_authorization_resource
+    	<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="id != null">id,</if>
+        	<if test="name != null">name,</if>
+        	<if test="resource != null">resource,</if>
+        	<if test="resourceType != null">resource_type,</if>
+        	<if test="seq != null">seq,</if>
+        	<if test="parentId != null">parent_id,</if>
+        	<if test="leftValue != null">left_value,</if>
+        	<if test="rightValue != null">right_value,</if>
+        	<if test="code != null">code,</if>
+        	<if test="createTime != null">create_time,</if>
+        	<if test="updateTime != null">update_time,</if>
+        	<if test="remark != null">remark,</if>
+        	<if test="extendedField != null">extended_field,</if>
+    	</trim>
+    	<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="id != null">#{id,jdbcType=BIGINT},</if>
+        	<if test="name != null">#{name,jdbcType=VARCHAR},</if>
+        	<if test="resource != null">#{resource,jdbcType=VARCHAR},</if>
+        	<if test="resourceType != null">#{resourceType,jdbcType=VARCHAR},</if>
+        	<if test="seq != null">#{seq,jdbcType=BIGINT},</if>
+        	<if test="parentId != null">#{parentId,jdbcType=BIGINT},</if>
+        	<if test="leftValue != null">#{leftValue,jdbcType=BIGINT},</if>
+        	<if test="rightValue != null">#{rightValue,jdbcType=BIGINT},</if>
+        	<if test="code != null">#{code,jdbcType=VARCHAR},</if>
+        	<if test="createTime != null">#{createTime,jdbcType=TIMESTAMP},</if>
+        	<if test="updateTime != null">#{updateTime,jdbcType=TIMESTAMP},</if>
+        	<if test="remark != null">#{remark,jdbcType=VARCHAR},</if>
+        	<if test="extendedField != null">#{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.mybatis.JSONTypeHandler},</if>
+    	</trim>
+	</insert>
+	
+  	<insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+  		insert into x_authorization_resource(<include refid="Base_Column_List_Without_Id"/>) values
+    	<foreach collection="list" item="item" index="index" separator=",">
+      		(#{item.name,jdbcType=VARCHAR},#{item.resource,jdbcType=VARCHAR},#{item.resourceType,jdbcType=VARCHAR},#{item.seq,jdbcType=BIGINT},#{item.parentId,jdbcType=BIGINT},#{item.leftValue,jdbcType=BIGINT},#{item.rightValue,jdbcType=BIGINT},#{item.code,jdbcType=VARCHAR},#{item.createTime,jdbcType=TIMESTAMP},#{item.updateTime,jdbcType=TIMESTAMP},#{item.remark,jdbcType=VARCHAR},#{item.extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.mybatis.JSONTypeHandler})
+      	</foreach>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="application.io.spring.business.authorization.api.model.AuthorizationResource">
+		update x_authorization_resource
+    	<set>
+      		<if test="id != null">id = #{id,jdbcType=BIGINT},</if>
+        	<if test="name != null">name = #{name,jdbcType=VARCHAR},</if>
+        	<if test="resource != null">resource = #{resource,jdbcType=VARCHAR},</if>
+        	<if test="resourceType != null">resource_type = #{resourceType,jdbcType=VARCHAR},</if>
+        	<if test="seq != null">seq = #{seq,jdbcType=BIGINT},</if>
+        	<if test="parentId != null">parent_id = #{parentId,jdbcType=BIGINT},</if>
+        	<if test="leftValue != null">left_value = #{leftValue,jdbcType=BIGINT},</if>
+        	<if test="rightValue != null">right_value = #{rightValue,jdbcType=BIGINT},</if>
+        	<if test="code != null">code = #{code,jdbcType=VARCHAR},</if>
+        	<if test="createTime != null">create_time = #{createTime,jdbcType=TIMESTAMP},</if>
+        	<if test="updateTime != null">update_time = #{updateTime,jdbcType=TIMESTAMP},</if>
+        	<if test="remark != null">remark = #{remark,jdbcType=VARCHAR},</if>
+        	<if test="extendedField != null">extended_field = #{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.mybatis.JSONTypeHandler},</if>
+    	</set>
+    	where id = #{id,jdbcType=BIGINT}
+	</update>
+	
+	<delete id="deleteByCondition" parameterType="application.io.spring.business.authorization.api.model.AuthorizationResource" >
+    	delete from x_authorization_resource
+    	<include refid="Query_Where_Clause"/>
+  	</delete>
+	
+	<select id="getPageableList" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List"/> from x_authorization_resource
+    	<include refid="Query_Where_Clause"/>
+    	<if test="orderby != null"> order by ${orderby} </if>
+    	<if test="limit != null"> limit ${limit} </if>
+    	<if test="offset != null"> offset ${offset} </if>
+	</select>
+	
+	<select id="getListCount" parameterType="java.util.Map" resultType="java.lang.Long">
+		select count(id) from x_authorization_resource
+	   	<include refid="Query_Where_Clause"/>
+	   	<if test="orderby != null"> order by ${orderby} </if>
+	   	<if test="limit != null"> limit ${limit} </if>
+	   	<if test="offset != null"> offset ${offset} </if>
+	</select>
+	
+	<select id="selectByIdCollection" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List"/> from x_authorization_resource
+			where id in <foreach collection="ids" item="valueitem" open="(" separator="," close=")">#{valueitem}</foreach>
+	</select>
+	
+</mapper>

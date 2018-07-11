@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="application.io.spring.business.authorization.provider.dao.AuthorizationUserRoleDAO" >
+  
+	<resultMap id="BaseResultMap" type="application.io.spring.business.authorization.api.model.AuthorizationUserRole" >
+    	<id column="id" property="id" jdbcType="BIGINT"/>
+    	<result column="user_id" property="userId" jdbcType="BIGINT"/>
+    	<result column="role_id" property="roleId" jdbcType="BIGINT"/>
+    	<result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    	<result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    	<result column="extended_field" property="extendedField" jdbcType="OTHER" typeHandler="application.io.spring.common.mybatis.JSONTypeHandler"/>
+	</resultMap>
+
+	<sql id="Query_Where_Clause">
+		<where>
+			<if test="id != null"> and id = #{id,jdbcType=BIGINT}</if>
+			<if test="userId != null and userId != ''"> and user_id = #{userId,jdbcType=BIGINT}</if>
+        	<if test="roleId != null and roleId != ''"> and role_id = #{roleId,jdbcType=BIGINT}</if>
+        	<if test="createTime != null and createTime != ''"> and create_time = #{createTime,jdbcType=TIMESTAMP} :: timestamp with time zone</if>
+        	<if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime,jdbcType=TIMESTAMP} :: timestamp with time zone</if>
+        	<if test="extendedField != null and extendedField != ''"> and extended_field = #{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.mybatis.JSONTypeHandler}</if>
+    	</where>
+ 	</sql>
+ 
+ 	<sql id="Base_Column_List">
+    	id, user_id, role_id, create_time, update_time, extended_field
+    </sql>
+    <sql id="Base_Column_List_Without_Id">
+    	user_id, role_id, create_time, update_time, extended_field
+    </sql>
+   
+  	<insert id="insertSelective" parameterType="application.io.spring.business.authorization.api.model.AuthorizationUserRole" useGeneratedKeys="true" keyProperty="id">
+    	insert into x_authorization_user_role
+    	<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="id != null">id,</if>
+			<if test="userId != null">user_id,</if>
+        	<if test="roleId != null">role_id,</if>
+        	<if test="createTime != null">create_time,</if>
+        	<if test="updateTime != null">update_time,</if>
+        	<if test="extendedField != null">extended_field,</if>
+    	</trim>
+    	<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="id != null">#{id,jdbcType=BIGINT},</if>
+			<if test="userId != null">#{userId,jdbcType=BIGINT},</if>
+        	<if test="roleId != null">#{roleId,jdbcType=BIGINT},</if>
+        	<if test="createTime != null">#{createTime,jdbcType=TIMESTAMP},</if>
+        	<if test="updateTime != null">#{updateTime,jdbcType=TIMESTAMP},</if>
+        	<if test="extendedField != null">#{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.mybatis.JSONTypeHandler},</if>
+    	</trim>
+	</insert>
+	
+  	<insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+  		insert into x_authorization_user_role(<include refid="Base_Column_List_Without_Id"/>) values
+    	<foreach collection="list" item="item" index="index" separator=",">
+      		(#{item.userId,jdbcType=BIGINT},#{item.roleId,jdbcType=BIGINT},#{item.createTime,jdbcType=TIMESTAMP},#{item.updateTime,jdbcType=TIMESTAMP},#{item.extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.mybatis.JSONTypeHandler})
+      	</foreach>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="application.io.spring.business.authorization.api.model.AuthorizationUserRole">
+		update x_authorization_user_role
+    	<set>
+      		<if test="id != null">id = #{id,jdbcType=BIGINT},</if>
+      		<if test="userId != null">user_id = #{userId,jdbcType=VARCHAR},</if>
+        	<if test="roleId != null">role_id = #{roleId,jdbcType=VARCHAR},</if>
+        	<if test="createTime != null">create_time = #{createTime,jdbcType=TIMESTAMP},</if>
+        	<if test="updateTime != null">update_time = #{updateTime,jdbcType=TIMESTAMP},</if>
+        	<if test="extendedField != null">extended_field = #{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.mybatis.JSONTypeHandler},</if>
+    	</set>
+    	where id = #{id,jdbcType=BIGINT}
+	</update>
+	
+	<delete id="deleteByCondition" parameterType="application.io.spring.business.authorization.api.model.AuthorizationUserRole" >
+    	delete from x_authorization_user_role
+    	<include refid="Query_Where_Clause"/>
+  	</delete>
+	
+	<select id="getPageableList" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List"/> from x_authorization_user_role
+    	<include refid="Query_Where_Clause"/>
+    	<if test="orderby != null"> order by ${orderby} </if>
+    	<if test="limit != null"> limit ${limit} </if>
+    	<if test="offset != null"> offset ${offset} </if>
+	</select>
+	
+	<select id="getListCount" parameterType="java.util.Map" resultType="java.lang.Long">
+		select count(id) from x_authorization_user_role
+	   	<include refid="Query_Where_Clause"/>
+	   	<if test="orderby != null"> order by ${orderby} </if>
+	   	<if test="limit != null"> limit ${limit} </if>
+	   	<if test="offset != null"> offset ${offset} </if>
+	</select>
+	
+	<select id="selectByIdCollection" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List"/> from x_authorization_user_role
+			where id in <foreach collection="ids" item="valueitem" open="(" separator="," close=")">#{valueitem}</foreach>
+	</select>
+	
+</mapper>
