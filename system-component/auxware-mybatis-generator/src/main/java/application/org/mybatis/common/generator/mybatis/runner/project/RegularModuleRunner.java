@@ -30,12 +30,12 @@ public class RegularModuleRunner extends AbstractGeneratorRunner {
 	public void generator() throws Exception {
 
 		// 此处是"com.royalnu.模块名"
-		String modulePackage = "com.royalnu.xykj.department";	
+		String modulePackage = "application.io.spring.test";	
 		// 此处是"context_最小颗粒度的模块名"
-		String contextName = "context_department";		
+		String contextName = "context_test";		
 		Map<String, String> tableMap = new HashMap<String, String>();
 		// 此处不要以"t_"开头，可能引起问题，参见@AbstractReadGeneratorXml#getRestPathByTableName
-		tableMap.put("y_department", "Department");
+		tableMap.put("x_authorization_resource", "AuthorizationResource");
 		// 生成模板
 		super.run(modulePackage, contextName, tableMap);
 		// 打印信息
