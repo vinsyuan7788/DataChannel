@@ -13,7 +13,7 @@
         </jdbcConnection>
         <javaModelGenerator targetPackage="application.io.spring.test.api.model" targetProject="D:/GitRepository/Application/DataChannel/system-component/bottomware-authorization/src/main/java">
             <property name="enableSubPackages" value="true"/>
-            <property name="rootClass" value="com.royalnu.core.module.com.Identifiable"/>
+            <property name="rootClass" value="application.io.spring.core.base.api.model.Identifiable"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
         <sqlMapGenerator targetPackage="mybatis.postgresql.application.io.spring.test" targetProject="D:/GitRepository/Application/DataChannel/system-component/bottomware-authorization/src/main/resources">

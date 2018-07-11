@@ -11,7 +11,7 @@ public class BaseReadGeneratorXml extends AbstractReadGeneratorXml{
 	public static final String CONTROLLER_TEMPLATEFILEPATH = "ControllerTemplate.txt";
 	
 	public BaseReadGeneratorXml(){
-		super.rootDaoName = "BaseDao";
+		super.rootDaoName = "BaseDAO";
 		super.serviceTemplateFilePath = SERVICE_TEMPLATEFILEPATH;
 		super.serviceImplTemplateFilePath = SERVICEIMPL_TEMPLATEFILEPATH;
 		super.controllerTemplateFilePath = CONTROLLER_TEMPLATEFILEPATH;

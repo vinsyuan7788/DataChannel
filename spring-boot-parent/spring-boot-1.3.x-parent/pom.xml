@@ -121,7 +121,7 @@
 	<dependency>
 	    <groupId>com.google.code.gson</groupId>
 	    <artifactId>gson</artifactId>
-	    </dependency>
+	</dependency>
 	<!-- 
 		Apache Common Lang3: a package of Java utility classes for the classes that are in java.lang's hierarchy, or are considered to be so standard as to justify existence in java.lang.
 	-->
@@ -157,6 +157,14 @@
 		<groupId>xom</groupId>
 		<artifactId>xom</artifactId>
 		<version>1.2.5</version>  
+    </dependency>
+    <!--
+    	JSON validator 
+    -->
+    <dependency>
+        <groupId>com.github.fge</groupId>
+        <artifactId>json-schema-validator</artifactId>
+        <version>2.2.6</version>
     </dependency>
   </dependencies>
   

@@ -1,4 +1,4 @@
-package application.io.spring.common.utils.gson;
+package application.io.spring.common.utils.json;
 
 import java.lang.reflect.Type;
 import java.text.ParseException;
@@ -15,7 +15,7 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
-import application.io.spring.common.utils.DateUtils;
+import application.io.spring.common.utils.date.DateUtils;
 
 public class DateSerializer implements JsonSerializer<Date>, JsonDeserializer<Date> {
 

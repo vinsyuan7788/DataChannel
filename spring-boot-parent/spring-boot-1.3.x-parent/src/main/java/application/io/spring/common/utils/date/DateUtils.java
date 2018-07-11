@@ -1,4 +1,4 @@
-package application.io.spring.common.utils;
+package application.io.spring.common.utils.date;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

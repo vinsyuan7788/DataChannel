@@ -1,4 +1,4 @@
-package application.io.spring.common.utils;
+package application.io.spring.common.utils.json;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -6,9 +6,6 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import application.io.spring.common.utils.gson.DateSerializer;
-import application.io.spring.common.utils.gson.LongSerializer;
 
 /**
  * 	This is a class to provide utility regarding GSON

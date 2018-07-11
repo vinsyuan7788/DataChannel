@@ -8,7 +8,7 @@ import java.util.Map;
 import application.io.spring.common.exception.CommonException;
 import application.io.spring.common.service.InitService;
 import application.io.spring.common.spring.SpringContextHolder;
-import application.io.spring.common.utils.GsonUtils;
+import application.io.spring.common.utils.json.GsonUtils;
 import application.io.spring.core.base.api.model.Identifiable;
 import application.io.spring.core.base.api.service.BaseService;
 import application.io.spring.core.base.provider.dao.BaseDAO;

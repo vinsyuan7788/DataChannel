@@ -1,4 +1,4 @@
-package application.io.spring.common.utils.gson;
+package application.io.spring.common.utils.json;
 
 import java.lang.reflect.Type;
 
