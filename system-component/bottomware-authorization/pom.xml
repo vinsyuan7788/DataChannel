@@ -18,23 +18,6 @@
   		<artifactId>spring-boot-1.3.x-parent</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
- 
- 	<!-- Here are the dependencies for middle-ware testing -->
-	<!--
-		Spring-transaction component
-	-->
-	<!-- 
- 	<dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>spring-tx</artifactId>
-	    <version>4.2.6.RELEASE</version>
-	</dependency>
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-jdbc</artifactId>
-		<version>4.2.6.RELEASE</version>
-	</dependency>
-	 -->
 	 
 	<!-- Here are the dependencies regarding Shiro  -->	
 	<!-- 
