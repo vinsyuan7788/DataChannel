@@ -25,6 +25,7 @@ public abstract class AbstractReadGeneratorXml {
 	private static final String SERVICE_NAME = "Service.java";
 	private static final String SERVICE_IMPL_NAME = "ServiceImpl.java";
 	private static final String ENCODING = "UTF-8";
+	private static final String COMMON_PACKAGE_PREFIX = "application.io.spring.common";
 	private static final String BASE_PACKAGE_PREFIX = "application.io.spring.core.base";
 	private static final String CACHE_PACKAGE_PREFIX = "applicaiton.io.spring.core.cache";
 	protected String serviceTemplateFilePath;
@@ -208,7 +209,7 @@ public abstract class AbstractReadGeneratorXml {
 				resultList.add("import javax.annotation.Resource;");
 				resultList.add("import net.sf.json.JSONObject;");
 				resultList.add("import org.springframework.stereotype.Service;");
-				resultList.add("import com.royalnu.common.utils.json.GsonUtil;");
+				resultList.add("import " + COMMON_PACKAGE_PREFIX + ".utils.json.GsonUtils;");
 				resultList.add("import " + BASE_PACKAGE_PREFIX + ".api.vo.PageVo;");
 				resultList.add("import " + BASE_PACKAGE_PREFIX + ".provider.service.BaseServiceImpl;");
 				resultList.add("import " + serviceGeneratorTag.getTargetPackage() + "." + domainObjectName + "Service;");
@@ -333,9 +334,9 @@ public abstract class AbstractReadGeneratorXml {
 				resultList.add("import org.springframework.web.bind.annotation.RequestParam;");
 				resultList.add("import org.springframework.web.bind.annotation.RestController;");
 				resultList.add("import com.fasterxml.jackson.core.JsonProcessingException;");
-				resultList.add("import com.royalnu.common.exception.CommonException;");
-				resultList.add("import com.royalnu.common.utils.json.GsonUtil;");
-				resultList.add("import com.royalnu.common.validate.json.JsonSchemaValidator;");
+				resultList.add("import " + COMMON_PACKAGE_PREFIX + ".exception.CommonException;");
+				resultList.add("import " + COMMON_PACKAGE_PREFIX + ".utils.json.GsonUtil;");
+				resultList.add("import " + COMMON_PACKAGE_PREFIX + ".validate.json.JsonSchemaValidator;");
 				resultList.add("import " + CACHE_PACKAGE_PREFIX + ".redis.service.StringRedisCache;");
 				resultList.add("import " + CACHE_PACKAGE_PREFIX + ".utils.FileRedisCacheUtils;");
 				resultList.add("import " + BASE_PACKAGE_PREFIX + ".gateway.web.BaseController;");
@@ -488,9 +489,9 @@ public abstract class AbstractReadGeneratorXml {
 				resultList.add("import org.springframework.web.bind.annotation.RequestParam;");
 				resultList.add("import org.springframework.web.bind.annotation.RestController;");
 				resultList.add("import com.fasterxml.jackson.core.JsonProcessingException;");
-				resultList.add("import com.royalnu.common.exception.CommonException;");
-				resultList.add("import com.royalnu.common.utils.json.GsonUtil;");
-				resultList.add("import com.royalnu.common.validate.json.JsonSchemaValidator;");
+				resultList.add("import " + COMMON_PACKAGE_PREFIX + ".exception.CommonException;");
+				resultList.add("import " + COMMON_PACKAGE_PREFIX + ".utils.json.GsonUtil;");
+				resultList.add("import " + COMMON_PACKAGE_PREFIX + ".validate.json.JsonSchemaValidator;");
 				resultList.add("import " + CACHE_PACKAGE_PREFIX + ".redis.service.StringRedisCache;");
 				resultList.add("import " + CACHE_PACKAGE_PREFIX + ".utils.FileRedisCacheUtils;");
 				resultList.add("import " + BASE_PACKAGE_PREFIX + ".gateway.web.BaseController;");
