@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <classPathEntry location="postgresql-9.4-1208.jdbc4.jar"/>
+    <context id="context_user" targetRuntime="MyBatis3">
+        <commentGenerator type="com.royalnu.common.generator.mybatis.rewrite.RemarkDefaultCommentGenerator">
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <jdbcConnection driverClass="org.postgresql.Driver" connectionURL="jdbc:postgresql://localhost:5432/test" userId="postgres" password="postgres">
+            <property name="remarksReporting" value="true"/>
+            <property name="useInformationSchema" value="true"/>
+        </jdbcConnection>
+        <javaModelGenerator targetPackage="com.royalnu.xykj.user.api.model" targetProject="D:/eclipse_workspace/XYKJ/Testing/reverse-engineering-server/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="rootClass" value="com.royalnu.core.module.com.Identifiable"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <sqlMapGenerator targetPackage="mybatis.postgresql.com.royalnu.xykj.user" targetProject="D:/eclipse_workspace/XYKJ/Testing/reverse-engineering-server/src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <javaClientGenerator targetPackage="com.royalnu.xykj.user.provider.dao" targetProject="D:/eclipse_workspace/XYKJ/Testing/reverse-engineering-server/src/main/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <table schema="" tableName="x_user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+    </context>
+</generatorConfiguration>

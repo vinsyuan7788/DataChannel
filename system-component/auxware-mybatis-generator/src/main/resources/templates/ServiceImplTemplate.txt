@@ -1,0 +1,13 @@
+package ${targetPackage};
+
+import org.springframework.stereotype.Service;
+
+import com.royalnu.core.module.com.impl.BaseServiceImpl;
+import ${modelFullName};
+import ${serviceFullName};
+
+@Service("${firstLowServiceName}")
+public class ${modelName}ServiceImpl extends BaseServiceImpl<${modelName}> implements ${modelName}Service{
+
+
+}

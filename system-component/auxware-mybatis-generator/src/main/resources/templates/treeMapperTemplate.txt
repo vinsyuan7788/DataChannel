@@ -1,0 +1,45 @@
+	<update id="updateLeftValue" parameterType="java.util.Map">
+		UPDATE ${tableName}
+		<set>
+			left_value = left_value + #{increAmount}
+		</set>
+		<where>
+			left_value &gt;= #{leftValue}
+		</where>
+	</update>
+	<update id="updateRightValue" parameterType="java.util.Map">
+		UPDATE ${tableName}
+		<set>
+			right_value = right_value + #{increAmount}
+		</set>
+		<where>
+			right_value &gt;= #{rightValue}
+		</where>
+	</update>
+	<select id="selectByParentId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from ${tableName} where parent_id = #{parentId}
+	</select>
+	<select id="selectByName" parameterType="${modelFullName}" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from ${tableName} where parent_id = #{parentId} and name =
+		#{name}
+	</select>
+	<select id="selectLeafByRegion" parameterType="${modelFullName}"
+		resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from ${tableName} where left_value &gt;= #{leftValue} and
+		right_value &lt;= #{rightValue}
+		<!-- 添加权重排序 -->
+		order by seq
+	</select>
+
+	<delete id="deleteByRegionContain" parameterType="${modelFullName}">
+		delete from ${tableName}
+		<where>
+			left_value &gt;= #{leftValue} and right_value &lt;= #{rightValue}
+		</where>
+	</delete>
+	<delete id="deleteByRegion" parameterType="${modelFullName}">
+		delete from ${tableName}
+		<where>
+			left_value &gt; #{leftValue} and right_value &lt; #{rightValue}
+		</where>
+	</delete>

@@ -1,0 +1,13 @@
+package ${targetPackage};
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.royalnu.core.module.com.TreeController;
+import ${modelFullName};
+
+@RestController
+@RequestMapping(value = "${restPath}")
+public class ${modelName}Controller extends TreeController<${modelName}>{
+
+}

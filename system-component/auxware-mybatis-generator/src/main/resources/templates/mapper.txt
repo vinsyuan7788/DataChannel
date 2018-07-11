@@ -1,0 +1,21 @@
+
+<select id="getPageableList" parameterType="java.util.Map" resultMap="BaseResultMap">select
+    <include refid="Base_Column_List"/>from ${tableName}
+    <include refid="Query_Where_Clause"/>
+    <if test="orderby != null "> order by ${orderby} </if>
+    <if test="limit != null "> limit ${limit} </if>
+    <if test="offset != null "> offset ${offset} </if>
+</select>
+
+<select id="getListCount" parameterType="java.util.Map" resultType="java.lang.Long">select count(*) from ${tableName}
+    <include refid="Query_Where_Clause"/>
+</select>
+
+<select id="selectByIdCollection" parameterType="java.util.Map" resultMap="BaseResultMap">select
+    <include refid="Base_Column_List"/>from ${tableName} where id in 
+    <foreach collection="ids" item="valueitem" open="(" separator="," close=")">#{valueitem} </foreach>
+</select>
+  <delete id="deleteByCondition" parameterType="${modelFullName}" >
+    delete from ${tableName}
+    <include refid="Query_Where_Clause"/>
+  </delete>

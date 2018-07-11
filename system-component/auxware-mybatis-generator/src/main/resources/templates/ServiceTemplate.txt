@@ -1,0 +1,8 @@
+package ${targetPackage};
+
+import com.royalnu.core.module.com.BaseService;
+import ${modelFullName};
+
+public interface ${modelName}Service extends BaseService<${modelName}>{
+
+}

@@ -1,0 +1,8 @@
+package ${targetPackage};
+
+import com.royalnu.core.module.com.TreeService;
+import ${modelFullName};
+
+public interface ${modelName}Service extends TreeService<${modelName}>{
+
+}
