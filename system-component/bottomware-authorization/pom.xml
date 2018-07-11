@@ -4,11 +4,11 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>application.data.channel</groupId>
-    <artifactId>middleware</artifactId>
+    <artifactId>system-component</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>middleware-authorization</artifactId>
-  <name>middleware-authorization</name>
+  <artifactId>bottomware-authorization</artifactId>
+  <name>bottomware-authorization</name>
   <url>http://maven.apache.org</url>
 
   <dependencies>
