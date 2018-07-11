@@ -1,6 +1,7 @@
 package application.org.mybatis.common.generator.mybatis.deal.common;
 
 import application.org.mybatis.common.generator.mybatis.deal.AbstractCreateGeneratorXml;
+import application.org.mybatis.common.generator.mybatis.deal.utils.PackagePrefixUtils;
 import application.org.mybatis.common.generator.mybatis.rewrite.RemarkDefaultCommentGenerator;
 
 public class BaseCreateGeneratorXml extends AbstractCreateGeneratorXml{
@@ -10,7 +11,7 @@ public class BaseCreateGeneratorXml extends AbstractCreateGeneratorXml{
 	
 	public BaseCreateGeneratorXml() {
 		super();
-		super.rootClass = "com.royalnu.core.module.com.Identifiable";
+		super.rootClass = PackagePrefixUtils.BASE_PACKAGE_PREFIX + ".api.model.Identifiable";
 	}
 
 }

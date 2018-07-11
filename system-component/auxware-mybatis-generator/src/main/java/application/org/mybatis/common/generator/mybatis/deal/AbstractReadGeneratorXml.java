@@ -16,6 +16,7 @@ import application.org.mybatis.common.generator.mybatis.bean.GeneratorTag;
 import application.org.mybatis.common.generator.mybatis.bean.TableTag;
 import application.org.mybatis.common.generator.mybatis.constants.GeneratorConstants;
 import application.org.mybatis.common.generator.mybatis.constants.TagConstants;
+import application.org.mybatis.common.generator.mybatis.deal.utils.PackagePrefixUtils;
 import application.org.mybatis.common.generator.mybatis.utils.XmlUtils;
 
 @SuppressWarnings("unchecked")
@@ -25,9 +26,7 @@ public abstract class AbstractReadGeneratorXml {
 	private static final String SERVICE_NAME = "Service.java";
 	private static final String SERVICE_IMPL_NAME = "ServiceImpl.java";
 	private static final String ENCODING = "UTF-8";
-	private static final String COMMON_PACKAGE_PREFIX = "application.io.spring.common";
-	private static final String BASE_PACKAGE_PREFIX = "application.io.spring.core.base";
-	private static final String CACHE_PACKAGE_PREFIX = "applicaiton.io.spring.core.cache";
+
 	protected String serviceTemplateFilePath;
 	protected String serviceImplTemplateFilePath;
 	protected String controllerTemplateFilePath;
@@ -143,8 +142,8 @@ public abstract class AbstractReadGeneratorXml {
 				//修改service生成兼容jsonb
 				resultList.add("package " + serviceGeneratorTag.getTargetPackage() + ";");
 				resultList.add("");
-				resultList.add("import " + BASE_PACKAGE_PREFIX + ".api.service.BaseService;");
-				resultList.add("import " + BASE_PACKAGE_PREFIX + ".api.vo.PageVo;");
+				resultList.add("import " + PackagePrefixUtils.BASE_PACKAGE_PREFIX + ".api.service.BaseService;");
+				resultList.add("import " + PackagePrefixUtils.BASE_PACKAGE_PREFIX + ".api.vo.PageVo;");
 				resultList.add("import " + modelJava + ";");
 				resultList.add("");
 				resultList.add("/**");
@@ -209,9 +208,9 @@ public abstract class AbstractReadGeneratorXml {
 				resultList.add("import javax.annotation.Resource;");
 				resultList.add("import net.sf.json.JSONObject;");
 				resultList.add("import org.springframework.stereotype.Service;");
-				resultList.add("import " + COMMON_PACKAGE_PREFIX + ".utils.json.GsonUtils;");
-				resultList.add("import " + BASE_PACKAGE_PREFIX + ".api.vo.PageVo;");
-				resultList.add("import " + BASE_PACKAGE_PREFIX + ".provider.service.BaseServiceImpl;");
+				resultList.add("import " + PackagePrefixUtils.COMMON_PACKAGE_PREFIX + ".utils.json.GsonUtils;");
+				resultList.add("import " + PackagePrefixUtils.BASE_PACKAGE_PREFIX + ".api.vo.PageVo;");
+				resultList.add("import " + PackagePrefixUtils.BASE_PACKAGE_PREFIX + ".provider.service.BaseServiceImpl;");
 				resultList.add("import " + serviceGeneratorTag.getTargetPackage() + "." + domainObjectName + "Service;");
 				resultList.add("import " + daoGeneratorTag.getTargetPackage() + "." + domainObjectName + "DAO;");
 				resultList.add("");
@@ -334,13 +333,13 @@ public abstract class AbstractReadGeneratorXml {
 				resultList.add("import org.springframework.web.bind.annotation.RequestParam;");
 				resultList.add("import org.springframework.web.bind.annotation.RestController;");
 				resultList.add("import com.fasterxml.jackson.core.JsonProcessingException;");
-				resultList.add("import " + COMMON_PACKAGE_PREFIX + ".exception.CommonException;");
-				resultList.add("import " + COMMON_PACKAGE_PREFIX + ".utils.json.GsonUtil;");
-				resultList.add("import " + COMMON_PACKAGE_PREFIX + ".validate.json.JsonSchemaValidator;");
-				resultList.add("import " + CACHE_PACKAGE_PREFIX + ".redis.service.StringRedisCache;");
-				resultList.add("import " + CACHE_PACKAGE_PREFIX + ".utils.FileRedisCacheUtils;");
-				resultList.add("import " + BASE_PACKAGE_PREFIX + ".gateway.web.BaseController;");
-				resultList.add("import " + BASE_PACKAGE_PREFIX + ".api.vo.PageVo;");
+				resultList.add("import " + PackagePrefixUtils.COMMON_PACKAGE_PREFIX + ".exception.CommonException;");
+				resultList.add("import " + PackagePrefixUtils.COMMON_PACKAGE_PREFIX + ".utils.json.GsonUtil;");
+				resultList.add("import " + PackagePrefixUtils.COMMON_PACKAGE_PREFIX + ".validate.json.JsonSchemaValidator;");
+				resultList.add("import " + PackagePrefixUtils.CACHE_PACKAGE_PREFIX + ".redis.service.StringRedisCache;");
+				resultList.add("import " + PackagePrefixUtils.CACHE_PACKAGE_PREFIX + ".utils.FileRedisCacheUtils;");
+				resultList.add("import " + PackagePrefixUtils.BASE_PACKAGE_PREFIX + ".gateway.web.BaseController;");
+				resultList.add("import " + PackagePrefixUtils.BASE_PACKAGE_PREFIX + ".api.vo.PageVo;");
 				resultList.add("import " + modelGeneratorTag.getTargetPackage() + "." + domainObjectName + ";");
 				resultList.add("import " + serviceGeneratorTag.getTargetPackage() + "." + domainObjectName + "Service;");
 				resultList.add("import " + packageString +"FilePath;");
@@ -489,13 +488,13 @@ public abstract class AbstractReadGeneratorXml {
 				resultList.add("import org.springframework.web.bind.annotation.RequestParam;");
 				resultList.add("import org.springframework.web.bind.annotation.RestController;");
 				resultList.add("import com.fasterxml.jackson.core.JsonProcessingException;");
-				resultList.add("import " + COMMON_PACKAGE_PREFIX + ".exception.CommonException;");
-				resultList.add("import " + COMMON_PACKAGE_PREFIX + ".utils.json.GsonUtil;");
-				resultList.add("import " + COMMON_PACKAGE_PREFIX + ".validate.json.JsonSchemaValidator;");
-				resultList.add("import " + CACHE_PACKAGE_PREFIX + ".redis.service.StringRedisCache;");
-				resultList.add("import " + CACHE_PACKAGE_PREFIX + ".utils.FileRedisCacheUtils;");
-				resultList.add("import " + BASE_PACKAGE_PREFIX + ".gateway.web.BaseController;");
-				resultList.add("import " + BASE_PACKAGE_PREFIX + ".api.vo.PageVo;");
+				resultList.add("import " + PackagePrefixUtils.COMMON_PACKAGE_PREFIX + ".exception.CommonException;");
+				resultList.add("import " + PackagePrefixUtils.COMMON_PACKAGE_PREFIX + ".utils.json.GsonUtil;");
+				resultList.add("import " + PackagePrefixUtils.COMMON_PACKAGE_PREFIX + ".validate.json.JsonSchemaValidator;");
+				resultList.add("import " + PackagePrefixUtils.CACHE_PACKAGE_PREFIX + ".redis.service.StringRedisCache;");
+				resultList.add("import " + PackagePrefixUtils.CACHE_PACKAGE_PREFIX + ".utils.FileRedisCacheUtils;");
+				resultList.add("import " + PackagePrefixUtils.BASE_PACKAGE_PREFIX + ".gateway.web.BaseController;");
+				resultList.add("import " + PackagePrefixUtils.BASE_PACKAGE_PREFIX + ".api.vo.PageVo;");
 				resultList.add("import " + modelGeneratorTag.getTargetPackage() + "." + domainObjectName + ";");
 				resultList.add("import " + serviceGeneratorTag.getTargetPackage() + "." + domainObjectName + "Service;");
 				resultList.add("import " + packageString +"FilePath;");
@@ -965,7 +964,7 @@ public abstract class AbstractReadGeneratorXml {
 				//修改dao生成兼容jsonb
 				resultList.add(lineList.get(0));
 				resultList.add("");
-				resultList.add("import " + BASE_PACKAGE_PREFIX + ".provider.dao." + rootDaoName + ";");
+				resultList.add("import " + PackagePrefixUtils.BASE_PACKAGE_PREFIX + ".provider.dao." + rootDaoName + ";");
 				resultList.add("import " + modelJava + ";");
 				resultList.add("import java.util.List;");
 				resultList.add("import java.util.Map;");
