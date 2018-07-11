@@ -21,6 +21,7 @@ import application.org.mybatis.common.generator.mybatis.utils.XmlUtils;
 
 @SuppressWarnings("unchecked")
 public abstract class AbstractReadGeneratorXml {
+	
 	public static final String XMLFILENAME_BAK = GeneratorConstants.READ_XML_FILE_NAME_MYBATIS;
 	private static final String DAO_NAME = "DAO.java";
 	private static final String SERVICE_NAME = "Service.java";
