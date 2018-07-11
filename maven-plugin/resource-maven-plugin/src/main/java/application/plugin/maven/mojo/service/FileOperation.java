@@ -18,7 +18,7 @@ import org.codehaus.plexus.archiver.manager.ArchiverManager;
 
 import application.plugin.maven.mojo.bean.TransMergeFileBean;
 
-public class FileOper {
+public class FileOperation {
 	private Log log;
 
 	public void mergeFolder(File src, List<TransMergeFileBean> transMergeFileBeanList) throws IOException{

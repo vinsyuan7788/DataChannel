@@ -40,7 +40,7 @@ import org.codehaus.plexus.archiver.manager.NoSuchArchiverException;
 
 import application.plugin.maven.mojo.bean.MergeFileBean;
 import application.plugin.maven.mojo.bean.TransMergeFileBean;
-import application.plugin.maven.mojo.service.FileOper;
+import application.plugin.maven.mojo.service.FileOperation;
 
 /**
  * Goal which hello a timestamp file.
@@ -68,7 +68,7 @@ public class MergeMojo extends AbstractMojo {
 	@Parameter
 	private MergeFileBean[] mergeFileBeans;
 	
-	private FileOper fileOper = new FileOper();
+	private FileOperation fileOperation = new FileOperation();
 
 	@SuppressWarnings("unchecked")
 	public void execute() throws MojoExecutionException {
@@ -96,7 +96,7 @@ public class MergeMojo extends AbstractMojo {
 				continue;
 			}
 			final File file = artifact.getFile();
-			if(!fileOper.existFile(file, mergeDirectorys)){
+			if(!fileOperation.existFile(file, mergeDirectorys)){
 				getLog().info("无需合并，不存在合并的配置文件");
 				continue;
 			}
@@ -112,7 +112,7 @@ public class MergeMojo extends AbstractMojo {
 
 			if (process) {
 				try {
-					fileOper.unpack(file, tempLocation, archiverManager);
+					fileOperation.unpack(file, tempLocation, archiverManager);
 				} catch (final NoSuchArchiverException e) {
 					getLog().info("Skip unpacking dependency file with unknown extension: " + file.getPath());
 				} catch (final Exception e) {
@@ -140,10 +140,10 @@ public class MergeMojo extends AbstractMojo {
 			}
 		}
 		
-		fileOper.mergeWorkFolder(mergeDirectorys, workDirectory, outputDirectory, transMergeFileBeanList);
+		fileOperation.mergeWorkFolder(mergeDirectorys, workDirectory, outputDirectory, transMergeFileBeanList);
 		
 		try {
-			fileOper.mergeFolder(outputDirectory, transMergeFileBeanList);
+			fileOperation.mergeFolder(outputDirectory, transMergeFileBeanList);
 		} catch (IOException e) {
 			e.printStackTrace();
 			getLog().error("合并outputDirectory文件失败:", e);
