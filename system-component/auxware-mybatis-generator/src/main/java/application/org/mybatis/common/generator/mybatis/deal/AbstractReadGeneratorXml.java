@@ -37,7 +37,6 @@ public abstract class AbstractReadGeneratorXml {
 	protected String rootDaoName;
 	protected String rootSimpleClass;
 
-	
 	private static GeneratorTag serviceGeneratorTag = null;
 	private static GeneratorTag modelGeneratorTag = null;
 	private static GeneratorTag serviceImplGeneratorTag = null;
