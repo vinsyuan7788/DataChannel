@@ -28,7 +28,7 @@
   	--> 
   	<dependency>
   		<groupId>application.data.channel</groupId>
-  		<artifactId>middleware-authorization</artifactId>
+  		<artifactId>bottomware-authorization</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
 	

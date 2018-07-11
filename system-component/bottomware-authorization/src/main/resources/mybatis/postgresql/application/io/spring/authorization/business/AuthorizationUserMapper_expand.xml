@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="application.io.spring.authorization.business.provider.dao.AuthorizationUserDAO">
+
+	<resultMap id="AuthorizationUserRoleVo" type="application.io.spring.authorization.business.api.vo.AuthorizationUserRoleVo" extends="BaseResultMap">
+		<result column="role_id" property="roleId" jdbcType="BIGINT"/>
+		<result column="role_name" property="roleName" jdbcType="VARCHAR"/>
+    	<result column="role_code" property="roleCode" jdbcType="VARCHAR"/>
+    	<result column="role_group" property="roleGroup" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<resultMap id="AuthorizationUserResourceVo" type="application.io.spring.authorization.business.api.vo.AuthorizationUserResourceVo" extends="BaseResultMap">
+		<result column="resource_id" property="resourceId" jdbcType="BIGINT"/>
+		<result column="resource_name" property="resourceName" jdbcType="VARCHAR"/>
+    	<result column="resource" property="resource" jdbcType="VARCHAR"/>
+    	<result column="resource_type" property="resourceType" jdbcType="VARCHAR"/>
+    	<result column="resource_parent_id" property="resourceParentId" jdbcType="BIGINT"/>
+    	<result column="resource_code" property="resourceCode" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<select id="selectAllUserRolesByName" parameterType="java.util.Map" resultMap="AuthorizationUserRoleVo">
+		select 
+			xau.*,
+			xar.id as role_id,
+			xar.name as role_name,
+			xar.code as role_code, 
+			xar.role_group
+		from 
+			x_authorization_user xau
+		left join 
+			x_authorization_user_role xaur on xau.id = xaur.user_id
+		left join 
+			x_authorization_role xar on xaur.role_id = xar.id
+		where
+			xau.name = #{name,jdbcType=VARCHAR};
+	</select>
+	
+	<select id="selectAllUserResourcesByName" parameterType="java.util.Map" resultMap="AuthorizationUserResourceVo">
+		select 
+			xau.*,
+			xar.id as resource_id,
+			xar.name as resource_name,
+			xar.resource,
+			xar.resource_type,
+			xar.parent_id as resource_parent_id,
+			xar.code as resource_code
+		from 
+			x_authorization_user xau 
+		left join 
+			x_authorization_user_role xaur on xau.id = xaur.user_id
+		left join 
+			x_authorization_role_resource xarr on xaur.role_id = xarr.role_id
+		left join 
+			x_authorization_resource xar on xarr.resource_id = xar.id
+		where
+			xau.name = #{name,jdbcType=VARCHAR};
+	</select>
+</mapper>
