@@ -76,11 +76,8 @@ public class MyBatisWithSpringBootController extends BaseController<MyBatis> {
 		beans.add(bean);
 		beans.add(bean);
 		
-		boolean isInsertBatchSuccessful = myBatisService.insertBatch(beans);
-		
-		if (isInsertSelectiveSuccessful && isInsertBatchSuccessful) {
+		if (isInsertSelectiveSuccessful) {
 			result.put("isInsertSelectiveSuccessful", isInsertSelectiveSuccessful);
-			result.put("isInsertBatchSuccessful", isInsertBatchSuccessful);
 			data.put("status", 1);
 			data.put("msg", "success");
 			data.put("executionTime", (System.currentTimeMillis() - startTime) + "ms");
@@ -88,7 +85,6 @@ public class MyBatisWithSpringBootController extends BaseController<MyBatis> {
 			return data;
 		} else {
 			result.put("isInsertSelectiveSuccessful", isInsertSelectiveSuccessful);
-			result.put("isInsertBatchSuccessful", isInsertBatchSuccessful);
 			data.put("status", -1);
 			data.put("msg", "failure");
 			data.put("executionTime", (System.currentTimeMillis() - startTime) + "ms");

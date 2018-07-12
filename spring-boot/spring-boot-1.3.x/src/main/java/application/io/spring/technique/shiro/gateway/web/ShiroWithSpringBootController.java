@@ -151,7 +151,7 @@ public class ShiroWithSpringBootController {
 		
 		try {
 			AuthorizationUserRole query = new AuthorizationUserRole();
-			query.setUserId(178L);
+			query.setId(178L);
 			
 			List<AuthorizationUserRole> authorizationRolesOfUser178 = authorizationUserRoleService.selectAllByQuery(query);
 			Long numberOfAuthorizationRolesOfUser178  = authorizationUserRoleService.getAllCountByQuery(query);
@@ -209,12 +209,12 @@ public class ShiroWithSpringBootController {
 		
 		try {
 			AuthorizationRoleResource query = new AuthorizationRoleResource();
-			query.setRoleId(40L);
+			query.setId(40L);
 			
 			List<AuthorizationRoleResource> authorizationResourcesOfRole40 = authorizationRoleResourceService.selectAllByQuery(query);
 			Long numberOfAuthorizationResourcesOfRole40 = authorizationRoleResourceService.getAllCountByQuery(query);
 			
-			query.setRoleId(63L);
+			query.setId(63L);
 			
 			List<AuthorizationRoleResource> authorizationResourcesOfRole63 = authorizationRoleResourceService.selectAllByQuery(query);
 			Long numberOfAuthorizationResourcesOfRole63 = authorizationRoleResourceService.getAllCountByQuery(query);
