@@ -261,6 +261,24 @@ public class ShiroWithSpringBootController {
 			// Store user-name into session
 			session.setAttribute("username", username);
 			
+			// Check what roles and resources current user have
+			AuthorizationUser query = new AuthorizationUser();
+			query.setName(username);
+			List<AuthorizationUserRoleVo> authorizationUserRoleVos = authorizationUserService.selectAllUserRolesByName(query);
+			Set<String> authorizationUserRoles = new HashSet<>();
+			for (AuthorizationUserRoleVo authorizationUserRoleVo : authorizationUserRoleVos) {
+				authorizationUserRoles.add(authorizationUserRoleVo.getRoleCode());
+			}
+			result.put("authorizationUserRoles", authorizationUserRoles);
+			result.put("authorizationUserRolesSize", authorizationUserRoles.size());
+			List<AuthorizationUserResourceVo> authorizationUserResourceVos = authorizationUserService.selectAllUserResourcesByName(query);
+			Set<String> authorizationUserResources = new HashSet<>();
+			for (AuthorizationUserResourceVo authorizationUserResourceVo : authorizationUserResourceVos) {
+				authorizationUserResources.add(authorizationUserResourceVo.getResourceCode());
+			}
+			result.put("authorizationUserResources", authorizationUserResources);
+			result.put("authorizationUserResourcesSize", authorizationUserResources.size());
+			
 			// Return data
 			data.put("status", 1);
 			data.put("msg", "authentication succeeds");
