@@ -5,12 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
+
 import application.io.spring.common.exception.CommonException;
 import application.io.spring.common.service.InitService;
 import application.io.spring.common.spring.SpringContextHolder;
 import application.io.spring.common.utils.json.GsonUtils;
 import application.io.spring.core.base.api.model.Identifiable;
 import application.io.spring.core.base.api.service.BaseService;
+import application.io.spring.core.base.api.vo.PageVo;
 import application.io.spring.core.base.provider.dao.BaseDAO;
 import lombok.extern.log4j.Log4j2;
 
@@ -106,20 +109,6 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 			return false;
 		}
 	}
-	
-	@Override
-	public Boolean insertBatch(List<T> beans) throws Exception {
-
-		try {
-			baseDAO.insertBatch(beans);
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.error("=== BaseServiceImpl | insertBatch throws an exception"
-					+ " | exception: " + e + " ===");
-			return false;
-		}
-	}
 
 	@Override
 	public T selectOneByQuery(T query) throws Exception {
@@ -203,6 +192,16 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 	}
 	
 	@Override
+	public List<T> getList(T query) throws Exception {
+		
+		try {
+			return baseDAO.getPageableList(getCondition(query, null, null, null));
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	@Override
 	public Boolean deleteByCondition(T condition) throws Exception {
 		
 		try {
@@ -257,5 +256,55 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 		}
 		
 		return params;
+	}
+	
+	public Map<String, Object> getCondition(Map<String, Object> params, Long offset, Long limit, String orderby) {
+		
+		Long begin = 0L;
+		
+		if (offset != null) {
+			begin = offset;
+		}
+		
+		Long realOffset = offset;
+		if (limit == null) {
+			limit = 10L;
+		}
+		if (limit != null) {
+			if (offset == null) {
+				realOffset = 0L;
+			}
+			realOffset = realOffset * limit;
+		}
+    	
+		String orderbyStr = orderby;
+    	if (StringUtils.isBlank(orderby)) {
+    		orderbyStr = " id desc ";    		
+    	}
+
+    	params.put("offset", realOffset);
+    	params.put("beginIndex", begin);
+    	params.put("limit", limit);
+    	params.put("orderby", orderbyStr);
+    	
+    	return params;
+	}
+	
+	public <K> PageVo<K> getPageVo(Map<String,Object> params) {
+		
+		Long offset = (Long) params.get("beginIndex");
+		Long limit = (Long) params.get("limit");
+		String orderby =  (String) params.get("orderby");
+		
+		PageVo<K> pageVo = new PageVo<K>();
+		
+		if (limit != null) {
+			pageVo.setLimit(limit);			
+		}
+		
+    	pageVo.setOffset(offset);
+    	pageVo.setOrderby(orderby);
+    	
+    	return pageVo;
 	}
 }

@@ -15,8 +15,6 @@ import application.io.spring.core.base.api.model.Identifiable;
 public interface BaseService<T extends Identifiable> extends InitService {
 
 	public Boolean insertSelective(T bean) throws Exception;
-	
-	public Boolean insertBatch(List<T> beans) throws Exception;
 
 	public T selectOneByQuery(T query) throws Exception;
 	
@@ -29,6 +27,8 @@ public interface BaseService<T extends Identifiable> extends InitService {
 	public Long getAllCountByQuery(T query) throws Exception;
 
 	public Long getListCountByQuery(T query, Long limit, Long offset) throws Exception;
+	
+	public List<T> getList(T query) throws Exception;
 
 	public Boolean deleteByCondition(T condition) throws Exception;
 

@@ -3,6 +3,7 @@ package application.io.spring.core.base.provider.dao;
 import java.util.List;
 import java.util.Map;
 
+import application.io.spring.common.exception.CommonException;
 import application.io.spring.core.base.api.model.Identifiable;
 
 /**
@@ -14,17 +15,23 @@ import application.io.spring.core.base.api.model.Identifiable;
  */
 public interface BaseDAO<T extends Identifiable> {
 
-	public void insertSelective(T bean) throws Exception;
-	
-	public void insertBatch(List<T> beans) throws Exception;
+	public int insert(T bean) throws CommonException;
 
-	public List<T> getPageableList(Map<String, Object> params) throws Exception;
+	public int insertSelective(T bean) throws CommonException;
+	
+	public int updateByPrimaryKeySelective(T bean) throws CommonException;
 
-	public List<T> selectByIdCollection(Map<String, Object> params) throws Exception;
+	public int updateByPrimaryKey(T bean) throws CommonException;
+    
+	public T selectByPrimaryKey(Long id) throws CommonException;
+
+	public List<T> selectByIdCollection(Map<String,Object> params) throws CommonException;
 	
-	public Long getListCount(Map<String, Object> params) throws Exception;
+	public List<T> getPageableList(Map<String, Object> params) throws CommonException;
+    
+	public long getListCount(Map<String, Object> params) throws CommonException;
+    
+	public int deleteByPrimaryKey(Long id) throws CommonException;
 	
-	public void deleteByCondition(T condition) throws Exception;
-	
-	public void updateByPrimaryKeySelective(T bean) throws Exception;
+	public void deleteByCondition(T condition) throws CommonException;
 }
