@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="application.io.spring.authorization.business.provider.dao.AuthorizationUserRoleResourceDataDAO" >
-  <resultMap id="BaseResultMap" type="application.io.spring.authorization.business.api.model.AuthorizationUserRoleResourceData" >
+<mapper namespace="application.io.spring.bottomware.authorization.business.provider.dao.AuthorizationUserRoleResourceDataDAO" >
+  <resultMap id="BaseResultMap" type="application.io.spring.bottomware.authorization.business.api.model.AuthorizationUserRoleResourceData" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="user_primary_id" property="userPrimaryId" jdbcType="BIGINT" />
     <result column="role_primary_id" property="rolePrimaryId" jdbcType="BIGINT" />
@@ -46,7 +46,7 @@
     delete from x_authorization_user_role_resource_data
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="application.io.spring.authorization.business.api.model.AuthorizationUserRoleResourceData" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insert" parameterType="application.io.spring.bottomware.authorization.business.api.model.AuthorizationUserRoleResourceData" useGeneratedKeys="true" keyProperty="id">
     insert into x_authorization_user_role_resource_data (id, user_primary_id, role_primary_id, 
       resource_primary_id, data, user_id, 
       role_id, resource_id, create_time, 
@@ -58,7 +58,7 @@
       #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=TIMESTAMP}, #{extendedField,jdbcType=OTHER, javaType=Object, typeHandler=application.io.spring.common.mybatis.JSONTypeHandler}
       )
   </insert>
-  <insert id="insertSelective" parameterType="application.io.spring.authorization.business.api.model.AuthorizationUserRoleResourceData" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insertSelective" parameterType="application.io.spring.bottomware.authorization.business.api.model.AuthorizationUserRoleResourceData" useGeneratedKeys="true" keyProperty="id">
     insert into x_authorization_user_role_resource_data
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -137,7 +137,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="application.io.spring.authorization.business.api.model.AuthorizationUserRoleResourceData" >
+  <update id="updateByPrimaryKeySelective" parameterType="application.io.spring.bottomware.authorization.business.api.model.AuthorizationUserRoleResourceData" >
     update x_authorization_user_role_resource_data
     <set >
       <if test="userPrimaryId != null" >
@@ -176,7 +176,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="application.io.spring.authorization.business.api.model.AuthorizationUserRoleResourceData" >
+  <update id="updateByPrimaryKey" parameterType="application.io.spring.bottomware.authorization.business.api.model.AuthorizationUserRoleResourceData" >
     update x_authorization_user_role_resource_data
     set user_primary_id = #{userPrimaryId,jdbcType=BIGINT},
       role_primary_id = #{rolePrimaryId,jdbcType=BIGINT},
@@ -208,7 +208,7 @@
     <include refid="Base_Column_List"/>from x_authorization_user_role_resource_data where id in 
     <foreach collection="ids" item="valueitem" open="(" separator="," close=")">#{valueitem} </foreach>
 </select>
-  <delete id="deleteByCondition" parameterType="application.io.spring.authorization.business.api.model.AuthorizationUserRoleResourceData" >
+  <delete id="deleteByCondition" parameterType="application.io.spring.bottomware.authorization.business.api.model.AuthorizationUserRoleResourceData" >
     delete from x_authorization_user_role_resource_data
     <include refid="Query_Where_Clause"/>
   </delete>

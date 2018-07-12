@@ -30,7 +30,7 @@ public class JsonbModuleRunner extends AbstractGeneratorRunner {
 	public void generator() throws Exception {
 
 		// 此处是"com.royalnu.模块名"
-		String modulePackage = "application.io.spring.authorization.business";	
+		String modulePackage = "application.io.spring.bottomware.authorization.business";	
 		// 此处是"context_最小颗粒度的模块名"
 		String contextName = "context_business";		
 		Map<String, String> tableMap = new HashMap<String, String>();

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="application.io.spring.authorization.business.provider.dao.AuthorizationResourceDAO" >
-  <resultMap id="BaseResultMap" type="application.io.spring.authorization.business.api.model.AuthorizationResource" >
+<mapper namespace="application.io.spring.bottomware.authorization.business.provider.dao.AuthorizationResourceDAO" >
+  <resultMap id="BaseResultMap" type="application.io.spring.bottomware.authorization.business.api.model.AuthorizationResource" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="resource" property="resource" jdbcType="VARCHAR" />
@@ -57,7 +57,7 @@
     delete from x_authorization_resource
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="application.io.spring.authorization.business.api.model.AuthorizationResource" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insert" parameterType="application.io.spring.bottomware.authorization.business.api.model.AuthorizationResource" useGeneratedKeys="true" keyProperty="id">
     insert into x_authorization_resource (id, name, resource, 
       resource_type, seq, parent_id, 
       left_value, right_value, code, 
@@ -73,7 +73,7 @@
       #{parentNode,jdbcType=VARCHAR}, #{leftNode,jdbcType=VARCHAR}, #{rightNode,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="application.io.spring.authorization.business.api.model.AuthorizationResource" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insertSelective" parameterType="application.io.spring.bottomware.authorization.business.api.model.AuthorizationResource" useGeneratedKeys="true" keyProperty="id">
     insert into x_authorization_resource
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -182,7 +182,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="application.io.spring.authorization.business.api.model.AuthorizationResource" >
+  <update id="updateByPrimaryKeySelective" parameterType="application.io.spring.bottomware.authorization.business.api.model.AuthorizationResource" >
     update x_authorization_resource
     <set >
       <if test="name != null" >
@@ -236,7 +236,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="application.io.spring.authorization.business.api.model.AuthorizationResource" >
+  <update id="updateByPrimaryKey" parameterType="application.io.spring.bottomware.authorization.business.api.model.AuthorizationResource" >
     update x_authorization_resource
     set name = #{name,jdbcType=VARCHAR},
       resource = #{resource,jdbcType=VARCHAR},
@@ -273,7 +273,7 @@
     <include refid="Base_Column_List"/>from x_authorization_resource where id in 
     <foreach collection="ids" item="valueitem" open="(" separator="," close=")">#{valueitem} </foreach>
 </select>
-  <delete id="deleteByCondition" parameterType="application.io.spring.authorization.business.api.model.AuthorizationResource" >
+  <delete id="deleteByCondition" parameterType="application.io.spring.bottomware.authorization.business.api.model.AuthorizationResource" >
     delete from x_authorization_resource
     <include refid="Query_Where_Clause"/>
   </delete>
