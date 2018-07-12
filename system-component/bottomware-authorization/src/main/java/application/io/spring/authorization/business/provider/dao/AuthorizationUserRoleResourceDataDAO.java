@@ -1,7 +1,7 @@
 package application.io.spring.authorization.business.provider.dao;
 
 import application.io.spring.core.base.provider.dao.BaseDAO;
-import application.io.spring.authorization.business.api.model.AuthorizationRoleResource;
+import application.io.spring.authorization.business.api.model.AuthorizationUserRoleResourceData;
 import java.util.List;
 import java.util.Map;
 
@@ -15,10 +15,10 @@ import java.util.Map;
  *	@author vinsy
  *  @date 2018/03/23
  */
-public interface AuthorizationRoleResourceDAO extends BaseDAO<AuthorizationRoleResource> {
+public interface AuthorizationUserRoleResourceDataDAO extends BaseDAO<AuthorizationUserRoleResourceData> {
 
 	// 根据jsonb条件查询分页数据
-	List<AuthorizationRoleResource> getJsonbPageableList(Map<String,Object> params);
+	List<AuthorizationUserRoleResourceData> getJsonbPageableList(Map<String,Object> params);
 
 	// 根据jsonb条件查询总数量
 	long getJsonbListCount(Map<String, Object> params);

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="application.io.spring.authorization.business.provider.dao.AuthorizationUserRoleResourceDataDAO">
+    <select id="getJsonbPageableList" parameterType="java.util.Map" resultMap="BaseResultMap">
+        <include refid="Base_Column_List"/>from x_authorization_user_role_resource_data
+        <where>
+            <if test="id != null "> and id = #{id,jdbcType=BIGINT}  </if>
+            <if test="userPrimaryId != null "> and user_primary_id = #{userPrimaryId,jdbcType=BIGINT}  </if>
+            <if test="rolePrimaryId != null "> and role_primary_id = #{rolePrimaryId,jdbcType=BIGINT}  </if>
+            <if test="resourcePrimaryId != null "> and resource_primary_id = #{resourcePrimaryId,jdbcType=BIGINT}  </if>
+            <if test="data != null and data != ''"> and data = #{data,jdbcType=VARCHAR}  </if>
+            <if test="userId != null and userId != ''"> and user_id = #{userId,jdbcType=VARCHAR}  </if>
+            <if test="roleId != null and roleId != ''"> and role_id = #{roleId,jdbcType=VARCHAR}  </if>
+            <if test="resourceId != null and resourceId != ''"> and resource_id = #{resourceId,jdbcType=VARCHAR}  </if>
+            <if test="createTime != null and createTime != ''"> and create_time = #{createTime,jdbcType=TIMESTAMP} :: timestamp with time zone </if>
+            <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime,jdbcType=TIMESTAMP} :: timestamp with time zone </if>
+            <if test="remark != null and remark != ''"> and remark = #{remark,jdbcType=TIMESTAMP} :: timestamp with time zone </if>
+            <if test="extendedField != null and extendedField != ''"> and (extended_field-&gt;&gt;'param')::text = #{param,jdbcType=VARCHAR} </if>
+        </where>
+        <if test="orderby != null "> order by ${orderby} </if>
+        <if test="limit != null "> limit ${limit} </if>
+        <if test="offset != null "> offset ${offset} </if>
+    </select>
+    <select id="getJsonbListCount" parameterType="java.util.Map" resultType="java.lang.Long">select count(*) from x_authorization_user_role_resource_data
+        <where>
+            <if test="id != null "> and id = #{id,jdbcType=BIGINT}  </if>
+            <if test="userPrimaryId != null "> and user_primary_id = #{userPrimaryId,jdbcType=BIGINT}  </if>
+            <if test="rolePrimaryId != null "> and role_primary_id = #{rolePrimaryId,jdbcType=BIGINT}  </if>
+            <if test="resourcePrimaryId != null "> and resource_primary_id = #{resourcePrimaryId,jdbcType=BIGINT}  </if>
+            <if test="data != null and data != ''"> and data = #{data,jdbcType=VARCHAR}  </if>
+            <if test="userId != null and userId != ''"> and user_id = #{userId,jdbcType=VARCHAR}  </if>
+            <if test="roleId != null and roleId != ''"> and role_id = #{roleId,jdbcType=VARCHAR}  </if>
+            <if test="resourceId != null and resourceId != ''"> and resource_id = #{resourceId,jdbcType=VARCHAR}  </if>
+            <if test="createTime != null and createTime != ''"> and create_time = #{createTime,jdbcType=TIMESTAMP} :: timestamp with time zone </if>
+            <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime,jdbcType=TIMESTAMP} :: timestamp with time zone </if>
+            <if test="remark != null and remark != ''"> and remark = #{remark,jdbcType=TIMESTAMP} :: timestamp with time zone </if>
+            <if test="extendedField != null and extendedField != ''"> and (extended_field-&gt;&gt;'param')::text = #{param,jdbcType=VARCHAR} </if>
+        </where>
+    </select>
+</mapper>

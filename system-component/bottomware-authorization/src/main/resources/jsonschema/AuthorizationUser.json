@@ -1,0 +1,25 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "AuthorizationUser",
+    "description": "JSON数据格式验证",
+    "type": "object",
+    "properties": {
+        "data": {
+            "$ref": "#/definitions/mntent"
+        }
+    },
+    "additionalProperties": false,
+    "definitions": {
+        "mntent": {
+            "title": "mntent",
+            "description": "An fstab entry",
+            "type": "object",
+            "properties": {
+				"注释": "此处替换要校验的字段和规则"
+            },
+            "additionalItems": false,
+            "required":[],
+            "additionalProperties": false
+        }
+    }
+}

@@ -10,22 +10,39 @@ public class AuthorizationUserResourceVo extends AuthorizationUser {
 
 	private static final long serialVersionUID = 1L;
 	
-	private Long resourceId;
-	
 	private String resourceName;
 	
 	private String resource;
 	
-	private String resourceType;
+	private String resourceCode;
+	
+	private Long resourcePid;
 	
 	private Long resourceParentId;
 	
-	private String resourceCode;
+	private Long resourceLeftValue;
+	
+	private Long resourceRightValue;
+	
+	private String resourceId;
+	
+	private String resourceParentNode;
+	
+	private String resourceLeftNode;
+	
+	private String resourceRightNode;
+	
+	private Long resourceSeq;
+	
+	private String resourceType;
 
 	@Override
 	public String toString() {
-		return "AuthorizationUserResourceVo [resourceId=" + resourceId + ", resourceName=" + resourceName
-				+ ", resource=" + resource + ", resourceType=" + resourceType + ", resourceParentId=" + resourceParentId
-				+ ", resourceCode=" + resourceCode + "]";
+		return "AuthorizationUserResourceVo [resourceName=" + resourceName + ", resource=" + resource
+				+ ", resourceCode=" + resourceCode + ", resourcePid=" + resourcePid + ", resourceParentId="
+				+ resourceParentId + ", resourceLeftValue=" + resourceLeftValue + ", resourceRightValue="
+				+ resourceRightValue + ", resourceId=" + resourceId + ", resourceParentNode=" + resourceParentNode
+				+ ", resourceLeftNode=" + resourceLeftNode + ", resourceRightNode=" + resourceRightNode
+				+ ", resourceSeq=" + resourceSeq + ", resourceType=" + resourceType + "]";
 	}
 }

@@ -3,34 +3,34 @@
 
 <generatorConfiguration>
     <classPathEntry location="postgresql-9.4-1208.jdbc4.jar"/>
-    <context id="context_test" targetRuntime="MyBatis3">
+    <context id="context_business" targetRuntime="MyBatis3">
         <commentGenerator type="application.org.mybatis.common.generator.mybatis.rewrite.RemarkDefaultCommentGenerator">
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
-        <jdbcConnection driverClass="org.postgresql.Driver" connectionURL="jdbc:postgresql://localhost:5432/xyes" userId="postgres" password="postgres">
+        <jdbcConnection driverClass="org.postgresql.Driver" connectionURL="jdbc:postgresql://120.78.156.82:5432/xyes" userId="postgres" password="postgres">
             <property name="remarksReporting" value="true"/>
             <property name="useInformationSchema" value="true"/>
         </jdbcConnection>
-        <javaModelGenerator targetPackage="application.io.spring.test.api.model" targetProject="D:/GitRepository/Application/DataChannel/system-component/bottomware-authorization/src/main/java">
+        <javaModelGenerator targetPackage="application.io.spring.authorization.business.api.model" targetProject="D:/GitRepository/Application/DataChannel/system-component/bottomware-authorization/src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="rootClass" value="application.io.spring.core.base.api.model.Identifiable"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
-        <sqlMapGenerator targetPackage="mybatis.postgresql.application.io.spring.test" targetProject="D:/GitRepository/Application/DataChannel/system-component/bottomware-authorization/src/main/resources">
+        <sqlMapGenerator targetPackage="mybatis.postgresql.application.io.spring.authorization.business" targetProject="D:/GitRepository/Application/DataChannel/system-component/bottomware-authorization/src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
-        <javaClientGenerator targetPackage="application.io.spring.test.provider.dao" targetProject="D:/GitRepository/Application/DataChannel/system-component/bottomware-authorization/src/main/java" type="XMLMAPPER">
+        <javaClientGenerator targetPackage="application.io.spring.authorization.business.provider.dao" targetProject="D:/GitRepository/Application/DataChannel/system-component/bottomware-authorization/src/main/java" type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
-        <serviceGenerator targetPackage="application.io.spring.test.api.service" targetProject="D:/GitRepository/Application/DataChannel/system-component/bottomware-authorization/src/main/java">
+        <serviceGenerator targetPackage="application.io.spring.authorization.business.api.service" targetProject="D:/GitRepository/Application/DataChannel/system-component/bottomware-authorization/src/main/java">
             <property name="enableSubPackages" value="true"/>
         </serviceGenerator>
-        <serviceImplGenerator targetPackage="application.io.spring.test.provider.service" targetProject="D:/GitRepository/Application/DataChannel/system-component/bottomware-authorization/src/main/java">
+        <serviceImplGenerator targetPackage="application.io.spring.authorization.business.provider.service" targetProject="D:/GitRepository/Application/DataChannel/system-component/bottomware-authorization/src/main/java">
             <property name="enableSubPackages" value="true"/>
         </serviceImplGenerator>
-        <controllerGenerator targetPackage="application.io.spring.test.gateway.web" targetProject="D:/GitRepository/Application/DataChannel/system-component/bottomware-authorization/src/main/java">
+        <controllerGenerator targetPackage="application.io.spring.authorization.business.gateway.web" targetProject="D:/GitRepository/Application/DataChannel/system-component/bottomware-authorization/src/main/java">
             <property name="enableSubPackages" value="true"/>
         </controllerGenerator>
-        <table schema="" tableName="x_authorization_resource" domainObjectName="AuthorizationResource" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table schema="" tableName="x_authorization_user_role_resource_data" domainObjectName="AuthorizationUserRoleResourceData" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
     </context>
 </generatorConfiguration>

@@ -1,113 +1,265 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="application.io.spring.authorization.business.provider.dao.AuthorizationRoleDAO" >
-  
-	<resultMap id="BaseResultMap" type="application.io.spring.authorization.business.api.model.AuthorizationRole" >
-    	<id column="id" property="id" jdbcType="BIGINT"/>
-    	<result column="name" property="name" jdbcType="VARCHAR"/>
-    	<result column="seq" property="seq" jdbcType="BIGINT"/>
-    	<result column="code" property="code" jdbcType="VARCHAR"/>
-    	<result column="role_group" property="roleGroup" jdbcType="VARCHAR"/>
-    	<result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-    	<result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
-    	<result column="remark" property="remark" jdbcType="VARCHAR"/>
-    	<result column="extended_field" property="extendedField" jdbcType="OTHER" typeHandler="application.io.spring.common.mybatis.JSONTypeHandler"/>
-	</resultMap>
+  <resultMap id="BaseResultMap" type="application.io.spring.authorization.business.api.model.AuthorizationRole" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="seq" property="seq" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="role_group" property="roleGroup" jdbcType="VARCHAR" />
+    <result column="extended_field" property="extendedField" jdbcType="OTHER" javaType="Object" typeHandler="application.io.spring.common.mybatis.JSONTypeHandler" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="left_value" property="leftValue" jdbcType="BIGINT" />
+    <result column="right_value" property="rightValue" jdbcType="BIGINT" />
+    <result column="parent_node" property="parentNode" jdbcType="VARCHAR" />
+    <result column="left_node" property="leftNode" jdbcType="VARCHAR" />
+    <result column="right_node" property="rightNode" jdbcType="VARCHAR" />
+    <result column="role_id" property="roleId" jdbcType="VARCHAR" />
+  </resultMap>
 
-	<sql id="Query_Where_Clause">
-		<where>
-			<if test="id != null"> and id = #{id,jdbcType=BIGINT}</if>
-        	<if test="name != null and name != ''"> and name = #{name,jdbcType=VARCHAR}</if>
-        	<if test="seq != null and seq != ''"> and seq = #{seq,jdbcType=BIGINT}</if>
-        	<if test="code != null and code != ''"> and code = #{code,jdbcType=VARCHAR}</if>
-        	<if test="roleGroup != null and roleGroup != ''"> and role_group = #{roleGroup,jdbcType=VARCHAR}</if>
-        	<if test="createTime != null and createTime != ''"> and create_time = #{createTime,jdbcType=TIMESTAMP} :: timestamp with time zone</if>
-        	<if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime,jdbcType=TIMESTAMP} :: timestamp with time zone</if>
-        	<if test="remark != null and remark != ''"> and remark = #{remark,jdbcType=VARCHAR}</if>
-        	<if test="extendedField != null and extendedField != ''"> and extended_field = #{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.mybatis.JSONTypeHandler}</if>
-    	</where>
- 	</sql>
- 
- 	<sql id="Base_Column_List">
-    	id, name, seq, code, role_group, create_time, update_time, remark, extended_field
-    </sql>
-    <sql id="Base_Column_List_Without_Id">
-    	name, seq, code, role_group, create_time, update_time, remark, extended_field
-    </sql>
-   
-  	<insert id="insertSelective" parameterType="application.io.spring.authorization.business.api.model.AuthorizationRole" useGeneratedKeys="true" keyProperty="id">
-    	insert into x_authorization_role
-    	<trim prefix="(" suffix=")" suffixOverrides="," >
-			<if test="id != null">id,</if>
-        	<if test="name != null">name,</if>
-        	<if test="seq != null">seq,</if>
-        	<if test="code != null">code,</if>
-        	<if test="roleGroup != null">role_group,</if>
-        	<if test="createTime != null">create_time,</if>
-        	<if test="updateTime != null">update_time,</if>
-        	<if test="remark != null">remark,</if>
-        	<if test="extendedField != null">extended_field,</if>
-    	</trim>
-    	<trim prefix="values (" suffix=")" suffixOverrides="," >
-			<if test="id != null">#{id,jdbcType=BIGINT},</if>
-        	<if test="name != null">#{name,jdbcType=VARCHAR},</if>
-        	<if test="seq != null">#{seq,jdbcType=BIGINT},</if>
-        	<if test="code != null">#{code,jdbcType=VARCHAR},</if>
-        	<if test="roleGroup != null">#{roleGroup,jdbcType=VARCHAR},</if>
-        	<if test="createTime != null">#{createTime,jdbcType=TIMESTAMP},</if>
-        	<if test="updateTime != null">#{updateTime,jdbcType=TIMESTAMP},</if>
-        	<if test="remark != null">#{remark,jdbcType=VARCHAR},</if>
-        	<if test="extendedField != null">#{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.mybatis.JSONTypeHandler},</if>
-    	</trim>
-	</insert>
-	
-  	<insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
-  		insert into x_authorization_role(<include refid="Base_Column_List_Without_Id"/>) values
-    	<foreach collection="list" item="item" index="index" separator=",">
-      		(#{item.name,jdbcType=VARCHAR},#{item.seq,jdbcType=BIGINT},#{item.code,jdbcType=VARCHAR},#{item.roleGroup,jdbcType=VARCHAR},#{item.createTime,jdbcType=TIMESTAMP},#{item.updateTime,jdbcType=TIMESTAMP},#{item.remark,jdbcType=VARCHAR},#{item.extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.mybatis.JSONTypeHandler})
-      	</foreach>
-	</insert>
-	
-	<update id="updateByPrimaryKeySelective" parameterType="application.io.spring.authorization.business.api.model.AuthorizationRole">
-		update x_authorization_role
-    	<set>
-      		<if test="id != null">id = #{id,jdbcType=BIGINT},</if>
-        	<if test="name != null">name = #{name,jdbcType=VARCHAR},</if>
-        	<if test="seq != null">seq = #{seq,jdbcType=BIGINT},</if>
-        	<if test="code != null">code = #{code,jdbcType=VARCHAR},</if>
-        	<if test="roleGroup != null">role_group = #{roleGroup,jdbcType=VARCHAR},</if>
-        	<if test="createTime != null">create_time = #{createTime,jdbcType=TIMESTAMP},</if>
-        	<if test="updateTime != null">update_time = #{updateTime,jdbcType=TIMESTAMP},</if>
-        	<if test="remark != null">remark = #{remark,jdbcType=VARCHAR},</if>
-        	<if test="extendedField != null">extended_field = #{extendedField,jdbcType=OTHER,javaType=Object,typeHandler=application.io.spring.common.mybatis.JSONTypeHandler},</if>
-    	</set>
-    	where id = #{id,jdbcType=BIGINT}
-	</update>
-	
-	<delete id="deleteByCondition" parameterType="application.io.spring.authorization.business.api.model.AuthorizationRole" >
-    	delete from x_authorization_role
-    	<include refid="Query_Where_Clause"/>
-  	</delete>
-	
-	<select id="getPageableList" parameterType="java.util.Map" resultMap="BaseResultMap">
-		select <include refid="Base_Column_List"/> from x_authorization_role
-    	<include refid="Query_Where_Clause"/>
-    	<if test="orderby != null"> order by ${orderby} </if>
-    	<if test="limit != null"> limit ${limit} </if>
-    	<if test="offset != null"> offset ${offset} </if>
-	</select>
-	
-	<select id="getListCount" parameterType="java.util.Map" resultType="java.lang.Long">
-		select count(id) from x_authorization_role
-	   	<include refid="Query_Where_Clause"/>
-	   	<if test="orderby != null"> order by ${orderby} </if>
-	   	<if test="limit != null"> limit ${limit} </if>
-	   	<if test="offset != null"> offset ${offset} </if>
-	</select>
-	
-	<select id="selectByIdCollection" parameterType="java.util.Map" resultMap="BaseResultMap">
-		select <include refid="Base_Column_List"/> from x_authorization_role
-			where id in <foreach collection="ids" item="valueitem" open="(" separator="," close=")">#{valueitem}</foreach>
-	</select>
-	
+<sql id="Query_Where_Clause">
+    <where>
+        <if test="id != null "> and id = #{id,jdbcType=BIGINT}  </if>
+        <if test="remark != null and remark != ''"> and remark = #{remark,jdbcType=VARCHAR}  </if>
+        <if test="seq != null "> and seq = #{seq,jdbcType=BIGINT}  </if>
+        <if test="createTime != null and createTime != ''"> and create_time = #{createTime,jdbcType=TIMESTAMP} :: timestamp with time zone </if>
+        <if test="code != null and code != ''"> and code = #{code,jdbcType=VARCHAR}  </if>
+        <if test="name != null and name != ''"> and name = #{name,jdbcType=VARCHAR}  </if>
+        <if test="roleGroup != null and roleGroup != ''"> and role_group = #{roleGroup,jdbcType=VARCHAR}  </if>
+        <if test="extendedField != null and extendedField != ''"> and extended_field = #{extendedField,jdbcType=OTHER,javaType=Object, typeHandler=application.io.spring.common.mybatis.JSONTypeHandler}  </if>
+        <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime,jdbcType=TIMESTAMP} :: timestamp with time zone </if>
+        <if test="parentId != null "> and parent_id = #{parentId,jdbcType=BIGINT}  </if>
+        <if test="leftValue != null "> and left_value = #{leftValue,jdbcType=BIGINT}  </if>
+        <if test="rightValue != null "> and right_value = #{rightValue,jdbcType=BIGINT}  </if>
+        <if test="parentNode != null and parentNode != ''"> and parent_node = #{parentNode,jdbcType=VARCHAR}  </if>
+        <if test="leftNode != null and leftNode != ''"> and left_node = #{leftNode,jdbcType=VARCHAR}  </if>
+        <if test="rightNode != null and rightNode != ''"> and right_node = #{rightNode,jdbcType=VARCHAR}  </if>
+        <if test="roleId != null and roleId != ''"> and role_id = #{roleId,jdbcType=VARCHAR}  </if>
+    </where>
+</sql>
+  <sql id="Base_Column_List" >
+    id, remark, seq, create_time, code, name, role_group, extended_field, update_time, 
+    parent_id, left_value, right_value, parent_node, left_node, right_node, role_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from x_authorization_role
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from x_authorization_role
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="application.io.spring.authorization.business.api.model.AuthorizationRole" useGeneratedKeys="true" keyProperty="id">
+    insert into x_authorization_role (id, remark, seq, 
+      create_time, code, name, 
+      role_group, extended_field, 
+      update_time, parent_id, left_value, 
+      right_value, parent_node, left_node, 
+      right_node, role_id)
+    values (#{id,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR}, #{seq,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{roleGroup,jdbcType=VARCHAR}, #{extendedField,jdbcType=OTHER, javaType=Object, typeHandler=application.io.spring.common.mybatis.JSONTypeHandler}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{parentId,jdbcType=BIGINT}, #{leftValue,jdbcType=BIGINT}, 
+      #{rightValue,jdbcType=BIGINT}, #{parentNode,jdbcType=VARCHAR}, #{leftNode,jdbcType=VARCHAR}, 
+      #{rightNode,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="application.io.spring.authorization.business.api.model.AuthorizationRole" useGeneratedKeys="true" keyProperty="id">
+    insert into x_authorization_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="seq != null" >
+        seq,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="roleGroup != null" >
+        role_group,
+      </if>
+      <if test="extendedField != null" >
+        extended_field,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="leftValue != null" >
+        left_value,
+      </if>
+      <if test="rightValue != null" >
+        right_value,
+      </if>
+      <if test="parentNode != null" >
+        parent_node,
+      </if>
+      <if test="leftNode != null" >
+        left_node,
+      </if>
+      <if test="rightNode != null" >
+        right_node,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null" >
+        #{seq,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="roleGroup != null" >
+        #{roleGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="extendedField != null" >
+        #{extendedField,jdbcType=OTHER, javaType=Object, typeHandler=application.io.spring.common.mybatis.JSONTypeHandler},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="leftValue != null" >
+        #{leftValue,jdbcType=BIGINT},
+      </if>
+      <if test="rightValue != null" >
+        #{rightValue,jdbcType=BIGINT},
+      </if>
+      <if test="parentNode != null" >
+        #{parentNode,jdbcType=VARCHAR},
+      </if>
+      <if test="leftNode != null" >
+        #{leftNode,jdbcType=VARCHAR},
+      </if>
+      <if test="rightNode != null" >
+        #{rightNode,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="application.io.spring.authorization.business.api.model.AuthorizationRole" >
+    update x_authorization_role
+    <set >
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null" >
+        seq = #{seq,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="roleGroup != null" >
+        role_group = #{roleGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="extendedField != null" >
+        extended_field = #{extendedField,jdbcType=OTHER, javaType=Object, typeHandler=application.io.spring.common.mybatis.JSONTypeHandler},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="leftValue != null" >
+        left_value = #{leftValue,jdbcType=BIGINT},
+      </if>
+      <if test="rightValue != null" >
+        right_value = #{rightValue,jdbcType=BIGINT},
+      </if>
+      <if test="parentNode != null" >
+        parent_node = #{parentNode,jdbcType=VARCHAR},
+      </if>
+      <if test="leftNode != null" >
+        left_node = #{leftNode,jdbcType=VARCHAR},
+      </if>
+      <if test="rightNode != null" >
+        right_node = #{rightNode,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="application.io.spring.authorization.business.api.model.AuthorizationRole" >
+    update x_authorization_role
+    set remark = #{remark,jdbcType=VARCHAR},
+      seq = #{seq,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      role_group = #{roleGroup,jdbcType=VARCHAR},
+      extended_field = #{extendedField,jdbcType=OTHER, javaType=Object, typeHandler=application.io.spring.common.mybatis.JSONTypeHandler},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      parent_id = #{parentId,jdbcType=BIGINT},
+      left_value = #{leftValue,jdbcType=BIGINT},
+      right_value = #{rightValue,jdbcType=BIGINT},
+      parent_node = #{parentNode,jdbcType=VARCHAR},
+      left_node = #{leftNode,jdbcType=VARCHAR},
+      right_node = #{rightNode,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+<select id="getPageableList" parameterType="java.util.Map" resultMap="BaseResultMap">select
+    <include refid="Base_Column_List"/>from x_authorization_role
+    <include refid="Query_Where_Clause"/>
+    <if test="orderby != null "> order by ${orderby} </if>
+    <if test="limit != null "> limit ${limit} </if>
+    <if test="offset != null "> offset ${offset} </if>
+</select>
+
+<select id="getListCount" parameterType="java.util.Map" resultType="java.lang.Long">select count(*) from x_authorization_role
+    <include refid="Query_Where_Clause"/>
+</select>
+
+<select id="selectByIdCollection" parameterType="java.util.Map" resultMap="BaseResultMap">select
+    <include refid="Base_Column_List"/>from x_authorization_role where id in 
+    <foreach collection="ids" item="valueitem" open="(" separator="," close=")">#{valueitem} </foreach>
+</select>
+  <delete id="deleteByCondition" parameterType="application.io.spring.authorization.business.api.model.AuthorizationRole" >
+    delete from x_authorization_role
+    <include refid="Query_Where_Clause"/>
+  </delete>
 </mapper>

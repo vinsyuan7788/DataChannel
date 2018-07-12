@@ -18,13 +18,21 @@ import lombok.Setter;
  */
 @Setter
 @Getter
-public class AuthorizationRoleResource extends Identifiable {
+public class AuthorizationUserRoleResourceData extends Identifiable {
 
 	private static final long serialVersionUID = 1L;
 
     /**
      * <pre>
-     * 对应x_authorization_role表中的id
+     * 用户编号
+     * </pre>
+     * 
+     */
+    private Long userPrimaryId;
+
+    /**
+     * <pre>
+     * 角色编号
      * </pre>
      * 
      */
@@ -32,7 +40,7 @@ public class AuthorizationRoleResource extends Identifiable {
 
     /**
      * <pre>
-     * 对应x_authorization_resource表中的id
+     * 资源编号
      * </pre>
      * 
      */
@@ -40,25 +48,18 @@ public class AuthorizationRoleResource extends Identifiable {
 
     /**
      * <pre>
-     * 创建时间
      * </pre>
      * 
      */
-    private Date createTime;
+    private String data;
 
     /**
      * <pre>
+     * 对应x_authorization_user表中的user_id
      * </pre>
      * 
      */
-    private Date updateTime;
-
-    /**
-     * <pre>
-     * </pre>
-     * 
-     */
-    private Object extendedField;
+    private String userId;
 
     /**
      * <pre>
@@ -81,6 +82,27 @@ public class AuthorizationRoleResource extends Identifiable {
      * </pre>
      * 
      */
-    private String remark;
+    private Date createTime;
+
+    /**
+     * <pre>
+     * </pre>
+     * 
+     */
+    private Date updateTime;
+
+    /**
+     * <pre>
+     * </pre>
+     * 
+     */
+    private Date remark;
+
+    /**
+     * <pre>
+     * </pre>
+     * 
+     */
+    private Object extendedField;
 
 }
