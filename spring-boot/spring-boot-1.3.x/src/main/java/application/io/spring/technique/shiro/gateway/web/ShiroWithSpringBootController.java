@@ -236,6 +236,30 @@ public class ShiroWithSpringBootController {
 		}
 	}
 	
+	@RequestMapping(value = "/testPostWithoutShiroAnnotation", method = RequestMethod.POST)
+	public Map<String, Object> testPostWithoutShiroAnnotation() throws Exception {
+		
+		Map<String, Object> data = new HashMap<>();
+		Map<String, Object> result = new HashMap<>();
+		
+		data.put("status", 1);
+		data.put("msg", "success");
+		data.put("result", result);
+		return data;
+	}
+	
+	@RequestMapping(value = "/testGetWithoutShiroAnnotation", method = RequestMethod.POST)
+	public Map<String, Object> testGetWithoutShiroAnnotation() throws Exception {
+		
+		Map<String, Object> data = new HashMap<>();
+		Map<String, Object> result = new HashMap<>();
+		
+		data.put("status", 1);
+		data.put("msg", "success");
+		data.put("result", result);
+		return data;
+	}
+	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public Map<String, Object> login(AuthorizationUser authorizationUser) throws Exception {
 		
