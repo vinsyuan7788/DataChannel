@@ -66,7 +66,7 @@ public abstract class AbstractSqlMapperDeal {
 		expandMapper.addAttribute("namespace", mapper.attributeValue("namespace"));
 		
 		
-		//新增jsonb查询 add by linpeixiong 开始
+		//新增jsonb查询 add by vinsy 开始
 		
 		//获取表字段
 		Element resultMap = this.mapper.element("resultMap");
@@ -108,7 +108,7 @@ public abstract class AbstractSqlMapperDeal {
 				timeSuffix = ":: timestamp with time zone";
 			}
 			if(JdbcTypeNameTranslator.getJdbcTypeName(Types.OTHER).equals(item.getJdbcType()))
-			{//新增jsonb扩展，add by linpeixiong
+			{//新增jsonb扩展，add by vinsy
 				ifElement.addText(" and (" +
 						item.getColumn() + "->>'" + "param')::text = #{param,jdbcType=VARCHAR} ");
 			}else{
@@ -154,7 +154,7 @@ public abstract class AbstractSqlMapperDeal {
 				timeSuffix = ":: timestamp with time zone";
 			}
 			if(JdbcTypeNameTranslator.getJdbcTypeName(Types.OTHER).equals(item.getJdbcType()))
-			{//新增jsonb扩展，add by linpeixiong
+			{//新增jsonb扩展，add by vinsy
 				ifElement.addText(" and (" +
 						item.getColumn() + "->>'" + "param')::text = #{param,jdbcType=VARCHAR} ");
 			}else{
@@ -164,7 +164,7 @@ public abstract class AbstractSqlMapperDeal {
 			
 		}
 		
-		//新增jsonb查询 add by linpeixiong 结束
+		//新增jsonb查询 add by vinsy 结束
 		
 		
 		
@@ -247,7 +247,7 @@ public abstract class AbstractSqlMapperDeal {
 				timeSuffix = ":: timestamp with time zone";
 			}
 			if(JdbcTypeNameTranslator.getJdbcTypeName(Types.OTHER).equals(item.getJdbcType()))
-			{//新增jsonb扩展，add by linpeixiong
+			{//新增jsonb扩展，add by vinsy
 				ifElement.addText(" and " +
 						item.getColumn() + " = #{" + item.getProperty() + ",jdbcType=" + item.getJdbcType() + ",javaType=" + item.getJavaType() + ", typeHandler=" + GeneratorConstants.JSONB_MAPPING + "} "+timeSuffix + " ");
 			}else{
