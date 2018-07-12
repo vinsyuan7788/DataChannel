@@ -9,8 +9,9 @@
   <description>system-component</description>
  
   <modules>
+  	<module>auxware-mybatis-generator</module>
   	<module>bottomware-authorization</module>
-    <module>auxware-mybatis-generator</module>
+    <module>bottomware-utility</module>
   </modules>
    
   <properties>
@@ -20,6 +21,14 @@
   </properties>
 
   <dependencies>
+  	
+  	<!-- Here are the dependencies built from local Maven projects or modules-->
+  	<dependency>
+  		<groupId>application.data.channel</groupId>
+  		<artifactId>spring-boot-1.3.x-parent</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  	
     <!-- Test -->
     <dependency>
       <groupId>junit</groupId>

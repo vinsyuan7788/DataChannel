@@ -113,8 +113,17 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 	@Override
 	public T selectOneByQuery(T query) throws Exception {
 		
+		Map<String, Object> params = new HashMap<>();
+        
+		if(query != null) {
+        	params = GsonUtils.GSON.fromJson(GsonUtils.GSON.toJson(query), Map.class);
+        }
+		
+        params.put("offset", Integer.valueOf(0));
+        params.put("limit", Integer.valueOf(1));
+        
 		try {
-			return baseDAO.getPageableList(getCondition(query, null, 1L, 0L)).get(0);
+			return baseDAO.getPageableList(params).get(0);
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("=== BaseServiceImpl | selectOneByQuery throws an exception"
@@ -126,8 +135,14 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 	@Override
 	public List<T> selectAllByQuery(T query) throws Exception {
 		
+		Map<String, Object> params = new HashMap<>();
+        
+		if(query != null) {
+        	params = GsonUtils.GSON.fromJson(GsonUtils.GSON.toJson(query), Map.class);
+        }
+		
 		try {
-			return baseDAO.getPageableList(getCondition(query, null, null, null));
+			return baseDAO.getPageableList(params);
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("=== BaseServiceImpl | selectAllByQuery throws an exception"
@@ -140,7 +155,7 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 	public List<T> selectListByQuery(T query, String orderby, Long limit, Long offset) throws Exception {
 		
 		try {
-			return baseDAO.getPageableList(getCondition(query, orderby, limit, offset));
+			return baseDAO.getPageableList(getCondition(query, offset, limit, orderby));
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("=== BaseServiceImpl | selectListByQuery throws an exception"
@@ -168,8 +183,14 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 	@Override
 	public Long getAllCountByQuery(T query) throws Exception {
 		
+		Map<String, Object> params = new HashMap<>();
+        
+		if(query != null) {
+        	params = GsonUtils.GSON.fromJson(GsonUtils.GSON.toJson(query), Map.class);
+        }
+		
 		try {
-			return baseDAO.getListCount(getCondition(query, null, null, null));
+			return baseDAO.getListCount(params);
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("=== BaseServiceImpl | getAllCountByQuery throws an exception"
@@ -182,7 +203,7 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 	public Long getListCountByQuery(T query, Long limit, Long offset) throws Exception {
 		
 		try {
-			return baseDAO.getListCount(getCondition(query, null, limit, offset));
+			return baseDAO.getListCount(getCondition(query, offset, limit, null));
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("=== BaseServiceImpl | getListCountByQuery throws an exception"
@@ -194,8 +215,14 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 	@Override
 	public List<T> getList(T query) throws Exception {
 		
+		Map<String, Object> params = new HashMap<>();
+        
+		if(query != null) {
+        	params = GsonUtils.GSON.fromJson(GsonUtils.GSON.toJson(query), Map.class);
+        }
+		
 		try {
-			return baseDAO.getPageableList(getCondition(query, null, null, null));
+			return baseDAO.getPageableList(params);
 		} catch (Exception e) {
 			return null;
 		}
@@ -229,65 +256,46 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 		}
 	}
 	
-	public Map<String, Object> getCondition(T query, String orderby, Long limit, Long offset) throws Exception {
+	public Map<String, Object> getCondition(T query, Long offset, Long limit, String orderby) throws Exception {
 		
-		Map<String, Object> params = new HashMap<>();
-		
-    	if (query != null) {
-    		params = GsonUtils.GSON.fromJson(GsonUtils.GSON.toJson(query), Map.class);
-    	}
-		
-		if (orderby != null) {
-			params.put("orderby", orderby);
-		} else {
-			params.put("orderby", null);
-		}
-		
-		if (limit != null) {
-			params.put("limit", limit);
-		} else {
-			params.put("limit", null);
-		}
-		
-		if (offset != null) {
-			params.put("offset", offset);
-		} else {
-			params.put("offset", null);
-		}
-		
-		return params;
+        Map<String, Object> params = new HashMap<>();
+        
+        if (query != null) {
+        	 params = GsonUtils.GSON.fromJson(GsonUtils.GSON.toJson(query), Map.class);
+        }
+           
+        return getCondition(params, offset, limit, orderby);
 	}
 	
 	public Map<String, Object> getCondition(Map<String, Object> params, Long offset, Long limit, String orderby) {
-		
-		Long begin = 0L;
-		
+        
+		Long begin = Long.valueOf(0L);
+        
 		if (offset != null) {
 			begin = offset;
 		}
-		
-		Long realOffset = offset;
-		if (limit == null) {
-			limit = 10L;
-		}
-		if (limit != null) {
-			if (offset == null) {
-				realOffset = 0L;
-			}
-			realOffset = realOffset * limit;
-		}
-    	
-		String orderbyStr = orderby;
-    	if (StringUtils.isBlank(orderby)) {
-    		orderbyStr = " id desc ";    		
-    	}
-
-    	params.put("offset", realOffset);
-    	params.put("beginIndex", begin);
-    	params.put("limit", limit);
-    	params.put("orderby", orderbyStr);
-    	
-    	return params;
+            
+        Long realOffset = offset;
+        if (limit == null) {
+        	limit = Long.valueOf(10L);
+        }
+            
+        if (limit != null) {
+            if(offset == null) {
+            	realOffset = Long.valueOf(0L);
+            }
+            realOffset = Long.valueOf(realOffset.longValue() * limit.longValue());
+        }
+        
+        String orderbyStr = orderby;
+        if (StringUtils.isBlank(orderby)) {
+        	orderbyStr = " id desc ";
+        } 
+        params.put("offset", realOffset);
+        params.put("beginIndex", begin);
+        params.put("limit", limit);
+        params.put("orderby", orderbyStr);
+        return params;
 	}
 	
 	public <K> PageVo<K> getPageVo(Map<String,Object> params) {

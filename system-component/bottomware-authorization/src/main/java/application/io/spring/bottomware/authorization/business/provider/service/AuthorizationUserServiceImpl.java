@@ -13,6 +13,7 @@ import application.io.spring.bottomware.authorization.business.api.service.Autho
 import application.io.spring.bottomware.authorization.business.api.vo.AuthorizationUserResourceVo;
 import application.io.spring.bottomware.authorization.business.api.vo.AuthorizationUserRoleVo;
 import application.io.spring.bottomware.authorization.business.provider.dao.AuthorizationUserDAO;
+import application.io.spring.bottomware.utility.BeanUtils;
 import application.io.spring.common.utils.json.GsonUtils;
 import application.io.spring.core.base.api.vo.PageVo;
 import application.io.spring.core.base.provider.service.BaseServiceImpl;
@@ -60,7 +61,7 @@ public class AuthorizationUserServiceImpl extends BaseServiceImpl<AuthorizationU
 	@Override
 	public List<AuthorizationUserRoleVo> selectAllUserRolesByName(AuthorizationUser query) {
 		try {
-			return authorizationUserDAO.selectAllUserRolesByName(getCondition(query, null, null, null));
+			return authorizationUserDAO.selectAllUserRolesByName(BeanUtils.beanToMap(query));
 		} catch (Exception e) {
 			log.error("=== AuthorizationUserServiceImpl | selectAllUserRolesByName throws an exception"
 					+ " | exception message: " + e.getMessage() + " ===");
@@ -71,7 +72,7 @@ public class AuthorizationUserServiceImpl extends BaseServiceImpl<AuthorizationU
 	@Override
 	public List<AuthorizationUserRoleVo> selectAllUserRolesByNameV2(AuthorizationUser query) {
 		try {
-			return authorizationUserDAO.selectAllUserRolesByNameV2(getCondition(query, null, null, null));
+			return authorizationUserDAO.selectAllUserRolesByNameV2(BeanUtils.beanToMap(query));
 		} catch (Exception e) {
 			log.error("=== AuthorizationUserServiceImpl | selectAllUserRolesByNameV2 throws an exception"
 					+ " | exception message: " + e.getMessage() + " ===");
@@ -82,7 +83,7 @@ public class AuthorizationUserServiceImpl extends BaseServiceImpl<AuthorizationU
 	@Override
 	public List<AuthorizationUserResourceVo> selectAllUserResourcesByName(AuthorizationUser query) {
 		try {
-			return authorizationUserDAO.selectAllUserResourcesByName(getCondition(query, null, null, null));
+			return authorizationUserDAO.selectAllUserResourcesByName(BeanUtils.beanToMap(query));
 		} catch (Exception e) {
 			log.error("=== AuthorizationUserServiceImpl | selectAllUserResourcesByName throws an exception"
 					+ " | exception message: " + e.getMessage() + " ===");
@@ -93,7 +94,7 @@ public class AuthorizationUserServiceImpl extends BaseServiceImpl<AuthorizationU
 	@Override
 	public List<AuthorizationUserResourceVo> selectAllUserResourcesByNameV2(AuthorizationUser query) {
 		try {
-			return authorizationUserDAO.selectAllUserResourcesByNameV2(getCondition(query, null, null, null));
+			return authorizationUserDAO.selectAllUserResourcesByNameV2(BeanUtils.beanToMap(query));
 		} catch (Exception e) {
 			log.error("=== AuthorizationUserServiceImpl | selectAllUserResourcesByNameV2 throws an exception"
 					+ " | exception message: " + e.getMessage() + " ===");
