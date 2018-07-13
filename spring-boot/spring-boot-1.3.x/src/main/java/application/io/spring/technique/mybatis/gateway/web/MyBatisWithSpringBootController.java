@@ -64,17 +64,13 @@ public class MyBatisWithSpringBootController extends BaseController<MyBatis> {
 		bean.setVersion("3.4.1");
 		bean.setReleaseTime(new Date());
 		bean.setOfficialUrl("http://www.mybatis.org/mybatis-3/");
-		bean.setContributor("Vins, Ives");
-		bean.setRemark("from insertBatch");
+		bean.setContributor("Ives, Vins");
+		bean.setRemark("from insertSelective");
 		jsonObject = new JSONObject();
 		now = dateFormat.format(new Date());
 		jsonObject.put("createTime", now);
 		jsonObject.put("updateTime", now);
 		bean.setExtendedField(jsonObject);
-		List<MyBatis> beans = new ArrayList<MyBatis>();
-		beans.add(bean);
-		beans.add(bean);
-		beans.add(bean);
 		
 		if (isInsertSelectiveSuccessful) {
 			result.put("isInsertSelectiveSuccessful", isInsertSelectiveSuccessful);
@@ -111,8 +107,8 @@ public class MyBatisWithSpringBootController extends BaseController<MyBatis> {
 		Long resultFromGetAllCountByQuery = myBatisService.getAllCountByQuery(query);
 		Long resultFromGetListCountByQuery = myBatisService.getListCountByQuery(query, 10L, 0L);
 		
-		List<Long> primaryKeys = Arrays.asList(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L,
-				11L, 12L, 13L, 14L, 15L, 16L, 17L, 18L, 19L, 20L);
+		List<Long> primaryKeys = Arrays.asList(100L, 105L, 110L, 115L, 120L, 125L, 130L, 135L, 140L, 145L,
+				150L, 155L, 160L, 165L, 170L, 175L, 180L, 185L, 190L, 195L);
 		
 		List<MyBatis> resultFromSelectListByPrimaryKeyCollection = myBatisService.selectListByPrimaryKeyCollection(primaryKeys);
 		
@@ -154,7 +150,7 @@ public class MyBatisWithSpringBootController extends BaseController<MyBatis> {
 		Map<String, Object> result = new HashMap<>();
 		
 		MyBatis condition = new MyBatis();
-		condition.setRemark("from insertBatch");
+		condition.setContributor("Ives, Vins");
 		condition.setVersion("3.4.1");
 		
 		boolean isDeleteByConditionSuccessful = myBatisService.deleteByCondition(condition);
