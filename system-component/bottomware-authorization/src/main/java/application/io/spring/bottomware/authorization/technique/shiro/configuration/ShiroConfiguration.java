@@ -16,12 +16,25 @@ import application.io.spring.bottomware.authorization.technique.shiro.matcher.Cr
 import application.io.spring.bottomware.authorization.technique.shiro.realm.AuthorizationRealm;
 
 /**
- * 	This is a class configure Shiro for Spring-boot
+ * 	This is a class configure Shiro for Spring-boot. <br/>
+ * 	<p>
+ * 	To enable Shiro in web-application environment with Spring-boot, 
+ * 	this class must be extended and annotated with @Configuration so that 
+ * 	Shiro authentication and authorization can actually work.
+ * 	</p>
+ * 	<p>
+ * 	Note that this bottom-ware module is not eventually finalized. 
+ * 	If the functionality provided from this module is not comprehensive enough to satisfy the needs, 
+ * 	it is highly welcomed to access this module and do the proper modification.
+ * 	<p/>
+ * 	<p>
+ * 	Just NOTICE that whatever modification that has been performed in this module must ensure its scalability and universality,
+ * 	since this module aims to serve ALL top-level web-applications, NOT just for ONE single web-application.
+ * 	</p>
  * 
  * @author vinsy
  *
  */
-@Configuration
 public class ShiroConfiguration {
 	
     /**
