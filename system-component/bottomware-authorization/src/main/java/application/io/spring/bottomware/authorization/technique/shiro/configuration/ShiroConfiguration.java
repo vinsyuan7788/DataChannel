@@ -10,7 +10,6 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import application.io.spring.bottomware.authorization.technique.shiro.matcher.CredentialsMatcher;
 import application.io.spring.bottomware.authorization.technique.shiro.realm.AuthorizationRealm;
