@@ -57,7 +57,7 @@ public class MyBatisWithSpringBootController extends BaseController<MyBatis> {
 		jsonObject.put("updateTime", now);
 		bean.setExtendedField(jsonObject);
 		
-		boolean isInsertSelectiveSuccessful = myBatisService.insertSelective(bean);
+		boolean isInsertSelectiveSuccessful1 = myBatisService.insertSelective(bean);
 		
 		bean = new MyBatis();
 		bean.setName("MyBatis");
@@ -72,15 +72,19 @@ public class MyBatisWithSpringBootController extends BaseController<MyBatis> {
 		jsonObject.put("updateTime", now);
 		bean.setExtendedField(jsonObject);
 		
-		if (isInsertSelectiveSuccessful) {
-			result.put("isInsertSelectiveSuccessful", isInsertSelectiveSuccessful);
+		boolean isInsertSelectiveSuccessful2 = myBatisService.insertSelective(bean);
+		
+		if (isInsertSelectiveSuccessful1 && isInsertSelectiveSuccessful2) {
+			result.put("isInsertSelectiveSuccessful1", isInsertSelectiveSuccessful1);
+			result.put("isInsertSelectiveSuccessful2", isInsertSelectiveSuccessful2);
 			data.put("status", 1);
 			data.put("msg", "success");
 			data.put("executionTime", (System.currentTimeMillis() - startTime) + "ms");
 			data.put("result", result);
 			return data;
 		} else {
-			result.put("isInsertSelectiveSuccessful", isInsertSelectiveSuccessful);
+			result.put("isInsertSelectiveSuccessful", isInsertSelectiveSuccessful1);
+			result.put("isInsertSelectiveSuccessful", isInsertSelectiveSuccessful2);
 			data.put("status", -1);
 			data.put("msg", "failure");
 			data.put("executionTime", (System.currentTimeMillis() - startTime) + "ms");
