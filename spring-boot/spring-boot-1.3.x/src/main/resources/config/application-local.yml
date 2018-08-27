@@ -2,7 +2,11 @@ server:
   port: 13579
   context-path: /spring-boot-application
   servlet-path: /api
-  
+  tomcat:
+    max-threads: 200
+    accept-count: 100
+    max-connections: 300
+    
 spring:
   profiles: local
   

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import application.io.spring.technique.springboot.api.model.SpringBoot;
 import application.io.spring.technique.springboot.utils.SpringContextHolder1;
 import application.io.spring.technique.springboot.utils.SpringContextHolder2;
+import org.springframework.boot.autoconfigure.web.ServerProperties;
 import net.sf.json.JSONObject;
 
 @SuppressWarnings({ "unused" })
@@ -43,6 +44,9 @@ public class SpringBootController {
 		result.put("contextPath", springBootEnvironment.getProperty("server.context-path"));
 		result.put("servletPath", springBootEnvironment.getProperty("server.servlet-path"));
 		result.put("port", springBootEnvironment.getProperty("server.port"));
+		result.put("tomcat.maxThreads", springBootEnvironment.getProperty("server.tomcat.max-threads"));
+		result.put("tomcat.maxConnections", springBootEnvironment.getProperty("server.tomcat.max-connections"));
+		result.put("tomcat.acceptCount", springBootEnvironment.getProperty("server.tomcat.accept-count"));
 		
 		data.put("status", 1);
 		data.put("msg", "Hello Spring-Boot!");
