@@ -45,6 +45,12 @@
 	    <artifactId>spring-boot-starter-freemarker</artifactId>
 	</dependency>
 	
+	<!-- Here specifies Undertow as Spring-boot embedded server -->
+	<dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-undertow</artifactId>
+	</dependency>
+	
 	<!-- Here are the dependencies regarding Spring -->
 	<!--
 		Spring-security core component
