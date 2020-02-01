@@ -1,4 +1,4 @@
-package application.io.spring.common.utils;
+package application.io.spring.common.utils.file;
 
 import java.io.File;
 import java.io.FileOutputStream;

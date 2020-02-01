@@ -78,6 +78,13 @@
 	    <version>1.9.3</version>
 	</dependency>
 	
+	<!-- Jodd -->
+	<dependency>
+	    <groupId>org.jodd</groupId>
+	    <artifactId>jodd-json</artifactId>
+	    <version>3.6.7</version>
+	</dependency>
+	
 	<!-- Here are the dependencies that need to be further studied -->
 	<!-- 
 		Spring-boot components that integrates MyBatis

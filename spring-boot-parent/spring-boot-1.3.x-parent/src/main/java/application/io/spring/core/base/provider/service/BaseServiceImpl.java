@@ -37,8 +37,14 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
      */
 	public BaseServiceImpl() {
 		
+		System.out.println("=== BaseServiceImpl.BaseServiceImpl"
+				+ " | classOfActualTypeArgument: " + classOfActualTypeArgument + " ===");
+		
 		// Initialize class of actual type argument
 		initClassOfActualTypeArgument();
+		
+		System.out.println("=== BaseServiceImpl.BaseServiceImpl"
+				+ " | classOfActualTypeArgument: " + classOfActualTypeArgument + " ===");
 	}
 	
 	/**
@@ -86,14 +92,24 @@ public class BaseServiceImpl<T extends Identifiable> implements BaseService<T> {
 	
 	@Override
 	public int getInitOrder() {
+		System.out.println("=== BaseServiceImpl.getInitOrder"
+				+ " | initOrder: " + InitService.SERVICE_ORDER + " ===");
 		return InitService.SERVICE_ORDER;
 	}
 
 	@Override
 	public void init() throws CommonException {
 
+		System.out.println("=== BaseServiceImpl.init"
+				+ " | classOfActualTypeArgument: " + classOfActualTypeArgument
+				+ " | baseDAO: " + baseDAO + " ===");
+		
 		// Initialize base DAO
 		initBaseDAO();
+		
+		System.out.println("=== BaseServiceImpl.init"
+				+ " | classOfActualTypeArgument: " + classOfActualTypeArgument
+				+ " | baseDAO: " + baseDAO + " ===");
 	}
 	
 	@Override

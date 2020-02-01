@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import application.io.spring.common.utils.StringUtils;
+import application.io.spring.common.utils.string.StringUtils;
 import application.io.spring.technique.shiro.utils.LoginInfo;
 import application.io.spring.technique.shiro.utils.ShiroUtils;
 

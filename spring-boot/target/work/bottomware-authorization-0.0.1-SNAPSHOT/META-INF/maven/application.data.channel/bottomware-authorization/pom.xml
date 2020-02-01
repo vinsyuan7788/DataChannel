@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>application.data.channel</groupId>
+    <artifactId>system-component</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>bottomware-authorization</artifactId>
+  <name>bottomware-authorization</name>
+  <url>http://maven.apache.org</url>
+
+  <dependencies>
+  
+  	<!-- Here are the dependencies from local -->
+  	<dependency>
+  		<groupId>application.data.channel</groupId>
+  		<artifactId>bottomware-utility</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  	
+	<!-- Here are the dependencies regarding Shiro  -->	
+	<!-- 
+		Shiro core component
+	-->
+	<dependency>
+	    <groupId>org.apache.shiro</groupId>
+	    <artifactId>shiro-core</artifactId>
+	    <version>1.4.0</version>
+	</dependency>
+	<!-- 
+		Shiro component that supports Spring
+	-->
+	<dependency>
+	    <groupId>org.apache.shiro</groupId>
+	    <artifactId>shiro-spring</artifactId>
+	    <version>1.4.0</version>
+	</dependency>
+	<!-- 
+		Shiro component that supports Ehcache
+	-->
+	<dependency>
+	    <groupId>org.apache.shiro</groupId>
+	    <artifactId>shiro-ehcache</artifactId>
+	    <version>1.4.0</version>
+	</dependency>
+  </dependencies>
+  
+ 	<!-- Directory specification, plug-ins and packages for Maven build -->
+	<build>
+		<!-- Here specifies main and test directory of source and resources -->
+	    <sourceDirectory>src/main/java</sourceDirectory>
+	    <resources>
+	    	<resource>
+	    		<directory>src/main/resources</directory>
+	   		</resource>
+		</resources>
+	    <testSourceDirectory>src/test/java</testSourceDirectory>
+	    <testResources>
+	    	<testResource>
+	    		<directory>src/test/resources</directory>
+	   		</testResource>
+		</testResources>
+	</build>
+</project>

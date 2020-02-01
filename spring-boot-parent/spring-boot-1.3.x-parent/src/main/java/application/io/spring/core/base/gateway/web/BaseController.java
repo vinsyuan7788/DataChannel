@@ -27,8 +27,14 @@ public class BaseController<T extends Identifiable> implements InitService {
      */
 	public BaseController() {
 		
+		System.out.println("=== BaseController.BaseController"
+				+ " | classOfActualTypeArgument: " + classOfActualTypeArgument + " ===");
+		
 		// Initialize class of actual type argument
 		initClassOfActualTypeArgument();
+		
+		System.out.println("=== BaseController.BaseController"
+				+ " | classOfActualTypeArgument: " + classOfActualTypeArgument + " ===");
 	}
 	
 	/**
@@ -76,13 +82,23 @@ public class BaseController<T extends Identifiable> implements InitService {
 	
 	@Override
 	public int getInitOrder() {
+		System.out.println("=== BaseController.getInitOrder"
+				+ " | initOrder: " + InitService.CONTROLLER_ORDER + " ===");
 		return InitService.CONTROLLER_ORDER;
 	}
 
 	@Override
 	public void init() throws CommonException {
 
+		System.out.println("=== BaseController.init"
+				+ " | classOfActualTypeArgument: " + classOfActualTypeArgument
+				+ " | baseService: " + baseService + " ===");
+		
 		// Initialize base service
 		initBaseService();
+		
+		System.out.println("=== BaseController.init"
+				+ " | classOfActualTypeArgument: " + classOfActualTypeArgument
+				+ " | baseService: " + baseService + " ===");
 	}
 }

@@ -25,9 +25,14 @@ public class SpringContextListener implements ApplicationListener<ContextRefresh
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		
-		if (((ApplicationContextEvent) event).getApplicationContext().getParent() == null) {
+		ApplicationContext parentApplicationContext = ((ApplicationContextEvent) event).getApplicationContext().getParent();
+		if (parentApplicationContext == null) {
 			try {
-				this.initSystem(SpringContextHolder.getApplicationContext());
+				ApplicationContext springApplicationContext = SpringContextHolder.getApplicationContext();
+				System.out.println("=== SpringContextListener"
+						+ " | springContextListener: " + springApplicationContext
+						+ " | parentApplicationContext: " + parentApplicationContext + " ===");
+				this.initSystem(springApplicationContext);
 			} catch (CommonException e) {
 				log.error("=== SpringContextListener.onApplicatinoEvent | there is an exception"
 						+ " | exception information: " + e.getMessage() + " ===");
@@ -79,6 +84,9 @@ public class SpringContextListener implements ApplicationListener<ContextRefresh
 			}	
 		}
 		
+		System.out.println("=== SpringContextListener.initSystem"
+				+ " | initOrderAndCorrespondingBeans: " + initOrderAndCorrespondingBeans + " ===");
+		
 		// If the map is empty, then directly return
 		if (initOrderAndCorrespondingBeans.isEmpty()) {
 			return;
@@ -88,8 +96,11 @@ public class SpringContextListener implements ApplicationListener<ContextRefresh
 		Integer[] initOrders = initOrderAndCorrespondingBeans.keySet().toArray(new Integer[] {});   
 		Arrays.sort(initOrders);
 		
-		// Traverse the initialization orders
-		for (int i = initOrders.length - 1; i >= 0; i --) {
+		/*
+		 *  Traverse the initialization orders
+		 *  -- Hence the higher order value, the higher priority
+		 */
+		for (int i = initOrders.length - 1; i >= 0; i--) {
 			
 			// Get the corresponding beans according to initialization order
 			List<Object> correspondingBeans = initOrderAndCorrespondingBeans.get(initOrders[i]);
@@ -103,6 +114,5 @@ public class SpringContextListener implements ApplicationListener<ContextRefresh
 				}
 			}
 		}
-		
 	}
 }

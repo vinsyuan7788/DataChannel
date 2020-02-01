@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="application.io.spring.bottomware.authorization.business.provider.dao.AuthorizationUserDAO">
+    
+	<resultMap id="AuthorizationUserRoleVo" type="application.io.spring.bottomware.authorization.business.api.vo.AuthorizationUserRoleVo" extends="BaseResultMap">
+		<result column="role_name" property="roleName" jdbcType="VARCHAR"/>
+		<result column="role_code" property="roleCode" jdbcType="VARCHAR"/>
+		<result column="role_pid" property="rolePid" jdbcType="BIGINT"/>
+		<result column="role_parent_id" property="roleParentId" jdbcType="BIGINT"/>
+		<result column="role_left_value" property="roleLeftValue" jdbcType="BIGINT"/>
+		<result column="role_right_value" property="roleRightValue" jdbcType="BIGINT"/>
+		<result column="role_id" property="roleId" jdbcType="VARCHAR"/>
+		<result column="role_parent_node" property="roleParentNode" jdbcType="VARCHAR"/>
+		<result column="role_left_node" property="roleLeftNode" jdbcType="VARCHAR"/>
+		<result column="role_right_node" property="roleRightNode" jdbcType="VARCHAR"/>
+		<result column="role_seq" property="roleSeq" jdbcType="BIGINT"/>
+		<result column="role_group" property="roleGroup" jdbcType="VARCHAR"/>
+	</resultMap>
+    
+    <resultMap id="AuthorizationUserResourceVo" type="application.io.spring.bottomware.authorization.business.api.vo.AuthorizationUserResourceVo" extends="BaseResultMap">
+    	<result column="resource_name" property="resourceName" jdbcType="VARCHAR"/>
+    	<result column="resource" property="resource" jdbcType="VARCHAR"/>
+		<result column="resource_code" property="resourceCode" jdbcType="VARCHAR"/>
+		<result column="resource_pid" property="resourcePid" jdbcType="BIGINT"/>
+		<result column="resource_parent_id" property="resourceParentId" jdbcType="BIGINT"/>
+		<result column="resource_left_value" property="resourceLeftValue" jdbcType="BIGINT"/>
+		<result column="resource_right_value" property="resourceRightValue" jdbcType="BIGINT"/>
+		<result column="resource_id" property="resourceId" jdbcType="VARCHAR"/>
+		<result column="resource_parent_node" property="resourceParentNode" jdbcType="VARCHAR"/>
+		<result column="resource_left_node" property="resourceLeftNode" jdbcType="VARCHAR"/>
+		<result column="resource_right_node" property="resourceRightNode" jdbcType="VARCHAR"/>
+		<result column="resource_seq" property="resourceSeq" jdbcType="BIGINT"/>
+		<result column="resource_type" property="resourceType" jdbcType="VARCHAR"/>
+    </resultMap>
+    
+    <select id="selectAllUserRolesByName" parameterType="java.util.Map" resultMap="AuthorizationUserRoleVo">
+		select
+			xau.*,
+			xar.name as role_name,
+			xar.code as role_code,
+			xar.id as role_pid,
+			xar.parent_id as role_parent_id,
+			xar.left_value as role_left_value,
+			xar.right_value as role_right_value,
+			xar.role_id,
+			xar.parent_node as role_parent_node,
+			xar.left_node as role_left_node,
+			xar.right_node as role_right_node,
+			xar.seq as role_seq,
+			xar.role_group as role_group
+		from
+			x_authorization_user xau
+		left join 
+			x_authorization_user_role xaur on xaur.user_primary_id = xau.id
+		left join 
+			x_authorization_role xar on xar.id = xaur.role_primary_id
+		where
+			xau.name = #{name,jdbcType=VARCHAR};
+    </select>
+    
+    <select id="selectAllUserRolesByNameV2" parameterType="java.util.Map" resultMap="AuthorizationUserRoleVo">
+		select
+			xau.*,
+			xar.name as role_name,
+			xar.code as role_code,
+			xar.id as role_pid,
+			xar.parent_id as role_parent_id,
+			xar.left_value as role_left_value,
+			xar.right_value as role_right_value,
+			xar.role_id,
+			xar.parent_node as role_parent_node,
+			xar.left_node as role_left_node,
+			xar.right_node as role_right_node,
+			xar.seq as role_seq,
+			xar.role_group as role_group
+		from
+			x_authorization_user xau
+		left join 
+			x_authorization_user_role xaur on xaur.user_id = xau.user_id
+		left join 
+			x_authorization_role xar on xar.role_id = xaur.role_id
+		where
+			xau.name = #{name,jdbcType=VARCHAR};
+    </select>
+	
+	<select id="selectAllUserResourcesByName" parameterType="java.util.Map" resultMap="AuthorizationUserResourceVo">
+		select
+			xau.*,
+			xar.name as resource_name,
+			xar.resource,
+			xar.code as resource_code,
+			xar.id as resource_pid,
+			xar.parent_id as resource_parent_id,
+			xar.left_value as resource_left_value,
+			xar.right_value as resource_right_value,
+			xar.resource_id,
+			xar.parent_node as resource_parent_node,
+			xar.left_node as resource_left_node,
+			xar.right_node as resource_right_node,
+			xar.seq as resource_seq,
+			xar.resource_type
+		from
+			x_authorization_user xau
+		left join 
+			x_authorization_user_role xaur on xaur.user_primary_id = xau.id
+		left join 
+			x_authorization_role_resource xarr on xarr.role_primary_id = xaur.role_primary_id
+		left join
+			x_authorization_resource xar on xarr.resource_primary_id = xar.id
+		where
+			xau.name = #{name,jdbcType=VARCHAR};
+    </select>
+    
+	<select id="selectAllUserResourcesByNameV2" parameterType="java.util.Map" resultMap="AuthorizationUserResourceVo">
+		select
+			xau.*,
+			xar.name as resource_name,
+			xar.resource,
+			xar.code as resource_code,
+			xar.id as resource_pid,
+			xar.parent_id as resource_parent_id,
+			xar.left_value as resource_left_value,
+			xar.right_value as resource_right_value,
+			xar.resource_id,
+			xar.parent_node as resource_parent_node,
+			xar.left_node as resource_left_node,
+			xar.right_node as resource_right_node,
+			xar.seq as resource_seq,
+			xar.resource_type
+		from
+			x_authorization_user xau
+		left join 
+			x_authorization_user_role xaur on xaur.user_id = xau.user_id
+		left join 
+			x_authorization_role_resource xarr on xarr.role_id = xaur.role_id
+		left join
+			x_authorization_resource xar on xarr.resource_id = xar.resource_id
+		where
+			xau.name = #{name,jdbcType=VARCHAR};
+    </select>
+
+    <select id="getJsonbPageableList" parameterType="java.util.Map" resultMap="BaseResultMap">
+        <include refid="Base_Column_List"/>from x_authorization_user
+        <where>
+            <if test="id != null "> and id = #{id,jdbcType=BIGINT}  </if>
+            <if test="name != null and name != ''"> and name = #{name,jdbcType=VARCHAR}  </if>
+            <if test="password != null and password != ''"> and password = #{password,jdbcType=VARCHAR}  </if>
+            <if test="attr != null and attr != ''"> and attr = #{attr,jdbcType=VARCHAR}  </if>
+            <if test="realName != null and realName != ''"> and real_name = #{realName,jdbcType=VARCHAR}  </if>
+            <if test="gender != null and gender != ''"> and gender = #{gender,jdbcType=VARCHAR}  </if>
+            <if test="birthday != null and birthday != ''"> and birthday = #{birthday,jdbcType=TIMESTAMP} :: timestamp with time zone </if>
+            <if test="officePhone != null and officePhone != ''"> and office_phone = #{officePhone,jdbcType=VARCHAR}  </if>
+            <if test="mobilePhone != null and mobilePhone != ''"> and mobile_phone = #{mobilePhone,jdbcType=VARCHAR}  </if>
+            <if test="homePhone != null and homePhone != ''"> and home_phone = #{homePhone,jdbcType=VARCHAR}  </if>
+            <if test="email != null and email != ''"> and email = #{email,jdbcType=VARCHAR}  </if>
+            <if test="remark != null and remark != ''"> and remark = #{remark,jdbcType=VARCHAR}  </if>
+            <if test="creator != null "> and creator = #{creator,jdbcType=BIGINT}  </if>
+            <if test="status != null and status != ''"> and status = #{status,jdbcType=VARCHAR}  </if>
+            <if test="createTime != null and createTime != ''"> and create_time = #{createTime,jdbcType=TIMESTAMP} :: timestamp with time zone </if>
+            <if test="code != null and code != ''"> and code = #{code,jdbcType=VARCHAR}  </if>
+            <if test="fingerprintLogin != null and fingerprintLogin != ''"> and fingerprint_login = #{fingerprintLogin,jdbcType=VARCHAR}  </if>
+            <if test="allowLoginType != null and allowLoginType != ''"> and allow_login_type = #{allowLoginType,jdbcType=VARCHAR}  </if>
+            <if test="isInternalEmployee != null and isInternalEmployee != ''"> and is_internal_employee = #{isInternalEmployee,jdbcType=VARCHAR}  </if>
+            <if test="extendedField != null and extendedField != ''"> and (extended_field-&gt;&gt;'param')::text = #{param,jdbcType=VARCHAR} </if>
+            <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime,jdbcType=TIMESTAMP} :: timestamp with time zone </if>
+            <if test="userId != null and userId != ''"> and user_id = #{userId,jdbcType=VARCHAR}  </if>
+        </where>
+        <if test="orderby != null "> order by ${orderby} </if>
+        <if test="limit != null "> limit ${limit} </if>
+        <if test="offset != null "> offset ${offset} </if>
+    </select>
+    <select id="getJsonbListCount" parameterType="java.util.Map" resultType="java.lang.Long">select count(*) from x_authorization_user
+        <where>
+            <if test="id != null "> and id = #{id,jdbcType=BIGINT}  </if>
+            <if test="name != null and name != ''"> and name = #{name,jdbcType=VARCHAR}  </if>
+            <if test="password != null and password != ''"> and password = #{password,jdbcType=VARCHAR}  </if>
+            <if test="attr != null and attr != ''"> and attr = #{attr,jdbcType=VARCHAR}  </if>
+            <if test="realName != null and realName != ''"> and real_name = #{realName,jdbcType=VARCHAR}  </if>
+            <if test="gender != null and gender != ''"> and gender = #{gender,jdbcType=VARCHAR}  </if>
+            <if test="birthday != null and birthday != ''"> and birthday = #{birthday,jdbcType=TIMESTAMP} :: timestamp with time zone </if>
+            <if test="officePhone != null and officePhone != ''"> and office_phone = #{officePhone,jdbcType=VARCHAR}  </if>
+            <if test="mobilePhone != null and mobilePhone != ''"> and mobile_phone = #{mobilePhone,jdbcType=VARCHAR}  </if>
+            <if test="homePhone != null and homePhone != ''"> and home_phone = #{homePhone,jdbcType=VARCHAR}  </if>
+            <if test="email != null and email != ''"> and email = #{email,jdbcType=VARCHAR}  </if>
+            <if test="remark != null and remark != ''"> and remark = #{remark,jdbcType=VARCHAR}  </if>
+            <if test="creator != null "> and creator = #{creator,jdbcType=BIGINT}  </if>
+            <if test="status != null and status != ''"> and status = #{status,jdbcType=VARCHAR}  </if>
+            <if test="createTime != null and createTime != ''"> and create_time = #{createTime,jdbcType=TIMESTAMP} :: timestamp with time zone </if>
+            <if test="code != null and code != ''"> and code = #{code,jdbcType=VARCHAR}  </if>
+            <if test="fingerprintLogin != null and fingerprintLogin != ''"> and fingerprint_login = #{fingerprintLogin,jdbcType=VARCHAR}  </if>
+            <if test="allowLoginType != null and allowLoginType != ''"> and allow_login_type = #{allowLoginType,jdbcType=VARCHAR}  </if>
+            <if test="isInternalEmployee != null and isInternalEmployee != ''"> and is_internal_employee = #{isInternalEmployee,jdbcType=VARCHAR}  </if>
+            <if test="extendedField != null and extendedField != ''"> and (extended_field-&gt;&gt;'param')::text = #{param,jdbcType=VARCHAR} </if>
+            <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime,jdbcType=TIMESTAMP} :: timestamp with time zone </if>
+            <if test="userId != null and userId != ''"> and user_id = #{userId,jdbcType=VARCHAR}  </if>
+        </where>
+    </select>
+</mapper>
